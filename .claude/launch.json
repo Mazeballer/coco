@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Astro Dev",
+      "runtimeExecutable": "/usr/local/bin/node",
+      "env": { "PATH": "/usr/local/bin:/usr/bin:/bin" },
+      "runtimeArgs": ["/usr/local/bin/npm", "run", "dev"],
+      "port": 4321
+    }
+  ]
+}

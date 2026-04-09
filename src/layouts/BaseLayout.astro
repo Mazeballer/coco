@@ -1,0 +1,66 @@
+---
+/**
+ * BaseLayout.astro
+ * The single root layout for every page.
+ * - Imports global.css (Tailwind v4 + tokens + fonts)
+ * - NO CDN scripts — everything is bundled at build time
+ * - Full SEO meta, OG, Twitter Card
+ */
+
+import "../styles/global.css";
+
+interface Props {
+  title?:       string;
+  description?: string;
+  ogImage?:     string;
+}
+
+const {
+  title       = "Coco Cado — Snack Happy",
+  description = "Bold flavour, crunchy fun, and feel-good snacking for every moment. Coco Cado is a modern Malaysian snack brand by Happy Alliance.",
+  ogImage     = "/images/og-image.jpg",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado.com");
+---
+
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffd700" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={ogImage} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={ogImage} />
+
+      <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+
+  <body>
+    <!-- Skip to main content — screen reader / keyboard accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <slot />
+  </body>
+</html>

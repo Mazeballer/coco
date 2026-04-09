@@ -1,0 +1,51 @@
+---
+import ProductCard from './ProductCard.astro';
+
+const products = [
+  {
+    image:'20gPotatoSticks-BlackPepper.png',
+    alt: 'Potato Sticks',
+    badge: 'NEW!',
+    title: 'Potato Sticks',
+    desc: "Light, crispy, and addictive with bold seasoning.",
+  },
+  {
+    image: '20gx10pcsPoppingPearl-Barley.png',
+    alt: 'Popping pearl',
+    badge: 'FAN FAVE!',
+    title: 'Popping pearl ',
+    desc: 'Fun, flavourful snacks for all-day enjoyment.',
+  },
+  {
+    image: '43gPotatoSticks-Tomato.png',
+    alt: 'Sharing Packs',
+    badge: 'CLASSIC',
+    title: 'Sharing Packs',
+    desc: 'Made for gatherings, parties, and family moments.',
+  },
+  {
+    image: '20gx10pcsPoppingPearl-WaterChestnut.png',
+    alt: 'On-the-Go Packs',
+    badge: 'LIMITED',
+    title: 'On-the-Go Packs',
+    desc: 'Convenient snacking anytime, anywhere.',
+  },
+];
+---
+
+<section class="bg-[#ffd700] py-32" aria-labelledby="products-heading">
+  <div class="container mx-auto px-6">
+    <header class="text-center mb-20">
+      <span class="inline-block bg-[#200f01] text-[#ffd700] px-6 py-2 rounded-full font-black text-sm tracking-widest uppercase mb-4">Snack Picks</span>
+      <h2 id="products-heading" class="text-3xl md:text-5xl lg:text-6xl font-black font-headline text-[#200f01] leading-[1.1] max-w-4xl mx-auto text-balance">
+        DISCOVER THE <span class="text-[#ce0301]">SNACKS</span> EVERYONE WILL<br class="hidden md:block" /> REACH FOR <span class="text-[#ce0301]">AGAIN AND AGAIN.</span>
+      </h2>
+    </header>
+
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pt-24 list-none m-0 p-0" role="list" aria-label="Featured snack products">
+      {products.map((p) => (
+        <ProductCard image={p.image} alt={p.alt} badge={p.badge} title={p.title} desc={p.desc} />
+      ))}
+    </ul>
+  </div>
+</section>

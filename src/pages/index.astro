@@ -1,0 +1,395 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import FeaturedProducts from "../components/FeaturedProducts.astro";
+---
+
+<BaseLayout
+  title="Coco Cado — Snack Happy"
+  description="Bold flavour, crunchy fun, and feel-good snacking for every moment. Coco Cado is a modern Malaysian snack brand by Happy Alliance."
+>
+  <Navbar />
+
+  <main id="main-content">
+
+  <!-- Hero extracted to a component (scripts inside run on the client) -->
+  <Hero />
+
+    <!-- ══════════════════════════════════════════
+         BRAND INTRO
+    ═══════════════════════════════════════════ -->
+    <section id="brand-intro" class="bg-[#200f01] py-32 relative overflow-hidden" aria-labelledby="brand-intro-heading">
+      <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+
+        <div class="w-full md:w-1/2 space-y-8">
+          <span id="bi-badge" class="inline-block bg-[#ffd700] text-[#221b00] px-6 py-2 rounded-full font-black text-sm tracking-widest uppercase">WHO WE ARE</span>
+          <h2 id="brand-intro-heading" class="text-5xl md:text-7xl font-black font-headline text-[#ffdcc0] leading-none">
+            A New Way <br />to Snack
+          </h2>
+          <p id="bi-body" class="text-lg md:text-xl text-[#d0c6ab] leading-relaxed max-w-xl">
+            Coco Cado is made for today's snack lovers people who want flavour, convenience,
+            and a brand that feels fresh, energetic, and shareable. Whether it is for family
+            snacking, on-the-go moments, gifting, or retail shelves, Coco Cado is designed to
+            stand out with taste, quality, and a vibrant brand personality.
+          </p>
+          <div id="bi-tagline" class="flex gap-4 items-center">
+            <div class="w-16 h-16 rounded-xl bg-[#3a2512] flex items-center justify-center shrink-0" aria-hidden="true">
+              <span class="material-symbols-outlined text-[#ffd700] text-3xl">eco</span>
+            </div>
+            <p class="font-bold text-[#ffdcc0] italic">Real Potato. Crunchy. Unapologetic.</p>
+          </div>
+        </div>
+
+        <div id="bi-image-col" class="w-full md:w-1/2 relative">
+          <figure class="aspect-square bg-[#46301c] rounded-xl overflow-hidden border-8 border-[#46301c] -rotate-3 hover:rotate-0 transition-transform duration-500 shadow-2xl m-0">
+            <img
+              src="saltedpotatogreen.png"
+              alt="Group of young adults sharing Coco Cado snacks and laughing together"
+              width="500" height="500"
+              loading="lazy" decoding="async"
+              class="w-full h-full object-cover"
+            />
+          </figure>
+          <div id="bi-carnival" class="absolute -bottom-10 -right-10 w-35 h-35 bg-[#ce0301] rounded-full border-4 border-[#ffdcc0] flex items-center justify-center rotate-12 shadow-2xl" aria-hidden="true">
+            <span class="text-white font-black text-center text-lg leading-tight uppercase">VACUUM<br />FRIED<br /></span>
+          </div>
+        </div>
+
+      </div>
+      <div class="absolute bottom-0 left-0 w-full h-24 bg-[#ffd700] wavy-divider pointer-events-none" aria-hidden="true"></div>
+    </section>
+
+    <!-- Featured products extracted to a component -->
+    <FeaturedProducts />
+
+    <!-- ══════════════════════════════════════════
+         WHY COCO CADO
+    ═══════════════════════════════════════════ -->
+    <section class="bg-[#1a0a00] py-32" aria-labelledby="why-heading">
+      <div class="container mx-auto px-6 text-center">
+        <h2 id="why-heading" class="text-5xl md:text-7xl font-black font-headline text-white leading-none mb-4 uppercase tracking-tighter">
+          Why Coco Cado?
+        </h2>
+        <p class="text-[#d0c6ab] text-lg md:text-xl font-medium mb-16 opacity-80">
+          Beyond the crunch, we're a movement of quality and flavor.
+        </p>
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 list-none m-0 p-0" role="list">
+          <li class="flex flex-col items-center space-y-4">
+            <div class="w-20 h-20 bg-[#3a2512] rounded-full flex items-center justify-center border-2 border-[#ffd700]/20" aria-hidden="true">
+            <span class="material-symbols-outlined text-primary-container text-4xl">restaurant_menu</span>
+            </div>
+            <h3 class="text-2xl font-black font-headline text-white">Great Taste</h3>
+            <p class="text-[#d0c6ab] text-sm max-w-xs">Big flavour designed for everyday enjoyment.</p>
+          </li>
+          <li class="flex flex-col items-center space-y-4">
+            <div class="w-20 h-20 bg-[#3a2512] rounded-full flex items-center justify-center border-2 border-[#ffd700]/20" aria-hidden="true">
+              <span class="material-symbols-outlined text-[#ce0301] text-4xl">verified_user</span>
+            </div>
+            <h3 class="text-2xl font-black font-headline text-white">Quality Assured</h3>
+            <p class="text-[#d0c6ab] text-sm max-w-xs">Produced with care under trusted manufacturing standards.</p>
+          </li>
+          <li class="flex flex-col items-center space-y-4">
+            <div class="w-20 h-20 bg-[#3a2512] rounded-full flex items-center justify-center border-2 border-[#ffd700]/20" aria-hidden="true">
+              <span class="material-symbols-outlined text-[#f2cdff] text-4xl">celebration</span>
+            </div>
+            <h3 class="text-2xl font-black font-headline text-white">Fun Lifestyle Brand</h3>
+            <p class="text-[#d0c6ab] text-sm max-w-xs">Colourful, youthful, and made for modern snack culture.</p>
+          </li>
+          <li class="flex flex-col items-center space-y-4">
+            <div class="w-20 h-20 bg-[#3a2512] rounded-full flex items-center justify-center border-2 border-[#ffd700]/20" aria-hidden="true">
+              <span class="material-symbols-outlined text-[#e9c400] text-4xl">store</span>
+            </div>
+            <h3 class="text-2xl font-black font-headline text-white">Retail Ready</h3>
+            <p class="text-[#d0c6ab] text-sm max-w-xs">Suitable for domestic retail, trade channels, and export growth.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         READY TO DISCOVER CTA
+    ═══════════════════════════════════════════ -->
+    <section class="bg-[#ffd700] py-20" aria-labelledby="discover-heading">
+      <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+        <h2 id="discover-heading" class="text-4xl md:text-6xl font-black font-headline text-[#1a0a00] leading-[0.9] max-w-xl uppercase">
+          MEET THE BRAND
+        </h2>
+        <div class="flex flex-wrap gap-4">
+          <a href="/products"     class="bg-[#1a0a00] text-[#ffd700] px-8 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform active:scale-95">Our Story</a>
+          <a href="/where-to-buy" class="bg-[#ce0301] text-white px-8 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform active:scale-95">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         READY TO SNACK STRIP
+    ═══════════════════════════════════════════ -->
+    <section class="bg-[#ce0301] py-24 relative overflow-hidden" aria-labelledby="snack-cta-heading">
+      <div class="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
+        <div class="absolute top-10 left-10 w-4 h-4 bg-[#ffd700] rounded-full"></div>
+        <div class="absolute bottom-20 right-20 w-8 h-8 bg-[#f2cdff] rounded-full"></div>
+        <div class="absolute top-1/2 left-1/3 w-6 h-6 bg-white rounded-full"></div>
+        <div class="absolute top-20 right-1/4 w-4 h-4 bg-[#200f01] rounded-full"></div>
+        <div class="absolute bottom-10 left-1/4 w-10 h-10 bg-[#ffd700]/50 rotate-45"></div>
+      </div>
+      <div class="container mx-auto px-6 text-center relative z-10 space-y-8">
+        <h2 id="snack-cta-heading" class="text-6xl md:text-9xl font-black font-headline text-white leading-none tracking-tighter">
+          Ready to Snack?
+        </h2>
+        <p class="text-[#ffd700] text-2xl md:text-3xl font-bold italic">
+          Don't wait for the flavor to find you. Go get it!
+        </p>
+        <a
+          href="/where-to-buy"
+          class="inline-block bg-[#ffd700] text-[#1a0a00] px-12 py-6 rounded-full font-black text-2xl border-b-8 border-[#200f01] shadow-2xl hover:rotate-2 hover:scale-110 transition-all active:scale-95"
+        >
+          Find Us Now
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
+
+  // Always start at the very top of the page on load
+  history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── 1. Lenis smooth scroll ──────────────────────────────
+  const lenis = new Lenis({
+    duration: 1.6,       // ← overall scroll smoothness (higher = more glide)
+    smoothWheel: true,
+    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo ease-out
+  });
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+  gsap.ticker.lagSmoothing(0);
+
+  lenis.on("scroll", () => ScrollTrigger.update());
+
+  // ── 2. Panel 1 entrance animation (runs on page load) ───
+  const panel1Timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+  panel1Timeline
+    .fromTo(
+      ".panel1-fade",
+      { opacity: 0 },
+      { opacity: 1, duration: 1, stagger: 0.15 }
+    )
+    .fromTo(
+      ".panel1-slide",
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 },
+      "-=0.7"
+    )
+    .fromTo(
+      ".panel1-bounce",
+      { opacity: 0, scale: 0.8 },
+      { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" },
+      "-=0.6"
+    );
+
+  // ── 3. Horizontal scroll panels (desktop only) ──────────
+  const mm = gsap.matchMedia();
+
+  mm.add("(min-width: 768px)", () => {
+    const panelsContainer = document.querySelector<HTMLElement>(".hero-panels");
+    const heroSection = document.querySelector<HTMLElement>("#hero-scroll");
+
+    if (!panelsContainer || !heroSection) return;
+
+    // Hide panel 2 content initially (panel 1 is shown via CSS translateY(-50%))
+    gsap.set(".panel2-fade, .panel2-slide, .panel2-bounce", { opacity: 0 });
+    gsap.set(".panel2-slide", { y: 40 });
+    gsap.set(".panel2-bounce", { scale: 0.8 });
+
+    // Single timeline controls everything — no separate ScrollTriggers competing with the pin.
+    //
+    // Timeline is 3 units long, pinned for +=300% (100vh per unit):
+    //   Unit 0–2 (scroll 0–200vh)  : panel slides from 1 → 2 SLOWLY, panel 2 content fades in
+    //   Unit 2–3 (scroll 200–300vh): panel 2 fully visible — dwell so user can read it
+    //
+    // ── To adjust pin length: change "+=300%" and the dwell duration: 1 below ──
+    //    e.g. "+=250%" + duration:0.5 = shorter   |   "+=400%" + duration:2 = longer
+    //
+    // ── To adjust animation speed: change the slide/fade duration values (currently 2) ──
+    //    higher = slower slide, lower = faster slide
+    //
+    // ── To adjust smoothness: change scrub value ──
+    //    scrub: true = instant (no lag)   |   scrub: 0.5 = half-second lag (silky)
+    const heroTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: heroSection,
+        pin: true,
+        scrub: true,           // Changed from 0.8 to true: Lenis already smooths the scroll. Extra scrub causes lag and jerky unpinning.
+        start: "top top",
+        end: "+=200%",         // Reduced pin length for quicker exit
+        invalidateOnRefresh: true,
+      },
+    });
+
+    // ── Phase 1: slow slide + reveal ──
+    heroTl
+      .fromTo(panelsContainer,
+        { yPercent: -50 },
+        { yPercent: 0, ease: "power1.inOut", duration: 1.5 },
+        0
+      )
+      .to(".panel2-fade",   { opacity: 1, ease: "power1.in", duration: 1.5 }, 0)
+      .to(".panel2-slide",  { opacity: 1, y: 0, ease: "power1.in", duration: 1.5 }, 0)
+      .to(".panel2-bounce", { opacity: 1, scale: 1, ease: "power1.in", duration: 1.5 }, 0)
+
+    // ── Phase 2: dwell — panel 2 sits visible ──
+      .to({}, { duration: 0.2 }); // Reduced dwell significantly so users drop out of the hero smoothly
+
+    return () => {
+      gsap.set(".panel2-fade, .panel2-slide, .panel2-bounce", { clearProps: "all" });
+    };
+  });
+
+  // Mobile fallback — panel 2 entrance on scroll into view
+  mm.add("(max-width: 767px)", () => {
+    gsap.fromTo(
+      ".panel2-fade",
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".hero-panel:nth-child(2)",
+          start: "top 70%",
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      ".panel2-slide",
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: ".hero-panel:nth-child(2)",
+          start: "top 70%",
+          once: true,
+        },
+      }
+    );
+    gsap.fromTo(
+      ".panel2-bounce",
+      { opacity: 0, scale: 0.8 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: ".hero-panel:nth-child(2)",
+          start: "top 70%",
+          once: true,
+        },
+      }
+    );
+  });
+
+  // ── 4. Scroll-triggered section reveals ─────────────────
+  ScrollTrigger.refresh();
+
+  gsap.utils.toArray<HTMLElement>("section:not(#hero-scroll):not(#brand-intro)").forEach((section) => {
+    const els = section.querySelectorAll<HTMLElement>(
+      "h2, h3, p, address, .card-item"
+    );
+    if (!els.length) return;
+
+    gsap.fromTo(
+      els,
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          once: true,
+        },
+      }
+    );
+  });
+
+  // ── 5. Product cards stagger ─────────────────────────────
+  const productList = document.querySelector(
+    "ul[aria-label='Featured snack products']"
+  );
+  if (productList) {
+    gsap.fromTo(
+      productList.querySelectorAll("li"),
+      { opacity: 0, y: 60, rotation: 4 },
+      {
+        opacity: 1,
+        y: 0,
+        rotation: 0,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: productList,
+          start: "top 85%",
+          once: true,
+        },
+      }
+    );
+  }
+
+  // ── 6. Brand Intro section animations ───────────────────
+  const brandIntro = document.querySelector("#brand-intro");
+  if (brandIntro) {
+    const biTl = gsap.timeline({
+      defaults: { ease: "power2.out" },
+      scrollTrigger: {
+        trigger: brandIntro,
+        start: "top 70%",
+        once: true,
+      },
+    });
+
+    // Left column elements slide up one after another
+    biTl
+      .fromTo(
+        ["#bi-badge", "#brand-intro-heading", "#bi-body", "#bi-tagline"],
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.15 }
+      )
+      // Image fades + drifts in from the right — starts at same time as left col
+      .fromTo("#bi-image-col",
+        { opacity: 0, x: 50 },
+        { opacity: 1, x: 0, duration: 1 },
+        0                          // start at t=0, parallel with left column
+      )
+      // Carnival badge scales in after image arrives
+      .fromTo("#bi-carnival",
+        { opacity: 0, scale: 0.6 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.4)" },
+        "-=0.2"
+      );
+  }
+
+  ScrollTrigger.refresh();
+</script>

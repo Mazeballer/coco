@@ -1,0 +1,164 @@
+---
+/**
+ * Footer.astro
+ * Site-wide footer with brand info, nav, resources, and newsletter form.
+ * Newsletter form submits to Web3Forms — no backend needed.
+ */
+
+const navLinks = [
+  { label: "Home",        href: "/"             },
+  { label: "Products",    href: "/products"     },
+  { label: "About",       href: "/about"        },
+  { label: "Ambassadors", href: "/ambassadors"  },
+];
+
+const resourceLinks = [
+  { label: "News",           href: "/news"          },
+  { label: "Where to Buy",   href: "/where-to-buy"  },
+  { label: "Contact",        href: "/contact"       },
+  { label: "Privacy Policy", href: "/privacy"       },
+];
+
+const socialLinks = [
+  { label: "Facebook",  href: "#", icon: "share"    },
+  { label: "Instagram", href: "#", icon: "favorite" },
+  { label: "TikTok",    href: "#", icon: "campaign" },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="w-full bg-[#1a0a00] pt-24 pb-12 border-t-8 border-dashed border-[#ce0301]">
+  <div class="container mx-auto px-6">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+
+      <!-- Brand info -->
+      <div class="space-y-6">
+        <a
+          href="/"
+          class="inline-block -ml-1 hover:scale-105 transition-transform active:scale-95"
+          aria-label="Coco Cado Home"
+        >
+          <span
+            class="block bg-[#cc0000] px-5 py-2"
+            style="
+              border-radius: 999px;
+              border: 4px solid #1a0a00;
+              box-shadow: inset 0 0 0 2px #ffffff;
+            "
+          >
+            <span
+              class="block text-white uppercase leading-none"
+              style="font-family: 'Epilogue', sans-serif; font-weight: 900; font-size: 1.25rem; letter-spacing: 0.1em;"
+            >
+              COCO CADO
+            </span>
+          </span>
+        </a>
+        <address class="text-[#999077] text-sm leading-relaxed font-medium not-italic">
+          Happy Alliance (M) Sdn. Bhd.<br />
+          Lot 2869, Kampung Tumbuk,<br />
+          42800 Tanjong Sepat,<br />
+          Selangor D.E., Malaysia.
+        </address>
+        <ul class="flex gap-4 list-none m-0 p-0" role="list" aria-label="Social media links">
+          {socialLinks.map(({ label, href, icon }) => (
+            <li>
+              <a
+                href={href}
+                aria-label={`Follow Coco Cado on ${label}`}
+                class="w-10 h-10 bg-[#2f1b08] rounded-full flex items-center justify-center hover:bg-[#ce0301] transition-colors group"
+              >
+                <span class="material-symbols-outlined text-[#ffd700] group-hover:text-white text-xl" aria-hidden="true">
+                  {icon}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Navigation -->
+      <nav aria-label="Footer navigation">
+        <h2 class="text-white font-black uppercase tracking-widest text-sm mb-8">Navigation</h2>
+        <ul class="space-y-4 text-sm font-bold list-none m-0 p-0" role="list">
+          {navLinks.map(({ label, href }) => (
+            <li>
+              <a href={href} class="text-[#999077] hover:text-[#ffd700] transition-colors">
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+  <!-- Reach Us -->
+<nav aria-label="Footer reach us">
+  <h2 class="text-white font-black uppercase tracking-widest text-sm mb-8">Reach Us</h2>
+
+  <div class="text-[#999077] text-sm font-medium space-y-6">
+
+    <!-- Hotline -->
+    <div>
+          <p class="text-[#ffd700] font-bold uppercase text-xs">Hotline</p>
+      <a
+        href="tel:+60331972857"
+        class="block hover:text-[#ffd700] transition-colors"
+      >
+        TEL: +603 3197 2857
+      </a>
+      <a
+        href="tel:+60331973857"
+        class="block hover:text-[#ffd700] transition-colors"
+      >
+        FAX: +603 3197 3857
+      </a>
+    </div>
+
+    <!-- General Enquiry -->
+    <div>
+      <p class="text-[#ffd700] font-bold uppercase text-xs mb-2">General Enquiry</p>
+      <a
+        href="mailto:captaindolphinmy@gmail.com"
+        class="hover:text-[#ffd700] transition-colors break-all"
+      >
+        cococado@gmail.com
+      </a>
+    </div>
+
+    <!-- Sales & Export -->
+    <div>
+      <p class="text-[#ffd700] font-bold uppercase text-xs mb-2">Sales & Export Enquiry</p>
+      <a
+        href="mailto:sales@captaindolphin.com.my"
+        class="hover:text-[#ffd700] transition-colors break-all"
+      >
+        sales@cococado.com.my
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+   <!-- Operation Hours -->
+<div>
+  <h2 class="text-white font-black uppercase tracking-widest text-sm mb-4">Operation Hours</h2>
+  <ul class="text-[#999077] text-sm font-medium space-y-3">
+    <li>Mon – Fri (8.30am – 5.30pm)</li>
+    <li>Sat – (8.30am – 12.00pm)</li>
+    <li>Sun & Public Holiday – Off</li>
+  </ul>
+</div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="pt-8 border-t border-[#999077]/20 flex flex-col items-center text-center gap-2">
+      <p class="text-[#ffd700] text-xs opacity-75">
+        &copy; {year}Happy Alliance (M) Sdn. Bhd. All Rights Reserved.
+      </p>
+    </div>
+
+  </div>
+</footer>

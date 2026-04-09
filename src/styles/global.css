@@ -1,0 +1,208 @@
+/* ============================================================
+   COCO CADO — Global Stylesheet
+   Single source of truth for all design tokens & utilities.
+   Imported ONCE in BaseLayout.astro — nowhere else.
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* ------------------------------------------------------------
+   1. GOOGLE FONTS
+   Using @import so the build bundles the font request.
+   ------------------------------------------------------------ */
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+
+/* ------------------------------------------------------------
+   2. DESIGN TOKENS — Tailwind v4 theme
+   Access in HTML as: bg-coco-yellow, text-coco-red, etc.
+   ------------------------------------------------------------ */
+@theme {
+  /* Brand colours */
+  --color-coco-dark: #1a0a00;
+  --color-coco-darkest: #200f01;
+  --color-coco-yellow: #ffd700;
+  --color-coco-yellow-dim: #e9c400;
+  --color-coco-yellow-pale: #ffe16d;
+  --color-coco-red: #cc0000;
+  --color-coco-red-dark: #930000;
+  --color-coco-card: #2c1810;
+  --color-coco-surface: #2f1b08;
+  --color-coco-surface-high: #3a2512;
+  --color-coco-surface-low: #2a1705;
+  --color-coco-purple: #6b2d8b;
+  --color-coco-purple-light: #f2cdff;
+  --color-coco-outline: #999077;
+  --color-coco-text: #ffdcc0;
+  --color-coco-text-muted: #d0c6ab;
+
+  /* Semantic aliases (used in Tailwind classes) */
+  --color-surface: #200f01;
+  --color-surface-container: #2f1b08;
+  --color-surface-container-high: #3a2512;
+  --color-surface-container-highest: #46301c;
+  --color-surface-container-lowest: #1a0a00;
+  --color-surface-variant: #46301c;
+  --color-surface-dim: #200f01;
+  --color-on-surface: #ffdcc0;
+  --color-on-surface-variant: #d0c6ab;
+  --color-on-background: #ffdcc0;
+  --color-background: #200f01;
+  --color-primary: #fff6df;
+  --color-primary-container: #ffd700;
+  --color-primary-fixed: #ffe16d;
+  --color-primary-fixed-dim: #e9c400;
+  --color-on-primary: #3a3000;
+  --color-on-primary-container: #705e00;
+  --color-on-primary-fixed: #221b00;
+  --color-on-primary-fixed-variant: #544600;
+  --color-secondary-container: #ce0301;
+  --color-on-secondary-container: #ffdcd7;
+  --color-on-secondary-fixed-variant: #930000;
+  --color-tertiary: #fff2fe;
+  --color-tertiary-container: #f2cdff;
+  --color-tertiary-fixed: #f6d9ff;
+  --color-tertiary-fixed-dim: #e8b3ff;
+  --color-on-tertiary: #4e0a6f;
+  --color-on-tertiary-container: #8243a2;
+  --color-on-tertiary-fixed: #310049;
+  --color-on-tertiary-fixed-variant: #672987;
+  --color-outline: #999077;
+  --color-outline-variant: #4d4732;
+  --color-inverse-primary: #705d00;
+  --color-inverse-surface: #ffdcc0;
+  --color-inverse-on-surface: #412c18;
+  --color-surface-tint: #e9c400;
+  --color-surface-bright: #4b3420;
+  --color-secondary: #ffb4a8;
+  --color-secondary-fixed: #ffdad4;
+  --color-secondary-fixed-dim: #ffb4a8;
+  --color-on-secondary: #690000;
+  --color-on-secondary-fixed: #410000;
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  /* Typography */
+  --font-headline: "Epilogue", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Manrope", sans-serif;
+
+  /* Border radius */
+  --radius: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+  --radius-full: 9999px;
+}
+
+/* ------------------------------------------------------------
+   3. BASE RESET & GLOBAL DEFAULTS
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Manrope", sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Skip to content — accessibility */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-coco-yellow);
+  color: var(--color-coco-dark);
+  font-weight: 700;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ------------------------------------------------------------
+   4. MATERIAL SYMBOLS ICON SETTINGS
+   ------------------------------------------------------------ */
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+  font-family: "Material Symbols Outlined";
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------------------
+   5. CUSTOM UTILITY CLASSES
+   ------------------------------------------------------------ */
+
+/* Wavy section divider using SVG mask */
+.wavy-divider {
+  mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0L60 10C120 20 240 40 360 40C480 40 600 20 720 10C840 0 960 0 1080 10C1200 20 1320 40 1380 50L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V0Z" fill="black"/></svg>');
+  mask-repeat: no-repeat;
+  mask-size: cover;
+}
+
+/* Diagonal bottom edge clip for hero */
+.diagonal-cut {
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+}
+
+/* Sticker outlined text */
+.text-outline-sticker {
+  -webkit-text-stroke: 2px #200f01;
+}
+
+/* GSAP animation classes
+   These are just marker classes — GSAP reads them as targets.
+   Visibility is fully controlled by GSAP fromTo(), not CSS opacity.
+   Content is always visible if GSAP fails to load. */
+.animate-fade-in,
+.animate-slide-up,
+.animate-bounce-in {
+  will-change: opacity, transform;
+}
+
+/* Lenis smooth scroll */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
