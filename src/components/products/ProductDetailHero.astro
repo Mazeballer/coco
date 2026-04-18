@@ -1,0 +1,208 @@
+---
+import { Image, getImage } from "astro:assets";
+import type { Product } from "../../data/productData";
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+
+// High-performance dynamic asset loading
+const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{png,jpg,jpeg,webp}', { eager: true });
+
+function getAsset(path: string) {
+  const assetPath = path.startsWith('/src/') ? path : `/src/assets${path}`;
+  return allImages[assetPath]?.default;
+}
+
+// Pre-optimize all flavors for the dynamic switcher
+const optimizedFlavors = await Promise.all((product.flavors || []).map(async (f) => {
+  const asset = getAsset(f.image);
+  if (!asset) return { ...f, optimizedSrc: f.image };
+  const opt = await getImage({ src: asset, width: 1200, quality: "max" });
+  return { ...f, optimizedSrc: opt.src };
+}));
+
+const mainOptimized = await getImage({ src: getAsset(product.mainImage)!, width: 1600, quality: "max" });
+---
+
+<section class="max-w-7xl mx-auto px-6 py-12 lg:py-24" id="product-detail-hero">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    
+    <!-- Left: Product Image Block -->
+    <div class="relative group">
+      <div 
+        id="image-container"
+        class="relative bg-primary-container rounded-3xl p-12 aspect-square flex items-center justify-center overflow-hidden shadow-[0_20px_50px_rgba(32,15,1,0.3)] border-4 border-white/10 group-hover:border-white/30 transition-all duration-500"
+      >
+        <div class="absolute inset-0 kinetic-bg-dots opacity-10"></div>
+        <img 
+          id="main-product-image"
+          src={optimizedFlavors.length > 0 ? optimizedFlavors[0].optimizedSrc : mainOptimized.src} 
+          alt={product.mainImageAlt}
+          class:list={[
+            "relative z-10 drop-shadow-[0_35px_35px_rgba(26,10,0,0.4)] hover:scale-110 transition-transform duration-500",
+            ["pearl-bundle"].includes(product.slug) ? "w-full scale-110" : "w-4/5"
+          ]}
+        />
+        
+        <!-- Badge removed from detail page per user request -->
+      </div>
+
+      <!-- Flavor Thumbnails (Visual only here, matches selection below) -->
+      {product.flavors && product.flavors.length > 1 && (
+        <div class="flex gap-4 mt-8" id="flavor-image-selectors">
+          {optimizedFlavors.map((flavor, index) => (
+            <button 
+              type="button"
+              data-flavor-index={index}
+              class:list={[
+                "w-32 h-32 rounded-lg p-4 border-2 overflow-hidden shadow-lg transition-all hover:scale-105 flex items-center justify-center cursor-pointer",
+                index === 0 ? "border-[#ce0301] bg-[#ffd700] ring-4 ring-[#ce0301]/20" : "border-outline/30 bg-surface-container"
+              ]}
+              aria-label={`Switch to ${flavor.name}`}
+            >
+              <img src={flavor.optimizedSrc} alt={flavor.name} class="max-w-full max-h-full object-contain drop-shadow-md" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <!-- Right: Product Details -->
+    <div class="flex flex-col gap-6">
+      <div>
+        <span class="inline-block bg-tertiary-container text-on-tertiary-container font-black px-4 py-1 rounded-full text-sm uppercase tracking-widest mb-4">
+          {product.category}
+        </span>
+        <h1 class="text-6xl md:text-7xl font-black font-headline text-primary-container leading-[0.9] tracking-tighter text-balance">
+          {product.name}
+        </h1>
+      </div>
+
+      <p class="text-xl text-on-surface-variant font-medium leading-relaxed max-w-lg">
+        {product.longDescription || product.description}
+      </p>
+
+      <!-- Flavor Selection Pills -->
+      {optimizedFlavors && optimizedFlavors.length > 0 && (
+        <div class="space-y-4">
+          <h3 class="font-black uppercase text-sm tracking-widest text-outline">Select Flavor</h3>
+          <div class="flex flex-wrap gap-3" id="flavor-selectors">
+            {optimizedFlavors.map((flavor, index) => (
+              <button 
+                type="button"
+                data-flavor-image={flavor.optimizedSrc}
+                data-flavor-bg={flavor.colorClass}
+                data-flavor-index={index}
+                class:list={[
+                  "flavor-pill px-6 py-2 rounded-full font-bold border-2 transition-all duration-300",
+                  index === 0 
+                  ? "bg-secondary-container text-white border-on-background shadow-[4px_4px_0px_#221b00]" 
+                  : "bg-surface-container text-on-surface border-outline hover:border-primary-container"
+                ]}
+              >
+                {flavor.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Pack Info Block -->
+      <div class="bg-surface-container-high p-6 rounded-xl grid grid-cols-2 gap-8">
+        <div>
+          <p class="text-outline text-xs font-black uppercase mb-1">Weight</p>
+          <p class="text-2xl font-black text-primary-container">{product.weight}</p>
+        </div>
+        <div>
+          <p class="text-outline text-xs font-black uppercase mb-1">Format</p>
+          <p class="text-2xl font-black text-primary-container">{product.format}</p>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 mt-4">
+        <a 
+          href="/contact"
+          class="flex-1 bg-primary-container text-on-primary-fixed font-black py-5 px-8 rounded-xl text-lg uppercase tracking-tight border-b-4 border-on-primary-fixed hover:rotate-1 active:translate-y-1 active:border-b-0 transition-all flex items-center justify-center text-center"
+        >
+          Enquire About This Product
+        </a>
+        <a 
+          href="/distributor"
+          class="flex-1 bg-secondary-container text-white font-black py-5 px-8 rounded-xl text-lg uppercase tracking-tight border-b-4 border-on-secondary-fixed hover:-rotate-1 active:translate-y-1 active:border-b-0 transition-all flex items-center justify-center text-center"
+        >
+          Become a Distributor
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFlavorSelection() {
+    const hero = document.getElementById('product-detail-hero');
+    if (!hero) return;
+
+    const pills = hero.querySelectorAll('.flavor-pill');
+    const imageButtons = hero.querySelectorAll('#flavor-image-selectors button');
+    const mainImage = hero.querySelector('#main-product-image') as HTMLImageElement;
+
+    function updateFlavor(index: number) {
+      const selectedPill = pills[index] as HTMLElement;
+      const selectedImageButton = imageButtons[index] as HTMLElement;
+
+      // Reset all pills
+      pills.forEach(p => {
+        p.classList.remove('bg-secondary-container', 'text-white', 'border-on-background', 'shadow-[4px_4px_0px_#221b00]');
+        p.classList.add('bg-surface-container', 'text-on-surface', 'border-outline');
+      });
+
+      // Reset all image buttons
+      imageButtons.forEach(b => {
+        b.classList.remove('border-[#ce0301]', 'bg-[#ffd700]', 'ring-4', 'ring-[#ce0301]/20');
+        b.classList.add('border-outline/30', 'bg-surface-container');
+      });
+
+      // Activate selected
+      if (selectedPill) {
+        selectedPill.classList.remove('bg-surface-container', 'text-on-surface', 'border-outline');
+        selectedPill.classList.add('bg-secondary-container', 'text-white', 'border-on-background', 'shadow-[4px_4px_0px_#221b00]');
+      }
+
+      if (selectedImageButton) {
+        selectedImageButton.classList.remove('border-outline/30', 'bg-surface-container');
+        selectedImageButton.classList.add('border-[#ce0301]', 'bg-[#ffd700]', 'ring-4', 'ring-[#ce0301]/20');
+      }
+
+      // Update main image
+      const newSrc = selectedPill?.getAttribute('data-flavor-image');
+      if (newSrc && mainImage) {
+        mainImage.style.opacity = '0';
+        mainImage.style.transform = 'scale(0.9) rotate(-10deg)';
+        
+        setTimeout(() => {
+          mainImage.src = newSrc;
+          mainImage.style.opacity = '1';
+          mainImage.style.transform = 'scale(1) rotate(0deg)';
+        }, 300);
+      }
+    }
+
+    // Attach listeners to pills
+    pills.forEach((pill, idx) => {
+      pill.addEventListener('click', () => updateFlavor(idx));
+    });
+
+    // Attach listeners to image buttons
+    imageButtons.forEach((btn, idx) => {
+      btn.addEventListener('click', () => updateFlavor(idx));
+    });
+  }
+
+  // Run on load and on transition
+  initFlavorSelection();
+  document.addEventListener('astro:after-swap', initFlavorSelection);
+</script>

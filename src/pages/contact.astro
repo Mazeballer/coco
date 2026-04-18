@@ -1,0 +1,78 @@
+---
+import BaseLayout        from "../layouts/BaseLayout.astro";
+import Navbar            from "../components/Navbar.astro";
+import Footer            from "../components/Footer.astro";
+import ContactHeroStitch from "../components/contact/ContactHeroStitch.astro";
+import ContactFormStitch from "../components/contact/ContactFormStitch.astro";
+---
+
+<BaseLayout
+  title="Contact Us | Coco Cado"
+  description="Get in touch with the Coco Cado team — product inquiries, wholesale, media, or just to say hi."
+>
+  <Navbar />
+
+  <main id="main-content">
+    <ContactHeroStitch />
+    <ContactFormStitch />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initAnimations() {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Hero
+    gsap.fromTo(
+      "header h1, header p, header div[aria-hidden]",
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: "power3.out", delay: 0.2 }
+    );
+
+    // Form + details animate on scroll
+    gsap.utils.toArray<HTMLElement>("section").forEach((el) => {
+      const targets = el.querySelectorAll<HTMLElement>(
+        "h2, h3, p, label, input, select, textarea, button, a[class], div[class*='rounded']"
+      );
+      if (!targets.length) return;
+      gsap.fromTo(
+        targets,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.05,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 82%", once: true },
+        }
+      );
+    });
+  }
+
+  document.addEventListener("astro:page-load", initAnimations);
+  if (document.readyState === "complete") {
+    initAnimations();
+  } else {
+    window.addEventListener("load", initAnimations);
+  }
+</script>

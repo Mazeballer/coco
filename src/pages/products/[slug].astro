@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { products } from "../../data/productData";
+import ProductDetailHero from "../../components/products/ProductDetailHero.astro";
+import TrustRow from "../../components/products/TrustRow.astro";
+import FlavorGrid from "../../components/products/FlavorGrid.astro";
+import RelatedSnacks from "../../components/products/RelatedSnacks.astro";
+
+export async function getStaticPaths() {
+  return products.map(product => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<BaseLayout 
+  title={`${product.name} — Coco Cado`}
+  description={product.description}
+>
+  <Navbar />
+
+  <main id="main-content" class="pt-24 md:pt-32">
+    
+    <!-- Hero Section -->
+    <ProductDetailHero product={product} />
+
+    <!-- Trust Badges -->
+    <TrustRow />
+
+    <!-- More Snacks -->
+    <RelatedSnacks relatedSlugs={product.relatedSlugs || []} />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initAnimations() {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+
+    // Entrance animations
+    gsap.from("#image-container", {
+      scale: 0.8,
+      opacity: 0,
+      rotation: -5,
+      duration: 1.2,
+      ease: "power4.out"
+    });
+
+    gsap.from("h1", {
+      y: 50,
+      opacity: 0,
+      duration: 1,
+      delay: 0.3,
+      ease: "power3.out"
+    });
+
+    gsap.from(".flavor-card", {
+      y: 40,
+      opacity: 0,
+      stagger: 0.1,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: ".flavor-card",
+        start: "top 80%"
+      }
+    });
+  }
+
+  initAnimations();
+  document.addEventListener('astro:after-swap', initAnimations);
+</script>

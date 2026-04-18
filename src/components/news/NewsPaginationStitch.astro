@@ -1,0 +1,30 @@
+---
+/**
+ * NewsPaginationStitch.astro
+ * Circular pagination controls.
+ */
+---
+
+<nav class="max-w-7xl mx-auto py-20 flex justify-center items-center gap-4">
+  <!-- Prev Arrow -->
+  <button class="w-10 h-10 flex items-center justify-center text-[#200f01] border-2 border-[#200f01] rounded-full hover:bg-[#200f01] hover:text-white transition-all group scale-100 active:scale-95">
+    <span class="material-symbols-outlined text-2xl group-hover:-translate-x-1 transition-transform font-bold">chevron_left</span>
+  </button>
+  
+  <!-- Page Numbers -->
+  <div class="flex gap-4 items-center">
+    <!-- Active -->
+    <span class="w-10 h-10 flex items-center justify-center bg-[#ce0301] text-white rounded-full font-headline font-black text-lg shadow-sm">1</span>
+    
+    <!-- Inactive -->
+    <button class="w-10 h-10 flex items-center justify-center text-[#200f01] border-2 border-transparent hover:border-[#200f01] rounded-full transition-all font-headline font-black text-lg">2</button>
+    <button class="w-10 h-10 flex items-center justify-center text-[#200f01] border-2 border-transparent hover:border-[#200f01] rounded-full transition-all font-headline font-black text-lg">3</button>
+    <button class="w-10 h-10 flex items-center justify-center text-[#200f01] border-2 border-transparent hover:border-[#200f01] rounded-full transition-all font-headline font-black text-lg hidden md:flex">4</button>
+    <button class="w-10 h-10 flex items-center justify-center text-[#200f01] border-2 border-transparent hover:border-[#200f01] rounded-full transition-all font-headline font-black text-lg hidden md:flex">5</button>
+  </div>
+  
+  <!-- Next Arrow -->
+  <button class="w-10 h-10 flex items-center justify-center text-[#200f01] border-2 border-[#200f01] rounded-full hover:bg-[#200f01] hover:text-white transition-all group scale-100 active:scale-95">
+    <span class="material-symbols-outlined text-2xl group-hover:translate-x-1 transition-transform font-bold">chevron_right</span>
+  </button>
+</nav>

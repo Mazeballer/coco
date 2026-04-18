@@ -1,0 +1,40 @@
+---
+/**
+ * WhoWeWorkWithStitch.astro
+ * Colourful pill tags listing the types of partners Coco Cado works with.
+ */
+
+const partners = [
+  { label: "Importers",             bg: "bg-[#ffd700]", text: "text-[#221b00]", border: "border-[#221b00]", rotate: "hover:-rotate-2" },
+  { label: "National Distributors", bg: "bg-[#ce0301]", text: "text-white",     border: "border-[#930000]", rotate: "hover:rotate-2"  },
+  { label: "Wholesalers",           bg: "bg-[#f2cdff]", text: "text-[#4e0a6f]", border: "border-[#8243a2]", rotate: "hover:-rotate-2" },
+  { label: "Retail Chain Buyers",   bg: "bg-[#999077]", text: "text-[#200f01]", border: "border-[#46301c]", rotate: "hover:rotate-2"  },
+  { label: "Convenience & Grocery", bg: "bg-[#3a2512]", text: "text-[#ffd700]", border: "border-[#ffd700]", rotate: "hover:-rotate-2" },
+  { label: "E-Commerce Partners",   bg: "bg-[#46301c]", text: "text-[#f2cdff]", border: "border-[#f2cdff]", rotate: "hover:rotate-2"  },
+];
+---
+
+<section class="bg-[#200f01] py-24 px-6" aria-labelledby="who-we-work-heading">
+  <div class="max-w-7xl mx-auto text-center">
+
+    <div class="mb-12 space-y-4">
+      <h2 id="who-we-work-heading" class="text-4xl md:text-5xl font-headline font-black text-[#ffd700] uppercase tracking-tighter leading-none">
+        Who We Work With
+      </h2>
+      <p class="text-lg text-[#d0c6ab] max-w-xl mx-auto font-medium leading-snug">
+        We welcome partnerships with businesses ready to bring Coco Cado to their market and share the brand's energetic spirit.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-4">
+      {partners.map((p) => (
+        <div
+          class={`${p.bg} ${p.text} ${p.rotate} px-7 py-4 rounded-full font-headline font-black uppercase text-base shadow-xl hover:scale-110 transition-all duration-200 cursor-default border-4 ${p.border}`}
+        >
+          {p.label}
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

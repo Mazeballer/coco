@@ -1,0 +1,82 @@
+---
+import { Image, getImage } from "astro:assets";
+
+interface Props {
+  slug: string; // Required for linking
+  image: string;
+  imageAlt: string;
+  title: string;
+  description: string;
+  badge?: string;
+  badgeColor?: string;
+  badgeTextColor?: string;
+  badgePosition?: 'top-right' | 'bottom-left';
+  tags?: { text: string; colorClass: string }[];
+  rotate?: string;
+  mt?: string;
+}
+
+const { 
+  slug,
+  image, 
+  imageAlt, 
+  title, 
+  description, 
+  badge, 
+  badgeColor = "bg-secondary-container",
+  badgeTextColor = "text-white",
+  badgePosition = "top-right",
+  tags = [], 
+  rotate = "-rotate-1",
+  mt = ""
+} = Astro.props;
+
+// High-performance dynamic asset loading
+const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{png,jpg,jpeg,webp}', { eager: true });
+
+function getAsset(path: string) {
+  const assetPath = path.startsWith('/src/') ? path : `/src/assets${path}`;
+  return allImages[assetPath]?.default;
+}
+
+const asset = getAsset(image);
+const optimized = asset ? await getImage({ src: asset, width: 600 }) : { src: image };
+---
+
+<div class={`product-card-reveal group relative bg-[#1C0F01] p-8 rounded-xl outline outline-4 outline-outline transform hover:scale-105 transition-all duration-300 ${rotate} ${mt}`}>
+  {badge && (
+    <div class={`absolute ${badgePosition === 'top-right' ? '-top-8 -right-8' : '-bottom-8 -left-8'} w-28 h-28 ${badgeColor} ${badgeTextColor} flex items-center justify-center text-center px-4 starburst font-headline font-black text-[11px] leading-tight z-20 uppercase tracking-tighter shadow-xl border-4 ${badgeColor === 'bg-secondary-container' ? 'border-on-secondary-fixed' : 'border-on-primary-fixed'}`}>
+      <span class="max-w-[70px]">{badge}</span>
+    </div>
+  )}
+  
+  <div class="mb-6 h-80 flex items-center justify-center overflow-hidden rounded-lg bg-surface-container">
+    <img 
+      src={optimized.src} 
+      alt={imageAlt} 
+      class="w-full h-full object-contain scale-110 group-hover:scale-125 transition-transform duration-300" 
+    />
+  </div>
+
+  <div class="flex gap-2 mb-4">
+    {tags.map(tag => (
+      <span class={`${tag.colorClass} px-3 py-1 rounded-full text-[10px] font-black hover-lift uppercase tracking-tighter`}>
+        {tag.text}
+      </span>
+    ))}
+  </div>
+
+  <h3 class="text-2xl font-headline font-black mb-2 text-on-surface uppercase tracking-tight">
+    {title}
+  </h3>
+  <p class="text-on-surface-variant text-sm mb-6 leading-tight">
+    {description}
+  </p>
+  
+  <a 
+    href={`/products/${slug}`}
+    class="block text-center w-full bg-primary-container text-on-primary-fixed py-3 rounded-lg font-headline font-black border-b-4 border-on-primary-container active:translate-y-1 active:border-b-0 transition-all uppercase"
+  >
+    See More
+  </a>
+</div>

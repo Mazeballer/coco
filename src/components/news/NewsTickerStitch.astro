@@ -1,0 +1,55 @@
+---
+/**
+ * NewsTickerStitch.astro
+ * High-performance scrolling ticker using GSAP.
+ */
+
+interface Props {
+  items: string[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="py-6 overflow-hidden border-y-[6px] border-[#ce0301] bg-[#ce0301] relative z-20">
+  <div class="news-ticker-container flex items-center gap-12 whitespace-nowrap">
+    <!-- Duplicate content for seamless loop -->
+    <div class="news-ticker-content flex items-center gap-12">
+      {items.map((item, i) => (
+        <span class={`font-headline font-black text-2xl md:text-3xl uppercase italic ${i % 3 === 0 ? 'text-white' : i % 3 === 1 ? 'text-primary-container' : 'text-tertiary-container'}`}>
+          {item} <span class="mx-4">·</span>
+        </span>
+      ))}
+    </div>
+    <div class="news-ticker-content flex items-center gap-12" aria-hidden="true">
+      {items.map((item, i) => (
+        <span class={`font-headline font-black text-2xl md:text-3xl uppercase italic ${i % 3 === 0 ? 'text-white' : i % 3 === 1 ? 'text-primary-container' : 'text-tertiary-container'}`}>
+          {item} <span class="mx-4">·</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  import gsap from 'gsap';
+
+  function initNewsTicker() {
+    const container = document.querySelector('.news-ticker-container');
+    const content = document.querySelector('.news-ticker-content') as HTMLElement;
+    
+    if (!container || !content) return;
+
+    const width = content.offsetWidth;
+
+    gsap.to('.news-ticker-container', {
+      x: -width - 48, // width + gap
+      duration: 25,
+      ease: "none",
+      repeat: -1
+    });
+  }
+
+  window.addEventListener('load', initNewsTicker);
+  document.addEventListener('astro:page-load', initNewsTicker);
+</script>

@@ -4,6 +4,9 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Hero from "../components/Hero.astro";
 import FeaturedProducts from "../components/FeaturedProducts.astro";
+import Icon from "../components/ui/Icon.astro";
+import { Image } from "astro:assets";
+import saltedPotato from "../assets/saltedpotatogreen.png";
 ---
 
 <BaseLayout
@@ -25,7 +28,7 @@ import FeaturedProducts from "../components/FeaturedProducts.astro";
 
         <div class="w-full md:w-1/2 space-y-8">
           <span id="bi-badge" class="inline-block bg-[#ffd700] text-[#221b00] px-6 py-2 rounded-full font-black text-sm tracking-widest uppercase">WHO WE ARE</span>
-          <h2 id="brand-intro-heading" class="text-5xl md:text-7xl font-black font-headline text-[#ffdcc0] leading-none">
+          <h2 id="brand-intro-heading" class="text-4xl md:text-7xl font-black font-headline text-[#ffdcc0] leading-none text-balance">
             A New Way <br />to Snack
           </h2>
           <p id="bi-body" class="text-lg md:text-xl text-[#d0c6ab] leading-relaxed max-w-xl">
@@ -36,7 +39,7 @@ import FeaturedProducts from "../components/FeaturedProducts.astro";
           </p>
           <div id="bi-tagline" class="flex gap-4 items-center">
             <div class="w-16 h-16 rounded-xl bg-[#3a2512] flex items-center justify-center shrink-0" aria-hidden="true">
-              <span class="material-symbols-outlined text-[#ffd700] text-3xl">eco</span>
+              <Icon name="eco" class="w-8 h-8 text-[#ffd700]" />
             </div>
             <p class="font-bold text-[#ffdcc0] italic">Real Potato. Crunchy. Unapologetic.</p>
           </div>
@@ -44,11 +47,13 @@ import FeaturedProducts from "../components/FeaturedProducts.astro";
 
         <div id="bi-image-col" class="w-full md:w-1/2 relative">
           <figure class="aspect-square bg-[#46301c] rounded-xl overflow-hidden border-8 border-[#46301c] -rotate-3 hover:rotate-0 transition-transform duration-500 shadow-2xl m-0">
-            <img
-              src="saltedpotatogreen.png"
+            <Image
+              src={saltedPotato}
               alt="Group of young adults sharing Coco Cado snacks and laughing together"
-              width="500" height="500"
-              loading="lazy" decoding="async"
+              width={1200} 
+              height={1200}
+              quality="max"
+              loading="lazy"
               class="w-full h-full object-cover"
             />
           </figure>
@@ -69,7 +74,7 @@ import FeaturedProducts from "../components/FeaturedProducts.astro";
     ═══════════════════════════════════════════ -->
     <section class="bg-[#1a0a00] py-32" aria-labelledby="why-heading">
       <div class="container mx-auto px-6 text-center">
-        <h2 id="why-heading" class="text-5xl md:text-7xl font-black font-headline text-white leading-none mb-4 uppercase tracking-tighter">
+        <h2 id="why-heading" class="text-4xl md:text-7xl font-black font-headline text-white leading-none mb-4 uppercase tracking-tighter text-balance">
           Why Coco Cado?
         </h2>
         <p class="text-[#d0c6ab] text-lg md:text-xl font-medium mb-16 opacity-80">
@@ -78,28 +83,28 @@ import FeaturedProducts from "../components/FeaturedProducts.astro";
         <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 list-none m-0 p-0" role="list">
           <li class="flex flex-col items-center space-y-4">
             <div class="w-20 h-20 bg-[#3a2512] rounded-full flex items-center justify-center border-2 border-[#ffd700]/20" aria-hidden="true">
-            <span class="material-symbols-outlined text-primary-container text-4xl">restaurant_menu</span>
+              <Icon name="restaurant" class="w-10 h-10 text-[#ce0301]" />
             </div>
             <h3 class="text-2xl font-black font-headline text-white">Great Taste</h3>
             <p class="text-[#d0c6ab] text-sm max-w-xs">Big flavour designed for everyday enjoyment.</p>
           </li>
           <li class="flex flex-col items-center space-y-4">
             <div class="w-20 h-20 bg-[#3a2512] rounded-full flex items-center justify-center border-2 border-[#ffd700]/20" aria-hidden="true">
-              <span class="material-symbols-outlined text-[#ce0301] text-4xl">verified_user</span>
+              <Icon name="verified" class="w-10 h-10 text-white" />
             </div>
             <h3 class="text-2xl font-black font-headline text-white">Quality Assured</h3>
             <p class="text-[#d0c6ab] text-sm max-w-xs">Produced with care under trusted manufacturing standards.</p>
           </li>
           <li class="flex flex-col items-center space-y-4">
             <div class="w-20 h-20 bg-[#3a2512] rounded-full flex items-center justify-center border-2 border-[#ffd700]/20" aria-hidden="true">
-              <span class="material-symbols-outlined text-[#f2cdff] text-4xl">celebration</span>
+              <Icon name="mood" class="w-10 h-10 text-[#f2cdff]" />
             </div>
             <h3 class="text-2xl font-black font-headline text-white">Fun Lifestyle Brand</h3>
             <p class="text-[#d0c6ab] text-sm max-w-xs">Colourful, youthful, and made for modern snack culture.</p>
           </li>
           <li class="flex flex-col items-center space-y-4">
             <div class="w-20 h-20 bg-[#3a2512] rounded-full flex items-center justify-center border-2 border-[#ffd700]/20" aria-hidden="true">
-              <span class="material-symbols-outlined text-[#e9c400] text-4xl">store</span>
+              <Icon name="store" class="w-10 h-10 text-[#e9c400]" />
             </div>
             <h3 class="text-2xl font-black font-headline text-white">Retail Ready</h3>
             <p class="text-[#d0c6ab] text-sm max-w-xs">Suitable for domestic retail, trade channels, and export growth.</p>
@@ -113,12 +118,12 @@ import FeaturedProducts from "../components/FeaturedProducts.astro";
     ═══════════════════════════════════════════ -->
     <section class="bg-[#ffd700] py-20" aria-labelledby="discover-heading">
       <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
-        <h2 id="discover-heading" class="text-4xl md:text-6xl font-black font-headline text-[#1a0a00] leading-[0.9] max-w-xl uppercase">
+        <h2 id="discover-heading" class="text-4xl md:text-6xl font-black font-headline text-[#1a0a00] leading-[0.9] max-w-xl uppercase text-balance">
           MEET THE BRAND
         </h2>
         <div class="flex flex-wrap gap-4">
-          <a href="/products"     class="bg-[#1a0a00] text-[#ffd700] px-8 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform active:scale-95">Our Story</a>
-          <a href="/where-to-buy" class="bg-[#ce0301] text-white px-8 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform active:scale-95">Contact Us</a>
+          <a href="/about"     class="bg-[#1a0a00] text-[#ffd700] px-8 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform active:scale-95">Our Story</a>
+          <a href="/contact" class="bg-[#ce0301] text-white px-8 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform active:scale-95">Contact Us</a>
         </div>
       </div>
     </section>
@@ -126,7 +131,7 @@ import FeaturedProducts from "../components/FeaturedProducts.astro";
     <!-- ══════════════════════════════════════════
          READY TO SNACK STRIP
     ═══════════════════════════════════════════ -->
-    <section class="bg-[#ce0301] py-24 relative overflow-hidden" aria-labelledby="snack-cta-heading">
+    <section class="bg-[#ce0301] py-24 relative overflow-hidden border-b-8 border-dashed border-[#1a0a00]" aria-labelledby="snack-cta-heading">
       <div class="absolute inset-0 opacity-20 pointer-events-none" aria-hidden="true">
         <div class="absolute top-10 left-10 w-4 h-4 bg-[#ffd700] rounded-full"></div>
         <div class="absolute bottom-20 right-20 w-8 h-8 bg-[#f2cdff] rounded-full"></div>
@@ -135,14 +140,14 @@ import FeaturedProducts from "../components/FeaturedProducts.astro";
         <div class="absolute bottom-10 left-1/4 w-10 h-10 bg-[#ffd700]/50 rotate-45"></div>
       </div>
       <div class="container mx-auto px-6 text-center relative z-10 space-y-8">
-        <h2 id="snack-cta-heading" class="text-6xl md:text-9xl font-black font-headline text-white leading-none tracking-tighter">
+        <h2 id="snack-cta-heading" class="text-5xl md:text-9xl font-black font-headline text-white leading-none tracking-tighter text-balance">
           Ready to Snack?
         </h2>
         <p class="text-[#ffd700] text-2xl md:text-3xl font-bold italic">
           Don't wait for the flavor to find you. Go get it!
         </p>
         <a
-          href="/where-to-buy"
+          href="/contact"
           class="inline-block bg-[#ffd700] text-[#1a0a00] px-12 py-6 rounded-full font-black text-2xl border-b-8 border-[#200f01] shadow-2xl hover:rotate-2 hover:scale-110 transition-all active:scale-95"
         >
           Find Us Now

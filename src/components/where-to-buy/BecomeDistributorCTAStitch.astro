@@ -1,0 +1,53 @@
+---
+/**
+ * BecomeDistributorCTAStitch.astro
+ * High-impact call to action for potential distributors.
+ */
+
+interface Props {
+  title: string;
+  buttonText: string;
+}
+
+const { title, buttonText } = Astro.props;
+---
+
+<section class="px-6 pb-24 pt-16 bg-[#200f01] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto cta-container bg-[#ce0301] rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden group shadow-2xl border-4 border-[#ce0301]/20">
+
+    <!-- Background icon decoration -->
+    <div class="absolute inset-0 opacity-[0.06] pointer-events-none select-none flex items-center justify-center overflow-hidden" aria-hidden="true">
+      <span class="material-symbols-outlined text-[24rem] font-black group-hover:scale-110 group-hover:rotate-6 transition-transform duration-[2s]">handshake</span>
+    </div>
+
+    <!-- Ambient blobs -->
+    <div class="absolute -top-16 -left-16 w-64 h-64 bg-[#ffd700] rounded-full blur-[80px] opacity-20 animate-pulse" aria-hidden="true"></div>
+    <div class="absolute -bottom-16 -right-16 w-72 h-72 bg-white rounded-full blur-[80px] opacity-10 animate-pulse" style="animation-delay: -3s;" aria-hidden="true"></div>
+
+    <div class="relative z-10 space-y-8">
+      <h2 class="text-3xl md:text-5xl lg:text-6xl font-headline font-black text-white uppercase leading-[0.9] tracking-tighter drop-shadow-xl">
+        {title}
+      </h2>
+
+      <div class="flex justify-center">
+        <a
+          href="/distributor"
+          class="bg-[#ffd700] text-[#200f01] px-10 py-5 rounded-[1.5rem] font-headline font-black text-xl uppercase tracking-tight shadow-[0_8px_0_#9a7000] hover:scale-105 hover:-rotate-1 transition-all active:translate-y-1 active:shadow-none border-[3px] border-[#200f01] group/btn inline-block no-underline"
+        >
+          <span class="flex items-center gap-3">
+            {buttonText}
+            <span class="material-symbols-outlined text-2xl group-hover/btn:translate-x-2 transition-transform" aria-hidden="true">arrow_forward</span>
+          </span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cta-container {
+    opacity: 0;
+    transform: scale(0.95) translateY(40px);
+  }
+</style>

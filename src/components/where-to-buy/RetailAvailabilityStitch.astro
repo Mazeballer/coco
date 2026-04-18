@@ -1,0 +1,122 @@
+---
+/**
+ * RetailAvailabilityStitch.astro
+ * Section showing where Coco Cado is sold at retail.
+ */
+
+const retailers = [
+  { name: "RETAILER 1" },
+  { name: "RETAILER 2" },
+  { name: "RETAILER 3" },
+  { name: "RETAILER 4" },
+  { name: "RETAILER 5" },
+  { name: "RETAILER 6" },
+];
+
+import { Image } from "astro:assets";
+import retailImage from "../../assets/retail_store_scene_1776212991284.png";
+---
+
+<section class="bg-[#ffd700] py-40 px-6 relative">
+  <!-- Triple-Layered Multi-Wave Transition -->
+  <div class="absolute -top-16 left-0 w-full h-16 overflow-hidden leading-none z-30 pointer-events-none" aria-hidden="true">
+    <!-- Wave 1: Yellow Ribbon Layer -->
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="absolute top-0 left-0 w-full h-12 fill-[#ffd700] drop-shadow-[0_4px_4px_rgba(0,0,0,0.1)]">
+      <path d="M0,20 C180,50 360,0 540,20 C720,50 900,0 1080,20 C1260,50 1440,0 1440,20 V60 H0 Z"></path>
+    </svg>
+    <!-- Wave 2: Dark Brown Ribbon Layer -->
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="absolute top-4 left-0 w-full h-12 fill-[#200f01] drop-shadow-[0_4px_10px_rgba(0,0,0,0.2)]">
+      <path d="M0,20 C180,50 360,0 540,20 C720,50 900,0 1080,20 C1260,50 1440,0 1440,20 V60 H0 Z"></path>
+    </svg>
+  </div>
+
+  <!-- Dot texture -->
+  <div
+    class="absolute inset-0 opacity-[0.06] pointer-events-none"
+    style="background-image: radial-gradient(#200f01 1px, transparent 1px); background-size: 28px 28px;"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Integrated Image Frame (Connected to Yellow) -->
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+
+    <!-- Connected Image Box -->
+    <div class="retail-reveal relative group">
+      <!-- Layer 1: The Orange Anchor block (Connects to yellow) -->
+      <div class="absolute -inset-10 bg-[#f9a825]/90 rounded-[4rem] -rotate-2 transform transition-transform duration-700 group-hover:rotate-0" aria-hidden="true"></div>
+      
+      <!-- Layer 2: The White Frame (Stitch style) -->
+      <div class="relative bg-white rounded-[2.5rem] p-4 shadow-[24px_24px_0px_#200f01] border-[8px] border-[#200f01] group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500">
+        <div class="rounded-[1.8rem] overflow-hidden">
+          <Image
+            src={retailImage}
+            alt="Retail illustration framed"
+            width={1200}
+            quality="max"
+            loading="eager"
+            fetchpriority="high"
+            class="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-105"
+          />
+        </div>
+      </div>
+
+      <!-- Badge -->
+      <div
+        class="absolute -top-12 -right-12 w-44 h-44 bg-[#ce0301] text-white flex items-center justify-center rounded-full font-headline font-black text-center text-sm leading-tight rotate-12 shadow-[12px_12px_0px_#200f01] border-[6px] border-white z-20 hover:scale-110 hover:-rotate-6 transition-all duration-300 cursor-pointer"
+      >
+        COMING TO<br/>MORE STORES<br/>SOON!
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="retail-reveal space-y-10">
+      <div class="space-y-4">
+        <h2 class="text-4xl md:text-[5.5rem] font-headline font-black text-[#200f01] uppercase tracking-tighter leading-[0.85]">
+          Retail Availability
+        </h2>
+        <p class="text-lg md:text-2xl font-medium leading-tight max-w-xl text-[#200f01] opacity-90 italic">
+          Coco Cado is expanding across selected retail and trade channels. Stay tuned as we continue to grow our store presence and make the brand more accessible to snack lovers everywhere.
+        </p>
+      </div>
+
+      <div>
+        <div class="flex items-center gap-3 mb-8">
+          <div class="h-[3px] w-12 bg-[#ce0301]"></div>
+          <span class="font-headline font-black uppercase text-[#ce0301] text-xl tracking-widest">Available At</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+          {retailers.map((r) => (
+            <div class="group bg-white/40 backdrop-blur-sm border-[4px] border-[#200f01] p-8 rounded-[2rem] flex items-center justify-center hover:bg-white/60 hover:scale-105 hover:-rotate-1 transition-all cursor-pointer shadow-[8px_8px_0px_#200f01]">
+              <span class="font-headline font-black text-lg tracking-tighter text-[#200f01] opacity-70 group-hover:opacity-100 transition-opacity">{r.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .retail-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  /* Scallop Pattern Logic */
+  .scallop-pattern {
+    background-image: radial-gradient(circle at 10px -5px, transparent 12px, #ffd700 13px);
+    background-size: 20px 20px;
+    background-position: 0 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<style>
+  .retail-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+</style>

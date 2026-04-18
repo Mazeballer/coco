@@ -1,0 +1,57 @@
+---
+import { Image, getImage } from "astro:assets";
+import type { Flavor } from "../../data/productData";
+
+interface Props {
+  flavors?: Flavor[];
+}
+
+const { flavors = [] } = Astro.props;
+
+// High-performance dynamic asset loading
+const allImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/**/*.{png,jpg,jpeg,webp}', { eager: true });
+
+function getAsset(path: string) {
+  const assetPath = path.startsWith('/src/') ? path : `/src/assets${path}`;
+  return allImages[assetPath]?.default;
+}
+
+const optimizedFlavors = await Promise.all(flavors.map(async (f) => {
+  const asset = getAsset(f.image);
+  const opt = asset ? await getImage({ src: asset, width: 600 }) : { src: f.image };
+  return { ...f, optimizedSrc: opt.src };
+}));
+---
+
+{flavors.length > 0 && (
+  <section class="py-24 px-6 max-w-7xl mx-auto">
+    <h2 class="text-5xl md:text-6xl font-black font-headline text-center mb-16 uppercase italic text-on-background tracking-tighter">
+      Available Flavours
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {optimizedFlavors.map((flavor, i) => (
+        <div 
+          class:list={[
+            "flavor-card rounded-xl p-8 flex flex-col items-center text-center relative overflow-hidden group transition-all duration-300 border-4 shadow-xl",
+            flavor.colorClass || "bg-surface-container",
+            i % 2 === 0 ? "hover:skew-y-1" : "hover:-skew-y-1",
+            flavor.colorClass?.includes('secondary') ? "border-on-secondary-fixed" : "border-outline"
+          ]}
+        >
+          <div class="absolute inset-0 kinetic-bg-dots opacity-10"></div>
+          <img 
+            src={flavor.optimizedSrc} 
+            alt={flavor.name} 
+            class="w-48 h-48 object-contain mb-6 drop-shadow-2xl group-hover:scale-110 transition-transform duration-500"
+          />
+          <h3 class:list={["text-3xl font-black uppercase mb-2", flavor.colorClass?.includes('secondary') ? "text-white" : "text-primary-container"]}>
+            {flavor.name}
+          </h3>
+          <p class:list={["font-bold opacity-80", flavor.colorClass?.includes('secondary') ? "text-white" : "text-on-surface-variant"]}>
+            The signature Coco Cado crunch you love.
+          </p>
+        </div>
+      ))}
+    </div>
+  </section>
+)}

@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar     from "../components/Navbar.astro";
+import Footer     from "../components/Footer.astro";
+
+import DistributorHeroStitch    from "../components/distributor/DistributorHeroStitch.astro";
+import WhyPartnerStitch         from "../components/distributor/WhyPartnerStitch.astro";
+import WhoWeWorkWithStitch      from "../components/distributor/WhoWeWorkWithStitch.astro";
+import PartnerInquiryFormStitch from "../components/distributor/PartnerInquiryFormStitch.astro";
+import TrustStripStitch         from "../components/distributor/TrustStripStitch.astro";
+---
+
+<BaseLayout
+  title="Become a Distributor | Coco Cado"
+  description="Partner with Coco Cado and bring an exciting snack brand to your market. Submit a distributor inquiry today."
+>
+  <Navbar />
+
+  <main id="main-content">
+    <DistributorHeroStitch />
+    <WhyPartnerStitch />
+    <WhoWeWorkWithStitch />
+    <PartnerInquiryFormStitch />
+    <TrustStripStitch />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initAnimations() {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    lenis.on("scroll", ScrollTrigger.update);
+
+    // Animate every section's key children on scroll
+    gsap.utils.toArray<HTMLElement>("section, header").forEach((el) => {
+      const targets = el.querySelectorAll<HTMLElement>(
+        "h1, h2, h3, p, li, label, input, select, textarea, button, a[class], div[class*='bg-']"
+      );
+      if (!targets.length) return;
+      gsap.fromTo(
+        targets,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.06,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 82%", once: true },
+        }
+      );
+    });
+
+    // Cards bounce in
+    gsap.fromTo(
+      "#why-partner-heading ~ div > div",
+      { opacity: 0, scale: 0.92, y: 20 },
+      {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: "back.out(1.4)",
+        scrollTrigger: { trigger: "#why-partner-heading", start: "top 80%", once: true },
+      }
+    );
+
+    // Partner pills pop in
+    gsap.fromTo(
+      "#who-we-work-heading ~ div > div",
+      { opacity: 0, scale: 0.8 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.5,
+        stagger: 0.07,
+        ease: "back.out(1.7)",
+        scrollTrigger: { trigger: "#who-we-work-heading", start: "top 80%", once: true },
+      }
+    );
+  }
+
+  document.addEventListener("astro:page-load", initAnimations);
+  if (document.readyState === "complete") {
+    initAnimations();
+  } else {
+    window.addEventListener("load", initAnimations);
+  }
+</script>

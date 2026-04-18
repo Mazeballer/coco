@@ -1,0 +1,24 @@
+---
+/**
+ * NewsHeroStitch.astro
+ * High-impact hero section for the News & Media page.
+ */
+
+interface Props {
+  title: string;
+  subtitle: string;
+}
+
+const { title, subtitle } = Astro.props;
+---
+
+<section class="px-6 pt-40 pb-20 bg-primary-container overflow-hidden">
+  <div class="max-w-7xl mx-auto text-center relative z-10">
+    <h1 class="hero-animate-reveal font-headline font-black text-6xl md:text-[6.5rem] tracking-tighter text-[#200f01] mb-6 uppercase leading-[0.8]">
+      {title}
+    </h1>
+    <p class="hero-animate-reveal font-body text-xl md:text-[1.75rem] text-[#200f01] max-w-2xl mx-auto font-medium opacity-80 leading-snug">
+      {subtitle}
+    </p>
+  </div>
+</section>

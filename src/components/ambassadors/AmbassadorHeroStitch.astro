@@ -1,0 +1,73 @@
+---
+/**
+ * AmbassadorHeroStitch.astro
+ * High-impact hero section for the Ambassadors page.
+ */
+
+interface Props {
+  titleLine1: string;
+  titleLine2: string;
+  titleLine3: string;
+  subtitle: string;
+  tag: string;
+  badge: string;
+  image: string;
+  imageAlt: string;
+}
+
+const { 
+  titleLine1, 
+  titleLine2, 
+  titleLine3, 
+  subtitle, 
+  tag, 
+  badge, 
+  image, 
+  imageAlt 
+} = Astro.props;
+---
+
+<header class="relative pt-40 pb-32 px-6 md:px-12 bg-primary-container overflow-hidden">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+    <div class="space-y-6">
+      <div class="hero-animate-reveal inline-block bg-secondary-container text-white px-4 py-1 rounded-full font-headline font-bold uppercase tracking-widest text-xs rotate-[-2deg]">
+        {tag}
+      </div>
+      <h1 class="hero-animate-reveal font-headline font-black text-6xl md:text-[5.5rem] text-[#221b00] leading-[0.85] tracking-tighter uppercase">
+        {titleLine1} <br/> 
+        {titleLine2} <br/> 
+        <span class="text-[#ce0301] italic">{titleLine3}</span>
+      </h1>
+      <p class="hero-animate-reveal text-[#544600] text-xl md:text-2xl font-medium max-w-md opacity-90">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="relative">
+      <!-- Purple circular sticker badge -->
+      <div class="hero-animate-badge absolute -top-8 -right-8 w-32 h-32 bg-[#f2cdff] rounded-full flex items-center justify-center rotate-12 border-2 border-[#93000a]/20 z-20 shadow-xl group hover:scale-110 transition-transform duration-300">
+        <span class="font-headline font-black text-[#672987] text-center leading-tight uppercase text-xs tracking-tighter">
+          {badge.split('<br/>').map((line, i) => (
+            <Fragment key={i}>{line}{i < badge.split('<br/>').length - 1 && <br/>}</Fragment>
+          ))}
+          {badge.split('<br/>').length === 1 && badge}
+        </span>
+      </div>
+      <div class="hero-animate-image relative">
+        <div class="absolute inset-0 bg-stone-900 rounded-2xl translate-x-3 translate-y-3 -z-10 rotate-1"></div>
+        <img 
+          src={image} 
+          alt={imageAlt}
+          class="rounded-2xl border-[6px] border-stone-900 shadow-2xl rotate-2 w-full object-cover aspect-video hover:rotate-0 transition-transform duration-500"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Gentle Rolling Wavy Divider Transition to next section -->
+  <div class="absolute -bottom-[1px] left-0 w-full overflow-hidden leading-none z-10" aria-hidden="true">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" class="block w-full h-20 md:h-28 fill-[#200f01]">
+      <path d="M0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1440,0 1440,40 L1440,80 L0,80 Z"></path>
+    </svg>
+  </div>
+</header>

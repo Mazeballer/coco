@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+// Components
+import WhereToBuyHeroStitch from "../components/where-to-buy/WhereToBuyHeroStitch.astro";
+import RetailAvailabilityStitch from "../components/where-to-buy/RetailAvailabilityStitch.astro";
+import DistributionChannelsStitch from "../components/where-to-buy/DistributionChannelsStitch.astro";
+import ExportOpportunitiesStitch from "../components/where-to-buy/ExportOpportunitiesStitch.astro";
+import BecomeDistributorCTAStitch from "../components/where-to-buy/BecomeDistributorCTAStitch.astro";
+---
+
+<BaseLayout 
+  title="Where to Buy | Coco Cado" 
+  description="Find Coco Cado Crunchy Sticks at your favorite retailer or become a distribution partner today."
+>
+  <Navbar />
+
+  <main id="main-content">
+    <WhereToBuyHeroStitch 
+      title="Where to Buy" 
+      subtitle="Find Coco Cado through our growing retail and distribution network." 
+    />
+
+    <RetailAvailabilityStitch />
+
+    <DistributionChannelsStitch />
+
+    <ExportOpportunitiesStitch />
+
+    <BecomeDistributorCTAStitch 
+      title="Looking to distribute Coco Cado in your market?"
+      buttonText="Become a Distributor"
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import Lenis from "lenis";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  function initAnimations() {
+    // 1. Smooth Scroll (Lenis)
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+      infinite: false,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // 2. Hero reveals
+    const heroTl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.5 } });
+    heroTl.to(".hero-reveal", {
+      opacity: 1,
+      y: 0,
+      stagger: 0.15,
+      delay: 0.2
+    });
+
+    // 3. Retail Availability Batch
+    gsap.to(".retail-reveal", {
+      scrollTrigger: {
+        trigger: ".retail-reveal",
+        start: "top 80%",
+        toggleActions: "play none none none"
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out"
+    });
+
+    // 4. Distribution Channels Reveal
+    gsap.to(".channel-reveal", {
+      scrollTrigger: {
+        trigger: ".channel-reveal",
+        start: "top 85%",
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.1,
+    });
+
+    gsap.to(".channel-reveal-card", {
+      scrollTrigger: {
+        trigger: ".channel-reveal-card",
+        start: "top 80%",
+      },
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power4.out"
+    });
+
+    // 5. Export Opportunities Reveal
+    gsap.to(".export-reveal", {
+      scrollTrigger: {
+        trigger: ".export-reveal",
+        start: "top 80%",
+      },
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power2.out"
+    });
+
+    // 6. CTA Reveal
+    gsap.to(".cta-container", {
+      scrollTrigger: {
+        trigger: ".cta-container",
+        start: "top 90%",
+      },
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "elastic.out(1, 0.75)"
+    });
+  }
+
+  // Lifecycle handling
+  document.addEventListener("astro:page-load", initAnimations);
+  
+  // Backup for direct entry
+  if (document.readyState === "complete") {
+    initAnimations();
+  } else {
+    window.addEventListener("load", initAnimations);
+  }
+</script>
+
+<style is:global>
+  /* Ensure reveal elements start hidden */
+  .hero-reveal, .retail-reveal, .channel-reveal, .channel-reveal-card, .export-reveal, .cta-container {
+    will-change: transform, opacity;
+  }
+</style>

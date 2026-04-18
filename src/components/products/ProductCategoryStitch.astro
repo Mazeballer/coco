@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  badge: string;
+  colors: {
+    bg: string;
+    text: string;
+    badgeBg: string;
+    badgeText: string;
+  };
+  reverse?: boolean;
+}
+
+const { title, subtitle, badge, colors, reverse = false } = Astro.props;
+---
+
+<section class={`${colors.bg} ${colors.text} py-24 px-8 relative overflow-hidden`}>
+  <div class="max-w-7xl mx-auto">
+    <div class={`mb-16 flex flex-col md:flex-row ${reverse ? 'md:items-end justify-between' : 'md:items-end justify-between'} gap-6`}>
+      <div class={reverse ? 'md:order-last text-right' : ''}>
+        <h2 class="text-6xl md:text-9xl font-headline font-black uppercase tracking-tighter leading-none mb-4">
+          {title}
+        </h2>
+        <p class="text-xl md:text-4xl font-headline font-black opacity-80 italic tracking-tight">
+          {subtitle}
+        </p>
+      </div>
+      <div class={`${colors.badgeBg} ${colors.badgeText} px-8 py-4 rounded-full font-headline font-black text-lg ${reverse ? 'rotate-[3deg] shadow-2xl self-start md:self-end' : 'rotate-[-2deg] self-start'} uppercase tracking-widest`}>
+        {badge}
+      </div>
+    </div>
+    
+    <div class="product-grid grid grid-cols-1 md:grid-cols-3 gap-12">
+      <slot />
+    </div>
+  </div>
+</section>

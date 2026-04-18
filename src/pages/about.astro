@@ -1,0 +1,266 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar     from "../components/Navbar.astro";
+import Footer     from "../components/Footer.astro";
+
+const certifications = [
+  { label: "HALAL",  bg: "bg-[#f2cdff]", text: "text-[#8243a2]", rotate: "rotate-2"  },
+  { label: "HACCP",  bg: "bg-[#ce0301]", text: "text-white",      rotate: "-rotate-3" },
+  { label: "ISO",    bg: "bg-[#ffd700]", text: "text-[#221b00]",  rotate: "rotate-1"  },
+  { label: "FDA",    bg: "bg-[#46301c]", text: "text-white",      rotate: "-rotate-1" },
+  { label: "MESTI",  bg: "bg-[#f2cdff]", text: "text-[#8243a2]", rotate: "rotate-3"  },
+  { label: "GMP",    bg: "bg-[#ce0301]", text: "text-white",      rotate: "-rotate-2" },
+];
+
+const milestones = [
+  { year: "1996",  title: "The Start",      body: "Happy Alliance established its manufacturing roots in Tanjong Sepat, Selangor.",  bg: "bg-[#ce0301]", text: "text-white",      rotate: "-rotate-2" },
+  { year: "2010",  title: "Global Reach",   body: "Expansion into international distribution networks and export markets.",           bg: "bg-[#f2cdff]", text: "text-[#4e0a6f]", rotate: "rotate-1",  offset: "md:mt-12" },
+  { year: "2023",  title: "Coco Cado Born", body: "A fresh new brand identity built for the next generation of snack lovers.",        bg: "bg-[#ffd700]", text: "text-[#221b00]", rotate: "-rotate-1" },
+  { year: "NOW", title: "Beyond",         body: "Innovation in flavours, retail expansion, and growing regional presence.",          bg: "bg-[#ce0301]", text: "text-white",      rotate: "rotate-2",  offset: "md:mt-12" },
+];
+
+const concepts = [
+  { num: "01", title: "EXPRESSIVE", body: "Every bite is a conversation. Our flavours are bold, vibrant, and made to be shared." },
+  { num: "02", title: "ACCESSIBLE", body: "Premium quality for everyone, everywhere. Great snacking should be universal." },
+  { num: "03", title: "SOCIAL",     body: "Designed to be modern, shareable, and full of personality for today's snack culture." },
+];
+
+const alliancePoints = [
+  { icon: "verified_user", color: "text-[#f2cdff]", title: "Legacy & Trust",   body: "Founded in 1996, Happy Alliance has decades of experience producing quality food products.",          rotate: "" },
+  { icon: "factory",       color: "text-[#ffd700]", title: "State-of-the-Art", body: "Modern production lines combine trusted manufacturing standards with innovation.",                   rotate: "rotate-1" },
+  { icon: "public",        color: "text-[#ce0301]", title: "Export Ready",      body: "Expanded across local and international markets, giving Coco Cado a strong global platform.",       rotate: "-rotate-1" },
+  { icon: "groups",        color: "text-[#f2cdff]", title: "200+ Team",         body: "A dedicated workforce drives the quality and operational strength behind every product.",            rotate: "rotate-1" },
+];
+---
+
+<BaseLayout
+  title="About Coco Cado — Our Story & Brand"
+  description="Learn about Coco Cado — a bold Malaysian snack brand backed by Happy Alliance, a trusted food manufacturer since 1996."
+>
+  <Navbar />
+
+  <main id="main-content">
+
+    <!-- ══════════════ 1. BANNER ══════════════ -->
+    <header class="relative pt-32 pb-24 md:pt-48 md:pb-36 bg-[#ffd700] overflow-hidden" aria-labelledby="about-heading">
+      <div class="absolute top-10 right-[-5%] w-64 h-64 bg-[#ce0301] rounded-full opacity-20 blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-[#f2cdff] rounded-full opacity-30 blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+        <div class="inline-block bg-[#ce0301] text-white px-4 py-1 rounded-full font-black font-headline tracking-widest uppercase text-sm mb-6 -rotate-2">
+          Since 1996
+        </div>
+        <h1 id="about-heading" class="text-5xl md:text-8xl font-black font-headline text-[#1a0a00] leading-[0.9] tracking-tighter mb-8 uppercase italic">
+          About <br /><span class="text-[#ce0301]">Coco Cado</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-xl md:text-2xl font-medium text-[#3d1f00] leading-tight">
+          A snack brand built on flavour, quality, and the joy of sharing.
+        </p>
+      </div>
+
+      <div class="absolute top-1/2 left-10 hidden lg:flex items-center justify-center -rotate-12 hover:rotate-0 transition-transform w-36 h-36 bg-white border-4 border-[#999077] shadow-xl" aria-hidden="true">
+        <span class="font-black font-headline text-[#ce0301] text-center text-lg uppercase leading-tight">Snack<br />Happy!</span>
+      </div>
+      <div class="absolute bottom-10 right-20 hidden lg:flex items-center justify-center rotate-6 hover:rotate-0 transition-transform w-36 h-36 bg-[#f2cdff] border-4 border-[#999077] shadow-xl" aria-hidden="true">
+        <span class="font-black font-headline text-[#8243a2] text-center text-sm uppercase leading-tight">CRUNCHY<br />EXPERTS</span>
+      </div>
+    </header>
+
+    <!-- ══════════════ 2. OUR STORY ══════════════ -->
+    <section class="bg-[#200f01] py-24" aria-labelledby="story-heading">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+        <div class="relative">
+          <figure class="rounded-xl overflow-hidden border-4 border-[#999077] rotate-2 hover:rotate-0 transition-transform duration-500 m-0">
+            <img
+              src="/images/about-story.jpg"
+              alt="Coco Cado snack brand story — bold flavours crafted with care"
+              width="600" height="750"
+              loading="lazy" decoding="async"
+              class="w-full aspect-[4/5] object-cover bg-[#2c1810]"
+            />
+          </figure>
+          <div class="absolute -bottom-8 -right-8 bg-[#ce0301] text-white p-8 rounded-xl font-black font-headline text-4xl -rotate-3 shadow-2xl" aria-hidden="true">
+            BORN<br />BOLD
+          </div>
+        </div>
+
+        <div class="space-y-8">
+          <h2 id="story-heading" class="text-4xl md:text-6xl font-black font-headline text-[#ffd700] leading-none uppercase italic">
+            Our Story
+          </h2>
+          <div class="h-2 w-32 bg-[#f2cdff]" aria-hidden="true"></div>
+          <p class="text-lg md:text-xl text-[#d0c6ab] font-medium leading-relaxed">
+            Coco Cado was created to bring a fresh and exciting energy to the snack category.
+            Built for a new generation of consumers, the brand combines playful appeal with
+            dependable product quality — celebrating fun, flavour, and everyday happiness.
+          </p>
+          <blockquote class="border-l-8 border-[#ce0301] pl-6 py-4">
+            <p class="text-2xl md:text-3xl font-black font-headline italic text-[#ffdcc0] leading-tight">
+              "We build snacks for the bold, the curious, and the flavour-seekers who refuse to settle for bland."
+            </p>
+          </blockquote>
+          <p class="text-lg text-[#d0c6ab]">
+            From our first product launch to expanding across retail and export channels,
+            Coco Cado continues to push the boundaries of what a snack brand can be.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════ 3. BRAND CONCEPT ══════════════ -->
+    <section class="py-20 px-6 bg-[#200f01]" aria-labelledby="concept-heading">
+      <div class="max-w-7xl mx-auto">
+        <div class="bg-[#ce0301] rounded-xl p-12 md:p-24 relative overflow-hidden flex flex-col md:flex-row items-center gap-12 -rotate-1">
+          <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none" aria-hidden="true">
+            <span class="material-symbols-outlined text-[200px]">celebration</span>
+          </div>
+          <div class="flex-1 z-10 space-y-6">
+            <h2 id="concept-heading" class="text-4xl md:text-7xl font-black font-headline text-white leading-none uppercase">
+              Our Brand<br />Concept
+            </h2>
+            <p class="text-2xl md:text-4xl font-extrabold font-headline text-[#ffd700] italic uppercase tracking-tight">
+              Enjoyable, expressive, easy to love.
+            </p>
+            <p class="text-white/80 text-lg leading-relaxed max-w-lg">
+              At Coco Cado, we believe snacking should feel enjoyable, expressive, and easy to love.
+              Our products deliver satisfying crunch, attractive packaging, and flavours that appeal across different ages and occasions.
+            </p>
+          </div>
+          <div class="flex-1 z-10 grid grid-cols-1 gap-6">
+            {concepts.map(({ num, title, body }, i) => (
+              <div class:list={["bg-[#200f01]/30 backdrop-blur-md p-6 rounded-lg border-4 border-[#999077]", i % 2 === 0 ? "rotate-1" : "-rotate-2"]}>
+                <h3 class="text-xl font-black font-headline text-white mb-2">{num}. {title}</h3>
+                <p class="text-white/80">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════ 4. HAPPY ALLIANCE ══════════════ -->
+    <section class="bg-[#2a1705] py-24 relative overflow-hidden" aria-labelledby="alliance-heading">
+      <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#ffd700 1px, transparent 1px); background-size: 30px 30px;" aria-hidden="true"></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 flex flex-col md:flex-row gap-16 items-center">
+        <div class="md:w-1/3 text-center md:text-left space-y-6">
+          <div class="inline-flex items-center justify-center w-32 h-32 rounded-full bg-[#ffd700] shadow-2xl rotate-12" aria-hidden="true">
+            <span class="text-[#221b00] font-black font-headline text-3xl">1996</span>
+          </div>
+          <h2 id="alliance-heading" class="text-4xl font-black font-headline text-white">
+            Backed by<br />Happy Alliance
+          </h2>
+          <p class="text-[#d0c6ab] font-medium leading-relaxed">
+            Coco Cado is proudly backed by Happy Alliance (M) Sdn. Bhd., a Malaysian food
+            manufacturer founded in 1996 with a workforce of more than 200 staff.
+          </p>
+        </div>
+        <ul class="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8 list-none m-0 p-0" role="list" aria-label="Happy Alliance strengths">
+          {alliancePoints.map(({ icon, color, title, body, rotate }) => (
+            <li class:list={["bg-[#3a2512] p-8 rounded-xl border-4 border-[#999077] hover:-translate-y-2 transition-transform", rotate]}>
+              <div class="flex items-center gap-4 mb-4">
+                <span class:list={["material-symbols-outlined text-4xl", color]} aria-hidden="true">{icon}</span>
+                <h3 class="text-xl font-bold font-headline text-white">{title}</h3>
+              </div>
+              <p class="text-[#d0c6ab]">{body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══════════════ 5. CERTIFICATIONS ══════════════ -->
+    <section class="py-24 bg-[#200f01]" aria-labelledby="quality-heading">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 id="quality-heading" class="text-4xl md:text-5xl font-black font-headline text-[#ffd700] mb-6 uppercase italic">
+          Manufacturing Strength<br />&amp; Quality Commitment
+        </h2>
+        <p class="max-w-2xl mx-auto text-[#d0c6ab] text-lg mb-16 leading-relaxed">
+          Happy Alliance operates with stringent quality control and holds the following certifications:
+        </p>
+        <ul class="flex flex-wrap justify-center gap-4 md:gap-8 list-none m-0 p-0" role="list" aria-label="Quality certifications">
+          {certifications.map(({ label, bg, text, rotate }) => (
+            <li>
+              <span class:list={["block px-8 py-4 rounded-full font-black font-headline text-xl md:text-2xl border-4 border-[#999077] hover:rotate-0 transition-transform cursor-default", bg, text, rotate]}>
+                {label}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-16 max-w-3xl mx-auto text-[#d0c6ab] text-lg leading-relaxed">
+          This gives Coco Cado a strong platform for retail confidence, business partnerships,
+          and future market expansion both locally and internationally.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════ 6. TIMELINE ══════════════ -->
+    <section class="py-24 bg-[#2a1705] relative overflow-hidden" aria-labelledby="timeline-heading">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 id="timeline-heading" class="text-4xl font-black font-headline text-white text-center mb-16 uppercase">
+          From Manufacturing Experience<br />to New Brand Growth
+        </h2>
+        <div class="relative">
+          <div class="absolute top-8 left-0 w-full h-1 bg-[#4d4732]/30 hidden md:block" aria-hidden="true"></div>
+          <ol class="grid md:grid-cols-4 gap-8 list-none m-0 p-0" role="list" aria-label="Brand timeline">
+            {milestones.map(({ year, title, body, bg, text, rotate, offset }) => (
+              <li class:list={["relative z-10 flex flex-col items-center", offset]}>
+                <div class:list={["w-16 h-16 rounded-full flex items-center justify-center font-black font-headline text-lg mb-6 shadow-lg border-4 border-[#200f01]", bg, text]}>
+                  {year}
+                </div>
+                <div class:list={["bg-[#200f01] p-6 rounded-xl border-4 border-[#999077] text-center w-full", rotate]}>
+                  <h3 class="font-black font-headline text-[#ffd700] mb-2 uppercase">{title}</h3>
+                  <p class="text-sm text-[#d0c6ab]">{body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray<HTMLElement>("section, header").forEach((el) => {
+    const children = el.querySelectorAll<HTMLElement>("h1, h2, h3, p, li, blockquote, figure");
+    if (!children.length) return;
+    gsap.fromTo(children,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 80%", once: true } }
+    );
+  });
+
+  gsap.fromTo(
+    "ul[aria-label='Quality certifications'] li",
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1, duration: 0.5, stagger: 0.08, ease: "back.out(1.7)",
+      scrollTrigger: { trigger: "ul[aria-label='Quality certifications']", start: "top 80%", once: true } }
+  );
+
+  gsap.fromTo(
+    "ol[aria-label='Brand timeline'] li",
+    { opacity: 0, y: 40 },
+    { opacity: 1, y: 0, duration: 0.6, stagger: 0.15, ease: "power2.out",
+      scrollTrigger: { trigger: "ol[aria-label='Brand timeline']", start: "top 80%", once: true } }
+  );
+</script>
+
+<style is:global>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+</style>

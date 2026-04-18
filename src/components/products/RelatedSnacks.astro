@@ -1,0 +1,44 @@
+---
+import { products } from "../../data/productData";
+import ProductCardStitch from "./ProductCardStitch.astro";
+
+interface Props {
+  relatedSlugs: string[];
+}
+
+const { relatedSlugs = [] } = Astro.props;
+const relatedProducts = products.filter(p => relatedSlugs.includes(p.slug));
+---
+
+{relatedProducts.length > 0 && (
+  <section class="bg-surface-variant/30 py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-end mb-12">
+        <h2 class="text-4xl md:text-5xl font-black font-headline uppercase tracking-tight italic">
+          More Coco Cado Snacks
+        </h2>
+        <a 
+          href="/products" 
+          class="text-primary-container font-black uppercase text-sm border-b-2 border-primary-container pb-1 hover:text-white transition-colors"
+        >
+          View All
+        </a>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {relatedProducts.map((p, i) => (
+          <ProductCardStitch 
+            slug={p.slug}
+            title={p.name}
+            description={p.description}
+            image={p.mainImage}
+            imageAlt={p.mainImageAlt}
+            badge={p.badge}
+            tags={p.tags}
+            rotate={i % 2 === 0 ? "rotate-1" : "-rotate-1"}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,35 @@
+---
+/**
+ * TrustStripStitch.astro
+ * Certification & quality badges strip — matches About page cert style.
+ */
+
+const certs = [
+  { label: "HALAL", bg: "bg-[#f2cdff]", text: "text-[#8243a2]", rotate: "rotate-2"  },
+  { label: "HACCP", bg: "bg-[#ce0301]", text: "text-white",      rotate: "-rotate-3" },
+  { label: "ISO",   bg: "bg-[#ffd700]", text: "text-[#221b00]",  rotate: "rotate-1"  },
+  { label: "FDA",   bg: "bg-[#46301c]", text: "text-white",      rotate: "-rotate-1" },
+  { label: "MESTI", bg: "bg-[#f2cdff]", text: "text-[#8243a2]",  rotate: "rotate-3"  },
+  { label: "GMP",   bg: "bg-[#ce0301]", text: "text-white",      rotate: "-rotate-2" },
+];
+---
+
+<section class="bg-[#1a0a00] py-12 px-6 border-y-2 border-[#4d4732]/30" aria-labelledby="trust-heading">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8">
+
+    <p id="trust-heading" class="font-headline font-bold text-sm uppercase tracking-widest text-[#999077] shrink-0 text-center md:text-left">
+      Backed by Happy Alliance<br class="hidden md:block" /> Quality Standards
+    </p>
+
+    <ul class="flex flex-wrap justify-center items-center gap-4 md:gap-6 list-none m-0 p-0" role="list" aria-label="Quality certifications">
+      {certs.map(({ label, bg, text, rotate }) => (
+        <li>
+          <span class={`block px-6 py-2 rounded-full font-headline font-black text-lg md:text-xl border-4 border-[#999077]/40 hover:rotate-0 hover:scale-105 transition-all cursor-default ${bg} ${text} ${rotate}`}>
+            {label}
+          </span>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>

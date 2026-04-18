@@ -1,0 +1,104 @@
+---
+/**
+ * WhyPartnerStitch.astro
+ * Four-card grid explaining the benefits of partnering with Coco Cado.
+ */
+
+const pillars = [
+  {
+    title: "Established Manufacturer",
+    desc: "Backed by Happy Alliance with over 30 years of excellence in food manufacturing and safety standards.",
+    icon: "factory",
+    accent: "#ffd700",
+    glow: "rgba(255, 215, 0, 0.4)",
+  },
+  {
+    title: "Strong Shelf Appeal",
+    desc: "Attractive consumer brand with strong shelf appeal",
+    icon: "shopping_bag",
+    accent: "#ce0301",
+    glow: "rgba(206, 3, 1, 0.4)",
+  },
+  {
+    title: "Built For Growth",
+    desc: "Strategic presence in modern trade, general trade, and expanding international export channels.",
+    icon: "trending_up",
+    accent: "#8243a2",
+    glow: "rgba(130, 67, 162, 0.4)",
+  },
+  {
+    title: "Rising Snack Brand",
+    desc: "Building massive momentum locally and internationally. Join the kinetic snack revolution today.",
+    icon: "rocket_launch",
+    accent: "#ffffff",
+    glow: "rgba(255, 255, 255, 0.3)",
+  },
+];
+---
+
+<section class="bg-[#200f01] py-40 px-6 relative overflow-hidden" id="why-partner-pillar-section">
+  <!-- Kinetic dot texture -->
+  <div
+    class="absolute inset-0 opacity-[0.05] pointer-events-none"
+    style="background-image: radial-gradient(#ffd700 1px, transparent 1px); background-size: 30px 30px;"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <!-- Header with Confetti -->
+    <div class="flex flex-col md:flex-row justify-between items-end gap-12 mb-24 relative">
+      <div class="max-w-3xl space-y-6">
+        <h2 id="why-partner-heading" class="text-5xl md:text-[5.5rem] font-headline font-black text-[#ffd700] uppercase leading-[0.85] tracking-tighter">
+          Why Partner With<br/><span class="text-white">Coco Cado</span>
+        </h2>
+        <p class="text-[#d0c6ab] text-xl md:text-2xl font-medium opacity-90 leading-tight italic max-w-2xl">
+          Coco Cado offers distributors the opportunity to work with a fresh, energetic snack brand supported by established manufacturing capabilities and a flavor profile that hooks consumers instantly.
+        </p>
+      </div>
+
+      <!-- The Confetti Popper Icon -->
+      <div class="relative group hidden md:block">
+        <div class="absolute inset-0 bg-[#ffd700] rounded-full blur-[120px] opacity-10 group-hover:opacity-30 transition-opacity animate-pulse" aria-hidden="true"></div>
+        <span 
+          class="material-symbols-outlined text-[#ffd700] opacity-40 transition-all duration-500 cursor-default select-none block leading-none"
+          style="font-size: 5rem;"
+        >
+          celebration
+        </span>
+      </div>
+    </div>
+
+    <!-- 4 Pillar Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {pillars.map((p) => (
+        <div 
+          class="bg-[#2a1705] p-10 rounded-[3rem] border-2 border-transparent transition-all duration-500 hover:scale-[1.05] group cursor-default flex flex-col h-full relative"
+          style={`box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);`}
+        >
+          <!-- Neon Glow Border overlay -->
+          <div 
+            class="absolute inset-0 rounded-[3rem] opacity-20 group-hover:opacity-100 transition-opacity pointer-events-none"
+            style={`box-shadow: inset 0 0 0 4px ${p.accent}, 0 0 30px ${p.glow};`}
+          ></div>
+
+          <div class="relative z-10 flex flex-col h-full items-center text-center">
+            <div 
+              class="w-16 h-16 rounded-full flex items-center justify-center mb-8 shrink-0 shadow-xl group-hover:scale-125 transition-transform duration-500"
+              style={`background-color: ${p.accent}; box-shadow: 0 8px 24px ${p.glow}; color: ${p.accent === '#ffffff' ? '#200f01' : '#ffffff'};`}
+            >
+              <span class="material-symbols-outlined text-3xl font-black" aria-hidden="true">{p.icon}</span>
+            </div>
+            
+            <h3 class="text-2xl font-headline font-black mb-6 uppercase tracking-tighter transition-colors duration-300" style={`color: ${p.accent};`}>
+              {p.title}
+            </h3>
+            
+            <p class="text-[#999077] text-lg font-medium leading-snug italic opacity-90 group-hover:opacity-100 transition-opacity">
+              {p.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

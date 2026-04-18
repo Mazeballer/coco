@@ -1,0 +1,97 @@
+---
+/**
+ * DistributionChannelsStitch.astro
+ * Grid of distribution channel cards for the consumer 'Where to Buy' page.
+ */
+import Icon from "../ui/Icon.astro";
+
+const channels = [
+  {
+    title: "Modern Trade",
+    desc: "Supermarkets and premium grocery chains across the region.",
+    icon: "storefront",
+    accent: "bg-[#ce0301]",
+    border: "border-[#ce0301]",
+  },
+  {
+    title: "General Trade",
+    desc: "Convenience stores and local independent snack outlets.",
+    icon: "local_mall",
+    accent: "bg-[#ffd700]",
+    border: "border-[#ffd700]",
+  },
+  {
+    title: "Wholesale",
+    desc: "Bulk distribution for volume retail and business supplies.",
+    icon: "inventory_2",
+    accent: "bg-[#8243a2]",
+    border: "border-[#8243a2]",
+  },
+  {
+    title: "Export & Import",
+    desc: "Strategic international partnerships for global accessibility.",
+    icon: "public",
+    accent: "bg-[#ce0301]",
+    border: "border-[#ce0301]",
+  },
+  {
+    title: "E-Commerce",
+    desc: "Available on major digital marketplaces and our direct shop.",
+    icon: "shopping_cart",
+    accent: "bg-[#ffd700]",
+    border: "border-[#ffd700]",
+  },
+  {
+    title: "Food Service",
+    desc: "Curated snack options for hotels, cafes, and leisure venues.",
+    icon: "restaurant",
+    accent: "bg-[#8243a2]",
+    border: "border-[#8243a2]",
+  },
+];
+---
+
+<section class="bg-[#2f1b08] py-24 px-6 relative">
+  <!-- Dot grid texture -->
+  <div
+    class="absolute inset-0 opacity-[0.05] pointer-events-none"
+    style="background-image: radial-gradient(#ffd700 1px, transparent 1px); background-size: 28px 28px;"
+    aria-hidden="true"
+  ></div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+
+    <div class="mb-16 text-center max-w-3xl mx-auto space-y-4">
+      <h2 class="channel-reveal text-4xl md:text-5xl font-headline font-black text-[#ffd700] uppercase leading-none tracking-tighter">
+        Distribution Channels
+      </h2>
+      <p class="channel-reveal text-[#d0c6ab] text-lg md:text-xl font-medium opacity-80 leading-snug italic">
+        We work with retail partners, wholesalers, and distributors to grow Coco Cado in key markets.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {channels.map((c) => (
+        <div class={`channel-reveal-card bg-[#200f01] p-8 rounded-[2rem] border-b-[8px] shadow-xl transition-all duration-300 hover:scale-[1.04] group cursor-default flex flex-col items-center text-center ${c.border}`}>
+          <div class={`w-16 h-16 ${c.accent} rounded-full flex items-center justify-center mb-6 text-white shadow-lg group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300`}>
+            <Icon name={c.icon as any} class="w-8 h-8" />
+          </div>
+          <h3 class="text-xl md:text-2xl font-headline font-black mb-3 text-white uppercase tracking-tighter">{c.title}</h3>
+          <p class="text-[#999077] text-base font-medium leading-snug">{c.desc}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .channel-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .channel-reveal-card {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+</style>

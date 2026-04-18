@@ -1,0 +1,174 @@
+---
+/**
+ * PartnerInquiryFormStitch.astro
+ * Partner inquiry form — submits via Netlify Forms (no backend needed).
+ * Netlify detects the `data-netlify` attribute at build time.
+ */
+---
+
+<section class="bg-[#200f01] py-24 px-6" aria-labelledby="form-heading">
+  <div class="max-w-4xl mx-auto">
+
+    <div class="bg-[#2f1b08] rounded-[2rem] p-8 md:p-14 shadow-2xl border-t-8 border-[#ce0301] relative overflow-hidden">
+      <!-- Subtle corner accent -->
+      <div class="absolute top-0 right-0 w-48 h-48 bg-[#ce0301] opacity-5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="mb-10 text-center space-y-2">
+        <h2 id="form-heading" class="text-3xl md:text-4xl font-headline font-black text-white uppercase tracking-tighter">
+          Partner Inquiry
+        </h2>
+        <p class="text-[#d0c6ab] font-medium">
+          Interested in distributing Coco Cado? Share your details and our team will get in touch.
+        </p>
+      </div>
+
+      <form
+        name="partner-inquiry"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="space-y-6"
+        id="partner-form"
+      >
+        <!-- Netlify hidden fields -->
+        <input type="hidden" name="form-name" value="partner-inquiry" />
+        <p class="hidden" aria-hidden="true">
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div class="space-y-2">
+            <label for="company-name" class="block font-headline font-bold text-xs uppercase tracking-wider text-[#ffd700]">
+              Company Name
+            </label>
+            <input
+              id="company-name"
+              name="company-name"
+              type="text"
+              required
+              placeholder="Your Business Ltd."
+              class="w-full bg-[#200f01] border-2 border-[#4d4732] rounded-xl px-4 py-3 text-white placeholder:text-[#999077] focus:border-[#ffd700] focus:outline-none transition-colors"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="country" class="block font-headline font-bold text-xs uppercase tracking-wider text-[#ffd700]">
+              Country / Market
+            </label>
+            <input
+              id="country"
+              name="country"
+              type="text"
+              required
+              placeholder="e.g. Malaysia, Singapore, UK"
+              class="w-full bg-[#200f01] border-2 border-[#4d4732] rounded-xl px-4 py-3 text-white placeholder:text-[#999077] focus:border-[#ffd700] focus:outline-none transition-colors"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="contact-name" class="block font-headline font-bold text-xs uppercase tracking-wider text-[#ffd700]">
+              Contact Person
+            </label>
+            <input
+              id="contact-name"
+              name="contact-name"
+              type="text"
+              required
+              placeholder="Full Name"
+              class="w-full bg-[#200f01] border-2 border-[#4d4732] rounded-xl px-4 py-3 text-white placeholder:text-[#999077] focus:border-[#ffd700] focus:outline-none transition-colors"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="email" class="block font-headline font-bold text-xs uppercase tracking-wider text-[#ffd700]">
+              Email / Phone
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="contact@company.com"
+              class="w-full bg-[#200f01] border-2 border-[#4d4732] rounded-xl px-4 py-3 text-white placeholder:text-[#999077] focus:border-[#ffd700] focus:outline-none transition-colors"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="business-type" class="block font-headline font-bold text-xs uppercase tracking-wider text-[#ffd700]">
+              Business Type
+            </label>
+            <select
+              id="business-type"
+              name="business-type"
+              required
+              class="w-full bg-[#200f01] border-2 border-[#4d4732] rounded-xl px-4 py-3 text-white focus:border-[#ffd700] focus:outline-none transition-colors appearance-none cursor-pointer"
+            >
+              <option value="" disabled selected>Select Business Type</option>
+              <option value="importer">Importer</option>
+              <option value="national-distributor">National Distributor</option>
+              <option value="wholesaler">Wholesaler</option>
+              <option value="retailer">Retailer</option>
+            </select>
+          </div>
+
+          <div class="space-y-2">
+            <label for="product-category" class="block font-headline font-bold text-xs uppercase tracking-wider text-[#ffd700]">
+              Product Category
+            </label>
+            <select
+              id="product-category"
+              name="product-category"
+              class="w-full bg-[#200f01] border-2 border-[#4d4732] rounded-xl px-4 py-3 text-white focus:border-[#ffd700] focus:outline-none transition-colors appearance-none cursor-pointer"
+            >
+              <option value="" disabled selected>Select Category</option>
+              <option value="snacks-savory">Snacks &amp; Savory</option>
+              <option value="beverages">Beverages</option>
+              <option value="multiple">Multiple Categories</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="space-y-2">
+          <label for="coverage" class="block font-headline font-bold text-xs uppercase tracking-wider text-[#ffd700]">
+            Distribution Coverage
+          </label>
+          <input
+            id="coverage"
+            name="coverage"
+            type="text"
+            placeholder="e.g. Nationwide coverage, specific regions only"
+            class="w-full bg-[#200f01] border-2 border-[#4d4732] rounded-xl px-4 py-3 text-white placeholder:text-[#999077] focus:border-[#ffd700] focus:outline-none transition-colors"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label for="message" class="block font-headline font-bold text-xs uppercase tracking-wider text-[#ffd700]">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Tell us more about your distribution network..."
+            class="w-full bg-[#200f01] border-2 border-[#4d4732] rounded-xl px-4 py-3 text-white placeholder:text-[#999077] focus:border-[#ffd700] focus:outline-none transition-colors resize-none"
+          ></textarea>
+        </div>
+
+        <div class="pt-2">
+          <button
+            type="submit"
+            class="w-full bg-[#ce0301] text-white py-5 rounded-xl font-headline font-black text-xl uppercase tracking-tighter hover:scale-[1.02] hover:rotate-1 active:scale-95 transition-all shadow-[0_8px_0_#6a0000] border-2 border-[#6a0000]"
+          >
+            Send Inquiry
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- Success / error toast handled by Netlify's redirect — no JS needed -->

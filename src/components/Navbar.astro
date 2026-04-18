@@ -1,15 +1,11 @@
 ---
-/**
- * Navbar.astro
- * Design: logo left, nav links right, yellow active underline, white/70 inactive
- */
-
+import Icon from "./ui/Icon.astro";
 const navLinks = [
   { label: "Products",     href: "/products"      },
   { label: "About",        href: "/about"         },
   { label: "Ambassadors",  href: "/ambassadors"   },
   { label: "News",         href: "/news"          },
-  { label: "Distribution", href: "/distribution"  },
+  { label: "WHERE TO BUY", href: "/where-to-buy"  },
   { label: "Contact",      href: "/contact"       },
 ];
 
@@ -74,7 +70,7 @@ const currentPath = Astro.url.pathname;
       aria-controls="mobile-menu"
       type="button"
     >
-      <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+      <Icon name="menu" class="w-8 h-8" />
     </button>
 
   </nav>
@@ -94,8 +90,8 @@ const currentPath = Astro.url.pathname;
             class:list={[
               "block font-headline font-bold uppercase text-sm tracking-wider py-3 px-4 rounded-lg transition-colors",
               currentPath === href
-                ? "text-[#ce0301] bg-white/5"
-                : "text-[#200f01] hover:text-white hover:bg-white/5",
+                ? "text-[#ffd700] bg-white/10"
+                : "text-white hover:text-[#ffd700] hover:bg-white/5",
             ]}
             aria-current={currentPath === href ? "page" : undefined}
           >
@@ -150,11 +146,11 @@ const currentPath = Astro.url.pathname;
     const handle = () => {
       const currentY = window.scrollY || 0;
 
-      // Hero pin = +=300% = 3× viewport height of virtual scroll
-      // Only lock in the background once the user has scrolled past the full hero
-      const heroPinEnd = window.innerHeight * 3;
+      // Turn on the dark background as soon as the user scrolls down a bit
+      // to prevent the transparent navbar from clashing with scrolling text
+      const offset = 50;
 
-      if (currentY >= heroPinEnd) {
+      if (currentY >= offset) {
         enableHeaderBg();
       } else {
         disableHeaderBg();

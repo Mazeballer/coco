@@ -1,0 +1,77 @@
+---
+/**
+ * AmbassadorProfileStitch.astro
+ * Ambassador profile component with staggered layout and social links.
+ */
+
+interface Props {
+  name: string;
+  lastName: string;
+  role: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  badgeColor: string;
+  accentBg: string;
+  reverse?: boolean;
+  socialLinks?: { icon?: string; link: string; color?: string; isSvg?: boolean; svgPath?: string; label?: string }[];
+}
+
+const { 
+  name, 
+  lastName, 
+  role, 
+  description, 
+  image, 
+  imageAlt, 
+  badgeColor, 
+  accentBg, 
+  reverse = false,
+  socialLinks = []
+} = Astro.props;
+---
+
+<div class={`grid md:grid-cols-2 gap-16 items-center ${reverse ? 'flex-row-reverse' : ''}`}>
+  <div class={`relative group profile-animate-image ${reverse ? 'md:order-2' : ''}`}>
+    <div class={`absolute inset-0 ${accentBg} rounded-3xl ${reverse ? '-translate-x-3' : 'translate-x-3'} translate-y-3 -z-10 transition-transform duration-500`}></div>
+    <div class="overflow-hidden rounded-3xl border-4 border-stone-800 bg-stone-800">
+      <img 
+        src={image} 
+        alt={imageAlt}
+        class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+    </div>
+  </div>
+
+  <div class={`space-y-6 profile-animate-content ${reverse ? 'md:order-1 md:pr-12 md:text-right' : 'md:pl-12'}`}>
+    <span class={`${badgeColor} px-4 py-1 rounded-full font-headline font-black uppercase text-[10px] tracking-widest inline-block shadow-md`}>
+      {role}
+    </span>
+    <h4 class={`font-headline font-black text-6xl md:text-[5.5rem] uppercase leading-[0.8] tracking-tighter ${reverse ? 'text-[#ce0301]' : 'text-primary-container'}`}>
+      {name}<br/>
+      <span class={reverse ? 'text-[#ce0301]' : 'text-white'}>{lastName}</span>
+    </h4>
+    <p class="text-on-surface-variant text-lg md:text-xl leading-relaxed font-medium opacity-80">
+      {description}
+    </p>
+    <div class={`flex gap-4 ${reverse ? 'justify-end' : ''}`}>
+      {socialLinks.map(social => (
+        <a 
+          href={social.link} 
+          aria-label={social.label || "Social Link"}
+          class="w-12 h-12 bg-on-surface-variant/10 rounded-full flex items-center justify-center hover:bg-white transition-all group border border-white/10 hover:scale-110 active:scale-95"
+        >
+          {social.isSvg ? (
+            <svg class="w-6 h-6 fill-white group-hover:fill-coco-dark transition-colors" viewBox="0 0 24 24">
+              <path d={social.svgPath} />
+            </svg>
+          ) : (
+            <span class="material-symbols-outlined text-white group-hover:text-coco-dark text-2xl transition-colors" aria-hidden="true">
+              {social.icon}
+            </span>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

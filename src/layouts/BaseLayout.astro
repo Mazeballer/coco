@@ -52,14 +52,35 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image"       content={ogImage} />
 
-      <!-- Material Symbols -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+    <!-- SEO Best Practices -->
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Coco Cado",
+        "url": "https://cococado.com",
+        "logo": "https://cococado.com/favicon.svg",
+        "description": "Bold flavour, crunchy fun, and feel-good snacking for every moment.",
+        "sameAs": [
+          "https://facebook.com/cococado",
+          "https://instagram.com/cococado",
+          "https://tiktok.com/@cococado"
+        ]
+      }
+    </script>
+
+    <!-- DNS Prefetch for Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>{title}</title>
   </head>
 
-  <body>
+  <body class="overflow-x-hidden w-full max-w-[100vw]">
     <!-- Skip to main content — screen reader / keyboard accessibility -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link sr-only focus:not-sr-only">Skip to main content</a>
 
     <slot />
   </body>
