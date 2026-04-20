@@ -2,6 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar     from "../components/Navbar.astro";
 import Footer     from "../components/Footer.astro";
+import { Image }  from "astro:assets";
+import snackHappyImg from "../assets/fries1.png";
+import building from "../assets/HappyAllianceBuilding.jpg"
+import pearls from "../assets/pearls.png"
 
 const certifications = [
   { label: "HALAL",  bg: "bg-[#f2cdff]", text: "text-[#8243a2]", rotate: "rotate-2"  },
@@ -58,10 +62,16 @@ const alliancePoints = [
         </p>
       </div>
 
-      <div class="absolute top-1/2 left-10 hidden lg:flex items-center justify-center -rotate-12 hover:rotate-0 transition-transform w-36 h-36 bg-white border-4 border-[#999077] shadow-xl" aria-hidden="true">
-        <span class="font-black font-headline text-[#ce0301] text-center text-lg uppercase leading-tight">Snack<br />Happy!</span>
+      <div class="absolute top-1/2 left-10 hidden lg:flex items-center justify-center -rotate-12 hover:rotate-0 transition-transform w-36 h-36 border-4 border-[#FFFFFF] shadow-xl overflow-hidden bg-white" aria-hidden="true">
+        <Image 
+          src={snackHappyImg} 
+          alt="Snack Happy - Coco Cado Potato Sticks" 
+          width={150} 
+          height={150}
+          class="w-full h-full object-cover"
+        />
       </div>
-      <div class="absolute bottom-10 right-20 hidden lg:flex items-center justify-center rotate-6 hover:rotate-0 transition-transform w-36 h-36 bg-[#f2cdff] border-4 border-[#999077] shadow-xl" aria-hidden="true">
+      <div class="absolute bottom-10 right-20 hidden lg:flex items-center justify-center rotate-6 hover:rotate-0 transition-transform w-36 h-36 bg-[#f2cdff] border-4 border-[#FFFFFF] shadow-xl" aria-hidden="true">
         <span class="font-black font-headline text-[#8243a2] text-center text-sm uppercase leading-tight">CRUNCHY<br />EXPERTS</span>
       </div>
     </header>
@@ -72,8 +82,8 @@ const alliancePoints = [
 
         <div class="relative">
           <figure class="rounded-xl overflow-hidden border-4 border-[#999077] rotate-2 hover:rotate-0 transition-transform duration-500 m-0">
-            <img
-              src="/images/about-story.jpg"
+            <Image
+              src={building}
               alt="Coco Cado snack brand story — bold flavours crafted with care"
               width="600" height="750"
               loading="lazy" decoding="async"
