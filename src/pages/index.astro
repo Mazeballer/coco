@@ -6,7 +6,7 @@ import Hero from "../components/Hero.astro";
 import FeaturedProducts from "../components/FeaturedProducts.astro";
 import Icon from "../components/ui/Icon.astro";
 import { Image } from "astro:assets";
-import saltedPotato from "../assets/saltedpotatogreen.png";
+import pearlCup from "../assets/pearlCup.png";
 ---
 
 <BaseLayout
@@ -37,18 +37,30 @@ import saltedPotato from "../assets/saltedpotatogreen.png";
             snacking, on-the-go moments, gifting, or retail shelves, Coco Cado is designed to
             stand out with taste, quality, and a vibrant brand personality.
           </p>
-          <div id="bi-tagline" class="flex gap-4 items-center">
-            <div class="w-16 h-16 rounded-xl bg-[#3a2512] flex items-center justify-center shrink-0" aria-hidden="true">
-              <Icon name="eco" class="w-8 h-8 text-[#ffd700]" />
+          <div id="bi-tagline" class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 pt-4 border-t border-[#3a2512]">
+            <div class="flex items-center gap-3">
+              <Icon name="check_circle" class="w-6 h-6 text-[#ffd700] shrink-0" />
+              <span class="text-[#ffdcc0] font-black font-headline text-sm md:text-base uppercase italic tracking-tight">Made with real fruits</span>
             </div>
-            <p class="font-bold text-[#ffdcc0] italic">Real Potato. Crunchy. Unapologetic.</p>
+            <div class="flex items-center gap-3">
+              <Icon name="check_circle" class="w-6 h-6 text-[#ffd700] shrink-0" />
+              <span class="text-[#ffdcc0] font-black font-headline text-sm md:text-base uppercase italic tracking-tight">No preservatives</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <Icon name="check_circle" class="w-6 h-6 text-[#ffd700] shrink-0" />
+              <span class="text-[#ffdcc0] font-black font-headline text-sm md:text-base uppercase italic tracking-tight">No flavoring</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <Icon name="check_circle" class="w-6 h-6 text-[#ffd700] shrink-0" />
+              <span class="text-[#ffdcc0] font-black font-headline text-sm md:text-base uppercase italic tracking-tight">No coloring</span>
+            </div>
           </div>
         </div>
 
         <div id="bi-image-col" class="w-full md:w-1/2 relative">
-          <figure class="aspect-square bg-[#46301c] rounded-xl overflow-hidden border-8 border-[#46301c] -rotate-3 hover:rotate-0 transition-transform duration-500 shadow-2xl m-0">
+          <figure class="aspect-square bg-[#46301c] rounded-xl overflow-hƒidden border-8 border-[#46301c] -rotate-3 hover:rotate-0 transition-transform duration-500 shadow-2xl m-0">
             <Image
-              src={saltedPotato}
+              src={pearlCup}
               alt="Group of young adults sharing Coco Cado snacks and laughing together"
               width={1200} 
               height={1200}
@@ -58,7 +70,7 @@ import saltedPotato from "../assets/saltedpotatogreen.png";
             />
           </figure>
           <div id="bi-carnival" class="absolute -bottom-10 -right-10 w-35 h-35 bg-[#ce0301] rounded-full border-4 border-[#ffdcc0] flex items-center justify-center rotate-12 shadow-2xl" aria-hidden="true">
-            <span class="text-white font-black text-center text-lg leading-tight uppercase">VACUUM<br />FRIED<br /></span>
+            <span class="text-white font-black text-center text-lg leading-tight uppercase">Made In<br />Malaysia<br /></span>
           </div>
         </div>
 

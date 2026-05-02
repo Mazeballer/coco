@@ -8,6 +8,9 @@ import NewsCardStitch from "../components/news/NewsCardStitch.astro";
 import NewsPaginationStitch from "../components/news/NewsPaginationStitch.astro";
 import NewsCTAStitch from "../components/news/NewsCTAStitch.astro";
 
+// Import Real Images
+import news1 from "../assets/news/news1.jpg";
+
 const tickerItems = [
   "Product Launches",
   "Campaign Announcements",
@@ -16,6 +19,65 @@ const tickerItems = [
   "Ambassador Activities",
   "Retail Promotions"
 ];
+
+const newsItems = [
+  {
+    title: "Star singer Khai Bahar is on a starry high his new single hitting the charts and now also official brand ambassador for top food brand",
+    excerpt: "The popular singer-actor has officially joined the Coco Cado family as our brand ambassador, marking a significant milestone in our journey to bring bold flavours to more fans.",
+    category: "News",
+    date: "Wednesday, 19 Nov 2025",
+    image: news1,
+    href: "https://www.thestar.com.my/aseanplus/aseanplus-news/2025/11/19/star-singer-khai-bahar-is-on-a-starry-high-his-new-single-hitting-the-charts-and-now-also-official-brand-ambassador-for-top-food-brand",
+    tagColor: "#ce0301",
+    borderColor: "border-[#200f01]",
+    shadowColor: "#200f01",
+    isFeatured: true
+  },
+  // {
+  //   title: "SUMMER OF SNACKS 2024",
+  //   excerpt: "Our nationwide tour kicking off in Miami this June with 10,000 samples.",
+  //   category: "Campaigns",
+  //   date: "Monday, 10 Jun 2024",
+  //   tagColor: "#8243a2",
+  //   borderColor: "border-[#8243a2]",
+  //   shadowColor: "#8243a2"
+  // },
+  // {
+  //   title: "GLOBAL SNACK EXPO RECAP",
+  //   excerpt: "How Coco Cado took home the 'Innovative Snack of the Year' award in Chicago.",
+  //   category: "Trade Shows",
+  //   date: "Friday, 15 Mar 2024",
+  //   tagColor: "#008080",
+  //   borderColor: "border-[#008080]",
+  //   shadowColor: "#008080"
+  // },
+  // {
+  //   title: "NOW AT SELECT WHOLE FOODS",
+  //   excerpt: "Find our signature crunchy sticks in the organic snacks aisle nationwide.",
+  //   category: "Retail Promotions",
+  //   date: "Tuesday, 20 Feb 2024",
+  //   tagColor: "#ce0301",
+  //   borderColor: "border-[#ce0301]",
+  //   shadowColor: "#ce0301"
+  // },
+  // {
+  //   title: "CRUNCH FOR A CAUSE",
+  //   excerpt: "Supporting local urban gardens one snack bag at a time. Join the initiative.",
+  //   category: "Community",
+  //   date: "Sunday, 05 Jan 2024",
+  //   tagColor: "#2e7d32",
+  //   borderColor: "border-[#2e7d32]",
+  //   shadowColor: "#2e7d32"
+  // }
+];
+
+// Pagination Logic
+const itemsPerPage = 5;
+const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+const currentPage = parseInt(Astro.url.searchParams.get('page') || '1');
+const startIndex = (currentPage - 1) * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const currentItems = newsItems.slice(startIndex, endIndex);
 ---
 
 <BaseLayout 
@@ -26,7 +88,7 @@ const tickerItems = [
 
   <main id="main-content" class="bg-[#ffd700] pt-24">
     <NewsHeroStitch 
-      title="News & Media"
+      title="Campaign & Moment"
       subtitle="Stay updated with our latest campaigns, launches, events, and brand milestones."
     />
 
@@ -40,63 +102,24 @@ const tickerItems = [
 
     <section class="px-6 pb-24">
       <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-6 gap-x-12 gap-y-20 news-grid-force">
-        <!-- Featured Card -->
-        <NewsCardStitch 
-          title="THE CARNIVAL ARRIVES: NEW COCO CADO COCOA-PECAN BLAST"
-          excerpt="We're bringing the crunch to the masses with our biggest flavor drop yet. Discover the science of the crunch and where to find the first limited batch."
-          category="Product Launches"
-          tagColor="#ce0301"
-          borderColor="border-[#200f01]"
-          shadowColor="#200f01"
-          isFeatured={true}
-          imageLabel="Main Launch Feature"
-        />
-
-        <!-- Sidebar Card -->
-        <NewsCardStitch 
-          title="SUMMER OF SNACKS 2024"
-          excerpt="Our nationwide tour kicking off in Miami this June with 10,000 samples."
-          category="Campaigns"
-          tagColor="#8243a2"
-          borderColor="border-[#8243a2]"
-          shadowColor="#8243a2"
-          imageLabel="Campaign Media"
-        />
-
-        <!-- Row 2 -->
-        <NewsCardStitch 
-          title="GLOBAL SNACK EXPO RECAP"
-          excerpt="How Coco Cado took home the 'Innovative Snack of the Year' award in Chicago."
-          category="Trade Shows"
-          tagColor="#008080"
-          borderColor="border-[#008080]"
-          shadowColor="#008080"
-          imageLabel="Trade Booth v.1"
-        />
-
-        <NewsCardStitch 
-          title="NOW AT SELECT WHOLE FOODS"
-          excerpt="Find our signature crunchy sticks in the organic snacks aisle nationwide."
-          category="Retail Promotions"
-          tagColor="#ce0301"
-          borderColor="border-[#ce0301]"
-          shadowColor="#ce0301"
-          imageLabel="Store Display"
-        />
-
-        <NewsCardStitch 
-          title="CRUNCH FOR A CAUSE"
-          excerpt="Supporting local urban gardens one snack bag at a time. Join the initiative."
-          category="Community"
-          tagColor="#2e7d32"
-          borderColor="border-[#2e7d32]"
-          shadowColor="#2e7d32"
-          imageLabel="Community Event"
-        />
+        {currentItems.map((item) => (
+          <NewsCardStitch 
+            title={item.title}
+            excerpt={item.excerpt}
+            category={item.category}
+            date={item.date}
+            image={item.image}
+            href={item.href}
+            tagColor={item.tagColor}
+            borderColor={item.borderColor}
+            shadowColor={item.shadowColor}
+            isFeatured={item.isFeatured}
+          />
+        ))}
       </div>
     </section>
 
-    <NewsPaginationStitch />
+    <NewsPaginationStitch totalPages={totalPages} currentPage={currentPage} />
 
     <NewsCTAStitch 
       title="WANT TO STAY IN THE LOOP?"
@@ -116,14 +139,12 @@ const tickerItems = [
   gsap.registerPlugin(ScrollTrigger);
 
   function initNews() {
-    // 1. Smooth Scroll
     const lenis = new Lenis();
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
     lenis.on('scroll', ScrollTrigger.update);
 
-    // 2. Hero Entrance
     const heroTl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
     heroTl
       .fromTo(".hero-animate-reveal", 
@@ -131,15 +152,13 @@ const tickerItems = [
         { y: 0, opacity: 1, stagger: 0.1, delay: 0.2 }
       );
 
-    // 3. News Cards Stagger Reveal - Robust Strategy
     const cards = document.querySelectorAll(".news-card-reveal");
     
     if (cards.length > 0) {
-      // Set initial state explicitly to override any CSS classes
       gsap.set(".news-card-reveal", { y: 60, opacity: 0, visibility: "visible" });
 
       ScrollTrigger.batch(".news-card-reveal", {
-        start: "top 95%", // Trigger slightly earlier
+        start: "top 95%", 
         onEnter: batch => gsap.to(batch, { opacity: 1, y: 0, stagger: 0.15, duration: 1, ease: "power3.out" }),
         once: true
       });
@@ -148,10 +167,8 @@ const tickerItems = [
     ScrollTrigger.refresh();
   }
 
-  // Handle both standard loads and Astro transitions
   document.addEventListener('astro:page-load', initNews);
   
-  // Backup initialization
   if (document.readyState === 'complete') {
     initNews();
   } else {
@@ -160,13 +177,11 @@ const tickerItems = [
 </script>
 
 <style is:global>
-  /* Ensure reveal elements are hidden initially to prevent FOUC */
   .news-card-reveal {
     opacity: 0;
-    visibility: hidden; /* Prevent interaction while hidden */
+    visibility: hidden;
   }
   
-  /* Robust Layout Grid */
   @media (min-width: 1024px) {
     .news-grid-force {
       display: grid !important;
@@ -174,7 +189,6 @@ const tickerItems = [
       gap: 3rem !important;
     }
     
-    /* Row 1: 2:1 ratio */
     .news-grid-force > *:nth-child(1) {
       grid-column: span 4 !important;
     }
@@ -182,7 +196,6 @@ const tickerItems = [
       grid-column: span 2 !important;
     }
     
-    /* Rows 2+: 1:1:1 ratio (3 cards) */
     .news-grid-force > *:nth-child(n+3) {
       grid-column: span 2 !important;
     }

@@ -6,7 +6,7 @@
  */
 
 interface Props {
-  name: "apartment" | "location_on" | "mail" | "schedule" | "explore" | "photo_camera" | "music_note" | "share" | "favorite" | "campaign" | "person_add" | "play_circle" | "storefront" | "local_mall" | "inventory_2" | "public" | "shopping_cart" | "restaurant" | "eco" | "verified" | "mood" | "store" | "menu";
+  name: "apartment" | "location_on" | "mail" | "schedule" | "explore" | "photo_camera" | "music_note" | "share" | "favorite" | "campaign" | "person_add" | "play_circle" | "storefront" | "local_mall" | "inventory_2" | "public" | "shopping_cart" | "restaurant" | "eco" | "verified" | "mood" | "store" | "menu" | "water_drop" | "check_circle" | "cancel";
   class?: string;
 }
 
@@ -35,7 +35,10 @@ const icons = {
   verified: "M23 12l-2.44-2.79.34-3.69-3.61-.82-1.89-3.2L12 2.7 8.6 1.5 6.71 4.7l-3.61.81.34 3.7L1 12l2.44 2.79-.34 3.69 3.61.82 1.89 3.2 3.4-1.2 3.4 1.2 1.89-3.2 3.61-.82-.34-3.69L23 12zm-12.91 4.72l-3.8-3.81 1.48-1.48 2.32 2.33 5.85-5.87 1.48 1.48-7.33 7.35z",
   mood: "M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z",
   store: "M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h2v6h2v-6h1zM6 18v-4h4v4H6zm10 0v-4h4v4h-4z",
-  menu: "M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+  menu: "M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z",
+  water_drop: "M12 21c-4.41 0-8-3.59-8-8 0-4.41 8-11 8-11s8 6.59 8 11c0 4.41-3.59 8-8 8zm0-15.35c-1.87 2.32-5 6.48-5 8.35 0 2.76 2.24 5 5 5s5-2.24 5-5c0-1.87-3.13-6.03-5-8.35z",
+  check_circle: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z",
+  cancel: "M12 2C6.47 2 2 6.47 2 12s4.47 10 9.99 10S22 17.53 22 12 17.52 2 11.99 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
 };
 
 const path = icons[name] || "";

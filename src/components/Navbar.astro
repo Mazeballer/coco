@@ -1,9 +1,11 @@
 ---
+import { Image } from "astro:assets";
+import logoImg from "../assets/logo.png";
 import Icon from "./ui/Icon.astro";
 const navLinks = [
   { label: "Products",     href: "/products"      },
   { label: "About",        href: "/about"         },
-  { label: "Ambassadors",  href: "/ambassadors"   },
+  { label: "Campaigns",    href: "/campaigns"          },
   { label: "News",         href: "/news"          },
   { label: "WHERE TO BUY", href: "/where-to-buy"  },
   { label: "Contact",      href: "/contact"       },
@@ -24,21 +26,15 @@ const currentPath = Astro.url.pathname;
       class="inline-block hover:scale-105 transition-transform active:scale-95 shrink-0"
       aria-label="Coco Cado Home"
     >
-      <span
-        class="block bg-[#cc0000] px-5 py-2"
-        style="
-          border-radius: 9999px;
-          border: 4px solid #1a0a00;
-          box-shadow: inset 0 0 0 2px #ffffff;
-        "
-      >
-        <span
-          class="block text-white uppercase leading-none"
-          style="font-family: 'Epilogue', sans-serif; font-weight: 900; font-size: 1.25rem; letter-spacing: 0.1em;"
-        >
-          COCO CADO
-        </span>
-      </span>
+      <Image 
+        src={logoImg} 
+        alt="Coco Cado Logo" 
+        width={240}
+        densities={[1.5, 2, 3]}
+        quality={100}
+        loading="eager"
+        class="h-auto w-37 md:w-45"
+      />
     </a>
 
     <!-- Desktop links right -->
@@ -104,71 +100,52 @@ const currentPath = Astro.url.pathname;
 
 </header>
 
-  <script>
-  const btn = document.getElementById("mobile-menu-btn");
-  const menu = document.getElementById("mobile-menu");
-  const headerEl = document.querySelector('header');
-  const hero = document.getElementById('hero-scroll');
+<script>
+  function initNav() {
+    const btn = document.getElementById("mobile-menu-btn");
+    const menu = document.getElementById("mobile-menu");
+    const headerEl = document.querySelector('header');
 
-  if (btn && menu) {
-    btn.addEventListener("click", () => {
-      const isOpen = !menu.classList.contains("hidden");
-      menu.classList.toggle("hidden", isOpen);
-      btn.setAttribute("aria-expanded", String(!isOpen));
-      btn.setAttribute("aria-label", isOpen ? "Open mobile menu" : "Close mobile menu");
-
-      // when mobile menu opens, keep header visible
-      if (!isOpen) {
-        headerEl && headerEl.classList.remove('-translate-y-full');
-      }
-    });
-
-    menu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menu.classList.add("hidden");
-        btn.setAttribute("aria-expanded", "false");
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        const isOpen = !menu.classList.contains("hidden");
+        menu.classList.toggle("hidden", isOpen);
+        btn.setAttribute("aria-expanded", String(!isOpen));
+        btn.setAttribute("aria-label", isOpen ? "Open mobile menu" : "Close mobile menu");
       });
-    });
+
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          btn.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
+    if (headerEl) {
+      let ticking = false;
+      const handle = () => {
+        const currentY = window.scrollY || 0;
+        const offset = 50;
+        if (currentY >= offset) {
+          headerEl.classList.add('scrolled');
+        } else {
+          headerEl.classList.remove('scrolled');
+        }
+        ticking = false;
+      };
+      handle();
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(handle);
+          ticking = true;
+        }
+      }, { passive: true });
+    }
   }
 
-  // Show brown background as soon as the user scrolls, keep it from then on.
-  if (headerEl) {
-    let ticking = false;
-
-    const enableHeaderBg = () => {
-      headerEl.classList.add('scrolled');
-    };
-
-    const disableHeaderBg = () => {
-      headerEl.classList.remove('scrolled');
-    };
-
-    const handle = () => {
-      const currentY = window.scrollY || 0;
-
-      // Turn on the dark background as soon as the user scrolls down a bit
-      // to prevent the transparent navbar from clashing with scrolling text
-      const offset = 50;
-
-      if (currentY >= offset) {
-        enableHeaderBg();
-      } else {
-        disableHeaderBg();
-      }
-
-      ticking = false;
-    };
-
-    // Run once on load in case page restores scroll position
-    handle();
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(handle);
-        ticking = true;
-      }
-    }, { passive: true });
-  }
+  document.addEventListener("astro:page-load", initNav);
+  initNav();
 </script>
 
 <style>

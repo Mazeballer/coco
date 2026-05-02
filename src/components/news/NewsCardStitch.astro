@@ -3,16 +3,20 @@
  * NewsCardStitch.astro
  * Reusable card component with brutalist styling (thick borders, offset shadows).
  */
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
   excerpt: string;
   category: string;
-  tagColor: string; // Using HEX for robustness
+  tagColor: string; 
   borderColor: string;
   shadowColor: string;
   isFeatured?: boolean;
-  imageLabel?: string;
+  image?: any;
+  imageAlt?: string;
+  date?: string;
+  href?: string;
 }
 
 const { 
@@ -23,42 +27,59 @@ const {
   borderColor, 
   shadowColor, 
   isFeatured = false,
-  imageLabel = "Media Image"
+  image,
+  imageAlt = "News Image",
+  date,
+  href = "#"
 } = Astro.props;
 ---
 
 <article 
-  class={`bg-white rounded-[2.5rem] border-[6px] transition-all duration-300 hover:scale-[1.02] hover:-rotate-1 group news-card-reveal ${borderColor} ${shadowColor}`}
+  class={`bg-white rounded-[2.5rem] border-[6px] transition-all duration-300 hover:scale-[1.02] hover:-rotate-1 group news-card-reveal ${borderColor} ${shadowColor} flex flex-col h-full`}
   style={`box-shadow: 16px 16px 0px 0px var(--shadow-hex, #200f01);`}
 >
-  <div class={`relative ${isFeatured ? 'h-96' : 'h-64'} bg-stone-100 flex items-center justify-center border-b-[6px] ${borderColor.replace('border-', 'border-b-')} overflow-hidden m-4 rounded-[1.75rem]`}>
-    <!-- Placeholder for actual image eventually -->
-    <div class="absolute inset-0 bg-gradient-to-br from-stone-200 to-stone-300 opacity-50"></div>
-    <span class="relative z-10 text-stone-400 font-headline font-black text-xl uppercase tracking-widest text-center px-6">
-      {imageLabel}
-    </span>
+  <div class={`relative ${isFeatured ? 'h-96' : 'h-72'} bg-stone-100 flex items-center justify-center border-b-[6px] ${borderColor.replace('border-', 'border-b-')} overflow-hidden m-4 rounded-[1.75rem] shrink-0`}>
+    {image ? (
+      <Image 
+        src={image} 
+        alt={imageAlt} 
+        width={1200}
+        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      />
+    ) : (
+      <div class="absolute inset-0 bg-gradient-to-br from-stone-200 to-stone-300 opacity-50 flex items-center justify-center">
+        <span class="text-stone-400 font-headline font-black text-xl uppercase tracking-widest text-center px-6">
+          News Image
+        </span>
+      </div>
+    )}
   </div>
 
-  <div class="px-8 pb-10 pt-0 space-y-4 relative">
-    <!-- Overlapping Tag -->
-    <div class=" relative z-20">
+  <div class="px-8 pb-10 pt-0 flex flex-col flex-1 relative">
+    <div class="flex items-center justify-between mb-4 mt-2">
       <span 
         class="text-white px-5 py-2 rounded-lg text-[11px] font-black uppercase tracking-widest inline-block shadow-lg"
         style={`background-color: ${tagColor};`}
       >
         {category}
       </span>
+      {date && <time class="text-xs font-headline font-bold text-stone-400 uppercase tracking-wider">{date}</time>}
     </div>
     
-    <h2 class={`font-headline font-black mb-4 leading-[0.95] text-[#200f01] uppercase tracking-tighter ${isFeatured ? 'text-4xl md:text-[3.75rem]' : 'text-2xl md:text-[2.25rem]'}`}>
-      {title}
-    </h2>
-    <p class="font-body text-stone-500 mb-6 text-lg font-medium leading-[1.2] line-clamp-3">
-      {excerpt}
-    </p>
+    <div class="flex-1">
+      <h2 class={`font-headline font-black mb-4 leading-[0.95] text-[#200f01] uppercase tracking-tighter ${isFeatured ? 'text-4xl md:text-[3.75rem]' : 'text-2xl md:text-[2.25rem]'}`}>
+        {title}
+      </h2>
+      <p class="font-body text-stone-500 mb-6 text-lg font-medium leading-[1.2] line-clamp-3">
+        {excerpt}
+      </p>
+    </div>
+
     <a 
-      href="#" 
-      class="inline-flex items-center gap-2 font-headline font-black uppercase text-sm group/link"
+      href={href}
+      target={href.startsWith('http') ? "_blank" : undefined}
+      rel={href.startsWith('http') ? "noopener noreferrer" : undefined}
+      class="inline-flex items-center gap-2 font-headline font-black uppercase text-sm group/link mt-auto self-start"
       style={`color: ${tagColor};`}
     >
       Read More 
@@ -68,8 +89,7 @@ const {
 </article>
 
 <style define:vars={{ 'shadow-hex': shadowColor.includes('#') ? shadowColor : '' }}>
-  /* If passing standard tailwind shadow colors, we'd need a mapping or just hardcode the most common ones */
   article {
-    --shadow-hex: #200f01; /* Default brutalist black */
+    --shadow-hex: #200f01;
   }
 </style>

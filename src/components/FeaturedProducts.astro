@@ -1,38 +1,22 @@
 ---
 import ProductCard from './ProductCard.astro';
-import pepperImg from '../assets/20gPotatoSticks-BlackPepper.png';
-import barleyImg from '../assets/20gx10pcsPoppingPearl-Barley.png';
-import tomatoImg from '../assets/43gPotatoSticks-Tomato.png';
-import chestnutImg from '../assets/20gx10pcsPoppingPearl-WaterChestnut.png';
+import potatoImg from '../assets/potatoSticksHome.svg';
+import pearlImg from '../assets/poppingPearlsHome.svg';
 
 const products = [
   {
-    image: pepperImg,
-    alt: 'Potato Sticks',
-    badge: 'NEW!',
-    title: 'Potato Sticks',
-    desc: "Light, crispy, and addictive with bold seasoning.",
-  },
-  {
-    image: barleyImg,
+    image: pearlImg,
     alt: 'Popping pearl',
-    badge: 'FAN FAVE!',
+    badge: 'BURSTING WITH FLAVOUR!',
     title: 'Popping pearl ',
     desc: 'Fun, flavourful snacks for all-day enjoyment.',
   },
   {
-    image: tomatoImg,
-    alt: 'Sharing Packs',
-    badge: 'CLASSIC',
-    title: 'Sharing Packs',
-    desc: 'Made for gatherings, parties, and family moments.',
-  },
-  {
-    image: chestnutImg,
-    alt: 'On-the-Go Packs',
-    badge: 'LIMITED',
-    title: 'On-the-Go Packs',
-    desc: 'Convenient snacking anytime, anywhere.',
+    image: potatoImg,
+    alt: 'Potato Sticks',
+    badge: 'CRUNCHY!',
+    title: 'Potato Sticks',
+    desc: "Light, crispy, and addictive with bold seasoning.",
   },
 ];
 ---
@@ -46,7 +30,7 @@ const products = [
       </h2>
     </header>
 
-    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-16 gap-x-8 pt-16 md:pt-24 list-none m-0 p-0" role="list" aria-label="Featured snack products">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-8 pt-16 md:pt-24 list-none m-0 p-0 max-w-4xl mx-auto" role="list" aria-label="Featured snack products">
       {products.map((p) => (
         <ProductCard image={p.image} alt={p.alt} badge={p.badge} title={p.title} desc={p.desc} />
       ))}

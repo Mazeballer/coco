@@ -21,47 +21,36 @@ const {
   titleLine3, 
   subtitle, 
   tag, 
-  badge, 
-  image, 
-  imageAlt 
 } = Astro.props;
 ---
 
-<header class="relative pt-40 pb-32 px-6 md:px-12 bg-primary-container overflow-hidden">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+<header class="relative pt-48 pb-40 px-6 md:px-12 bg-[#ffd700] overflow-hidden">
+  <!-- Dynamic Background Element (Sticker style) -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60rem] h-[60rem] bg-[#f9a825]/20 rounded-full blur-[100px] pointer-events-none" aria-hidden="true"></div>
+
+  <div class="max-w-4xl mx-auto text-center relative z-10 space-y-10">
+    
     <div class="space-y-6">
-      <div class="hero-animate-reveal inline-block bg-secondary-container text-white px-4 py-1 rounded-full font-headline font-bold uppercase tracking-widest text-xs rotate-[-2deg]">
+      <div class="hero-animate-reveal inline-block bg-[#ce0301] text-white px-6 py-2 rounded-full font-headline font-black uppercase tracking-[0.2em] text-xs -rotate-2 shadow-lg">
         {tag}
       </div>
-      <h1 class="hero-animate-reveal font-headline font-black text-6xl md:text-[5.5rem] text-[#221b00] leading-[0.85] tracking-tighter uppercase">
+      
+      <h1 class="hero-animate-reveal font-headline font-black text-6xl md:text-[7rem] text-[#200f01] leading-[0.85] tracking-tighter uppercase">
         {titleLine1} <br/> 
         {titleLine2} <br/> 
-        <span class="text-[#ce0301] italic">{titleLine3}</span>
+        <span class="text-[#ce0301] block mt-2">{titleLine3}</span>
       </h1>
-      <p class="hero-animate-reveal text-[#544600] text-xl md:text-2xl font-medium max-w-md opacity-90">
+
+      <div class="hero-animate-reveal flex justify-center gap-4 py-2" aria-hidden="true">
+        <div class="h-1.5 w-24 bg-[#ce0301] rounded-full"></div>
+        <div class="h-1.5 w-12 bg-[#200f01] rounded-full"></div>
+      </div>
+
+      <p class="hero-animate-reveal text-[#200f01] text-xl md:text-3xl font-medium max-w-2xl mx-auto leading-tight italic opacity-90">
         {subtitle}
       </p>
     </div>
 
-    <div class="relative">
-      <!-- Purple circular sticker badge -->
-      <div class="hero-animate-badge absolute -top-8 -right-8 w-32 h-32 bg-[#f2cdff] rounded-full flex items-center justify-center rotate-12 border-2 border-[#93000a]/20 z-20 shadow-xl group hover:scale-110 transition-transform duration-300">
-        <span class="font-headline font-black text-[#672987] text-center leading-tight uppercase text-xs tracking-tighter">
-          {badge.split('<br/>').map((line, i) => (
-            <Fragment key={i}>{line}{i < badge.split('<br/>').length - 1 && <br/>}</Fragment>
-          ))}
-          {badge.split('<br/>').length === 1 && badge}
-        </span>
-      </div>
-      <div class="hero-animate-image relative">
-        <div class="absolute inset-0 bg-stone-900 rounded-2xl translate-x-3 translate-y-3 -z-10 rotate-1"></div>
-        <img 
-          src={image} 
-          alt={imageAlt}
-          class="rounded-2xl border-[6px] border-stone-900 shadow-2xl rotate-2 w-full object-cover aspect-video hover:rotate-0 transition-transform duration-500"
-        />
-      </div>
-    </div>
   </div>
 
   <!-- Gentle Rolling Wavy Divider Transition to next section -->

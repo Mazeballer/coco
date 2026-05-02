@@ -4,42 +4,91 @@
  * Section highlighting global export markets.
  */
 
-const countries = [
-  { name: "ASIA",   color: "bg-[#ce0301]" },
-  { name: "Middle East",  color: "bg-[#0b1c48]" },
-  { name: "Europe", color: "bg-[#286310]" },
-  { name: "OCEANIA",  color: "bg-[#4f1063]" },
-  { name: "North America",  color: "bg-[#105f63]" },
-  { name: "South America",  color: "bg-[#626310]" },
-  { name: "AFRICA",  color: "bg-[#fad502]" },
+const regions = [
+  { 
+    name: "ASIA",   
+    color: "bg-[#ce0301]", 
+    countries: ["China", "Taiwan", "South Korea", "Mongolia", "India", "Nepal", "Pakistan", "Bangladesh", "Brunei", "Vietnam", "Cambodia", "Indonesia", "Philippines", "Thailand", "Myanmar", "Singapore"] 
+  },
+  { 
+    name: "Middle East",  
+    color: "bg-[#3b82f6]", 
+    countries: ["Kuwait", "Qatar", "Dubai"] 
+  },
+  { 
+    name: "Europe", 
+    color: "bg-[#10b981]", 
+    countries: ["Germany"] 
+  },
+  { 
+    name: "OCEANIA",  
+    color: "bg-[#a855f7]", 
+    countries: ["Australia", "New Zealand"] 
+  },
 ];
 
 import { Image } from "astro:assets";
-import mapImage from "../../assets/map.png";
+import mapImage from "../../assets/maps.svg";
 ---
 
 <section class="py-24 px-6 bg-[#200f01] relative overflow-hidden">
   <!-- Ambient glow -->
   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-[#ce0301] opacity-[0.04] blur-[120px] pointer-events-none" aria-hidden="true"></div>
 
-  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
     <!-- Text -->
     <div class="export-reveal order-2 lg:order-1 space-y-8">
       <div class="space-y-4">
-        <h2 class="text-4xl md:text-6xl font-headline font-black text-[#ce0301] uppercase tracking-tighter leading-none">
+        <h2 class="text-3xl sm:text-4xl md:text-6xl font-headline font-black text-[#ce0301] uppercase tracking-tighter leading-none">
           Export Opportunities
         </h2>
-        <p class="text-lg md:text-xl text-[#d0c6ab] leading-snug font-medium italic opacity-90 max-w-lg">
+        <p class="text-base md:text-xl text-[#d0c6ab] leading-snug font-medium italic opacity-90 max-w-lg">
           Backed by Happy Alliance's manufacturing experience and global business ambition, Coco Cado is positioned for broader regional and export growth. We welcome inquiries from importers, distributors, and market partners.
         </p>
       </div>
 
-      <div class="flex flex-wrap gap-4">
-        {countries.map((c) => (
-          <div class="px-6 py-3 bg-[#2f1b08] rounded-full border-2 border-[#999077]/30 flex items-center gap-3 hover:border-[#ffd700] hover:scale-105 transition-all cursor-default group shadow-md">
-            <span class={`w-7 h-4 ${c.color} rounded-sm shadow-sm group-hover:scale-110 transition-transform`} aria-hidden="true"></span>
-            <span class="font-headline font-black text-sm tracking-widest text-[#ffdcc0]">{c.name}</span>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap gap-4">
+        {regions.map((r) => (
+          <div class="relative group cursor-pointer md:cursor-default">
+            <!-- The Region Pill -->
+            <button 
+              class:list={[
+                "w-full sm:w-auto px-6 py-4 md:py-3 bg-[#2f1b08] rounded-full border-2 border-[#999077]/30 flex items-center justify-between sm:justify-start gap-3 hover:border-[#ffd700] transition-all shadow-md active:scale-95",
+                "region-toggle"
+              ]}
+              data-region={r.name.toLowerCase().replace(' ', '-')}
+            >
+              <div class="flex items-center gap-3">
+                <span class={`w-7 h-4 ${r.color} rounded-sm shadow-sm`} aria-hidden="true"></span>
+                <span class="font-headline font-black text-sm tracking-widest text-[#ffdcc0] uppercase">{r.name}</span>
+              </div>
+              <span class="material-symbols-outlined text-[#ffd700] text-sm opacity-50 transition-all sm:group-hover:rotate-180">expand_more</span>
+            </button>
+
+            <!-- The Discovery Card (Hover on desktop, Tap on mobile) -->
+            <div 
+              id={`card-${r.name.toLowerCase().replace(' ', '-')}`}
+              class:list={[
+                "region-card md:absolute md:bottom-full md:left-0 md:mb-4 w-full md:w-64 p-6 bg-[#2f1b08]/95 backdrop-blur-md border-2 border-[#ffd700]/30 rounded-2xl shadow-2xl z-50",
+                "hidden md:block md:opacity-0 md:pointer-events-none md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:pointer-events-auto transition-all duration-300",
+                "mt-2 md:mt-0"
+              ]}
+            >
+              <div class="flex items-center gap-2 mb-4 border-b border-[#999077]/20 pb-2">
+                <span class={`w-4 h-4 ${r.color} rounded-full`}></span>
+                <span class="font-headline font-black text-[#ffd700] text-xs uppercase tracking-widest">{r.name} Markets</span>
+              </div>
+              <ul class="grid grid-cols-2 gap-x-4 gap-y-2 list-none p-0 m-0">
+                {r.countries.map((country) => (
+                  <li class="text-[#d0c6ab] text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <span class="w-1 h-1 bg-[#ffd700]/40 rounded-full"></span>
+                    {country}
+                  </li>
+                ))}
+              </ul>
+              <div class="hidden md:block absolute -bottom-2 left-8 w-4 h-4 bg-[#2f1b08] border-r-2 border-b-2 border-[#ffd700]/30 rotate-45" aria-hidden="true"></div>
+            </div>
           </div>
         ))}
       </div>
@@ -47,20 +96,20 @@ import mapImage from "../../assets/map.png";
 
     <!-- Map image -->
     <div class="export-reveal order-1 lg:order-2">
-      <div class="relative bg-[#2f1b08] rounded-[2.5rem] p-4 shadow-2xl border-2 border-[#999077]/20 group">
-        <div class="rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#1a0a00] relative">
+      <div class="relative bg-[#2f1b08] rounded-[2rem] md:rounded-[2.5rem] p-3 md:p-4 shadow-2xl border-2 border-[#999077]/20 group overflow-hidden">
+        <div class="rounded-[1.5rem] md:rounded-[2rem] overflow-hidden aspect-[4/3] bg-[#1a0a00] relative">
           <Image
             src={mapImage}
-            alt="Map of Southeast Asia showing Coco Cado export markets"
+            alt="Map showing Coco Cado export markets"
             width={1200}
             quality="max"
             loading="lazy"
-            class="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
+            class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-[#200f01] via-transparent to-transparent opacity-60" aria-hidden="true"></div>
 
-          <div class="absolute inset-x-0 bottom-8 flex items-center justify-center">
-            <span class="bg-[#ffd700] text-[#200f01] px-8 py-2 rounded-full font-headline font-black text-xs tracking-[0.2em] uppercase shadow-xl">
+          <div class="absolute inset-x-0 bottom-4 md:bottom-8 flex items-center justify-center">
+            <span class="bg-[#ffd700] text-[#200f01] px-6 md:px-8 py-2 rounded-full font-headline font-black text-[10px] md:text-xs tracking-[0.2em] uppercase shadow-xl">
               Global Export Markets
             </span>
           </div>
@@ -71,9 +120,45 @@ import mapImage from "../../assets/map.png";
   </div>
 </section>
 
+<script>
+  // Mobile Tap Logic for Regions
+  function initRegionToggles() {
+    const toggles = document.querySelectorAll('.region-toggle');
+    const cards = document.querySelectorAll('.region-card');
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        // Only trigger on mobile/small screens where hover is unreliable
+        if (window.innerWidth >= 768) return;
+
+        const region = toggle.getAttribute('data-region');
+        const card = document.getElementById(`card-${region}`);
+        const icon = toggle.querySelector('.material-symbols-outlined');
+
+        const isOpen = !card?.classList.contains('hidden');
+
+        // Close all others
+        cards.forEach(c => {
+          if (window.innerWidth < 768) c.classList.add('hidden');
+        });
+        document.querySelectorAll('.material-symbols-outlined').forEach(i => i.classList.remove('rotate-180'));
+
+        // Toggle current
+        if (!isOpen && card) {
+          card.classList.remove('hidden');
+          icon?.classList.add('rotate-180');
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initRegionToggles);
+  initRegionToggles();
+</script>
+
 <style>
   .export-reveal {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
 </style>

@@ -24,7 +24,10 @@ const optimizedFlavors = await Promise.all((product.flavors || []).map(async (f)
   return { ...f, optimizedSrc: opt.src };
 }));
 
-const mainOptimized = await getImage({ src: getAsset(product.mainImage)!, width: 1600, quality: "max" });
+const mainAsset = getAsset(product.mainImage);
+const mainOptimized = mainAsset 
+  ? await getImage({ src: mainAsset, width: 1600, quality: "max" }) 
+  : { src: product.mainImage };
 ---
 
 <section class="max-w-7xl mx-auto px-6 py-12 lg:py-24" id="product-detail-hero">
@@ -42,8 +45,8 @@ const mainOptimized = await getImage({ src: getAsset(product.mainImage)!, width:
           src={optimizedFlavors.length > 0 ? optimizedFlavors[0].optimizedSrc : mainOptimized.src} 
           alt={product.mainImageAlt}
           class:list={[
-            "relative z-10 drop-shadow-[0_35px_35px_rgba(26,10,0,0.4)] hover:scale-110 transition-transform duration-500",
-            ["pearl-bundle"].includes(product.slug) ? "w-full scale-110" : "w-4/5"
+            "relative z-10 drop-shadow-[0_35px_35px_rgba(26,10,0,0.4)] hover:scale-130 transition-transform duration-500",
+            ["pearl-bundle", "party-bundle"].includes(product.slug) ? "w-full scale-120" : "w-4/5"
           ]}
         />
         
@@ -96,6 +99,7 @@ const mainOptimized = await getImage({ src: getAsset(product.mainImage)!, width:
                 data-flavor-image={flavor.optimizedSrc}
                 data-flavor-bg={flavor.colorClass}
                 data-flavor-index={index}
+                data-flavor-barcode={flavor.barcode}
                 class:list={[
                   "flavor-pill px-6 py-2 rounded-full font-bold border-2 transition-all duration-300",
                   index === 0 
@@ -117,8 +121,10 @@ const mainOptimized = await getImage({ src: getAsset(product.mainImage)!, width:
           <p class="text-2xl font-black text-primary-container">{product.weight}</p>
         </div>
         <div>
-          <p class="text-outline text-xs font-black uppercase mb-1">Format</p>
-          <p class="text-2xl font-black text-primary-container">{product.format}</p>
+          <p class="text-outline text-xs font-black uppercase mb-1">Barcode</p>
+          <p id="barcode-display" class="text-2xl font-black text-primary-container">
+            {product.flavors && product.flavors[0]?.barcode ? product.flavors[0].barcode : "-"}
+          </p>
         </div>
       </div>
 
@@ -149,6 +155,7 @@ const mainOptimized = await getImage({ src: getAsset(product.mainImage)!, width:
     const pills = hero.querySelectorAll('.flavor-pill');
     const imageButtons = hero.querySelectorAll('#flavor-image-selectors button');
     const mainImage = hero.querySelector('#main-product-image') as HTMLImageElement;
+    const barcodeDisplay = hero.querySelector('#barcode-display') as HTMLElement;
 
     function updateFlavor(index: number) {
       const selectedPill = pills[index] as HTMLElement;
@@ -188,6 +195,12 @@ const mainOptimized = await getImage({ src: getAsset(product.mainImage)!, width:
           mainImage.style.opacity = '1';
           mainImage.style.transform = 'scale(1) rotate(0deg)';
         }, 300);
+      }
+
+      // Update barcode
+      const newBarcode = selectedPill?.getAttribute('data-flavor-barcode');
+      if (barcodeDisplay) {
+        barcodeDisplay.innerText = newBarcode || "-";
       }
     }
 

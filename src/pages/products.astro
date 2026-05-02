@@ -6,7 +6,7 @@ import ProductHeroStitch from "../components/products/ProductHeroStitch.astro";
 import ProductCategoryStitch from "../components/products/ProductCategoryStitch.astro";
 import ProductCardStitch from "../components/products/ProductCardStitch.astro";
 import { products } from "../data/productData";
-import productPageImg from "../assets/productpage.svg";
+import productPageImg from "../assets/productHero.svg";
 
 const potatoSticks = products.filter(p => p.category === "Potato Sticks");
 const poppingPearls = products.filter(p => p.category === "Popping Pearl");
@@ -22,7 +22,7 @@ const poppingPearls = products.filter(p => p.category === "Popping Pearl");
     <!-- Hero Section -->
     <ProductHeroStitch 
       title="Our Snacks"
-      subtitle="Big flavour. Real crunch. Every pack, every moment."
+      subtitle="Big flavour. Real pop. Every pack, every moment."
       image={productPageImg}
       imageAlt="A variety of Coco Cado snacks showcased in a premium, artistic bowl"
     />

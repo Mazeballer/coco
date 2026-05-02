@@ -6,45 +6,96 @@ import homePearlImage from "../assets/home-pearl.png";
 
 <section
   id="hero-scroll"
-  class="relative h-screen overflow-hidden"
+  class="relative h-auto md:h-screen md:overflow-hidden"
   aria-label="Coco Cado product showcase"
 >
-  <div id="hero-panels" class="hero-panels flex flex-col md:flex-col-reverse w-full md:h-[200vh] md:-translate-y-1/2">
+  <div id="hero-panels" class="hero-panels flex flex-col w-full md:h-[200vh] md:-translate-y-1/2">
 
-    <!-- PANEL 1 -->
+    <!-- PANEL 1 (POTATO STICKS) - HIDDEN ON MOBILE -->
     <div
-      class="hero-panel relative h-auto min-h-[100dvh] md:h-screen w-full shrink-0 bg-[#ffd700] flex items-stretch overflow-hidden"
+      class="hero-panel hidden md:flex relative h-auto md:h-screen w-full shrink-0 bg-[#ffd700] items-stretch md:overflow-hidden"
       aria-labelledby="hero-heading-1"
+    >
+      <div class="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ce0301]/20 blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
+
+      <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row-reverse items-stretch">
+        <div class="w-full md:w-1/2 text-left md:text-right space-y-8 md:pl-12 flex flex-col justify-center pt-32 md:pt-44 pb-10">
+          <div class="relative inline-block panel2-fade">
+            <h2 id="hero-heading-1" class="relative z-10 text-5xl md:text-8xl font-black font-headline text-[#200f01] leading-[0.9] tracking-tight mb-4 text-balance">
+              Snack Happy <br />with <span class="text-[#ce0301]">Coco Cado!</span>
+            </h2>
+            <div class="absolute -top-20 right-0 md:-top-20 md:-right-16 w-24 h-24 sm:w-28 sm:h-28 bg-[#f2cdff] rounded-full flex items-center justify-center rotate-12 shadow-2xl border-4 border-[#200f01] z-[-1] hover:scale-110 transition-transform cursor-default" aria-label="Made from Real Potatoes">
+              <span class="text-[#8243a2] font-black text-center text-xs sm:text-sm leading-tight uppercase">Real<br />Potatoes!</span>
+            </div>
+          </div>
+
+          <p class="text-xl md:text-2xl font-medium text-[#200f01]/80 max-w-lg md:ml-auto panel2-slide">
+            Bold flavour, crunchy fun, and feel-good snacking for every moment.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 md:justify-end panel2-slide">
+            <span class="bg-[#ce0301] text-white px-8 py-4 rounded-xl font-black text-lg border-b-4 border-[#200f01] shadow-xl hover:rotate-2 hover:scale-105 transition-all active:scale-95 text-center">🍅 Tomato</span>
+            <span class="bg-[#200f01] text-[#ffd700] px-8 py-4 rounded-xl font-black text-lg border-b-4 border-[#999077] hover:-rotate-2 hover:scale-105 transition-all active:scale-95 text-center">🌶 Black Pepper</span>
+            <span class="bg-transparent border-4 border-[#200f01] text-[#200f01] px-8 py-4 rounded-xl font-black text-lg hover:rotate-1 hover:scale-105 transition-all active:scale-95 text-center">🧂 Salted</span>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 relative flex items-center justify-center panel2-bounce pb-64 md:pb-0">
+          <div class="relative z-10 md:scale-125 transform -rotate-6 hover:rotate-0 transition-transform duration-700 w-4/5 sm:w-2/3 md:w-full">
+            <Image 
+              src={homeImage} 
+              alt="Coco Cado Potato Sticks in three flavours — Salted, Black Pepper, and Tomato" 
+              width={1600}
+              quality="max"
+              loading="lazy" 
+              class="w-full h-auto drop-shadow-[0_35px_35px_rgba(32,15,1,0.4)]" 
+            />
+          </div>
+          <div class="absolute top-0 left-0 w-64 h-64 bg-[#ffd700] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse pointer-events-none" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2 (POPPING PEARLS) -->
+    <div
+      class="hero-panel relative h-auto md:h-screen w-full shrink-0 bg-[#f2cdff] flex items-stretch md:overflow-hidden"
+      aria-labelledby="hero-heading-2"
     >
       <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ce0301]/20 blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
 
       <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-stretch">
-        <div class="w-full md:w-1/2 text-left space-y-8 flex flex-col justify-center pt-36 md:pt-44 pb-10">
+        <div class="w-full md:w-1/2 text-left space-y-8 flex flex-col justify-center pt-32 md:pt-44 pb-10">
           <div class="relative inline-block panel1-fade">
-            <h1 id="hero-heading-1" class="relative z-10 text-5xl md:text-8xl font-black font-headline text-[#200f01] leading-[0.9] tracking-tighter mb-4 text-balance">
-              Snack Happy <br />with <span class="text-[#ce0301]">Coco Cado!</span>
+            <h1 id="hero-heading-2" class="relative z-10 text-5xl md:text-8xl font-black font-headline text-[#200f01] leading-[0.9] tracking-tight mb-4 text-balance">
+              Burst of Joy <br />with <span class="text-[#ce0301]">Coco Cado!</span>
             </h1>
-            <div class="absolute -top-24 right-0 md:right-auto md:-top-14 md:-left-10 w-20 h-20 sm:w-24 sm:h-24 bg-[#f2cdff] rounded-full flex items-center justify-center -rotate-[16deg] shadow-xl border-4 border-[#200f01] z-[-1]" aria-label="Made from Real Potatoes">
-              <span class="text-[#8243a2] font-black text-center text-xs leading-none uppercase">Real<br />Potatoes!</span>
+            <div class="absolute -top-20 right-0 md:-top-20 md:-left-16 w-24 h-24 sm:w-28 sm:h-28 bg-[#ffd700] rounded-full flex items-center justify-center -rotate-12 shadow-2xl border-4 border-[#200f01] z-[-1] hover:scale-110 transition-transform cursor-default" aria-label="Popping Pearl Snacks">
+              <span class="text-[#ce0301] font-black text-center text-xs sm:text-sm leading-tight uppercase">Pop<br />Ready!</span>
             </div>
           </div>
 
           <p class="text-xl md:text-2xl font-medium text-[#200f01]/80 max-w-lg panel1-slide">
-            Bold flavour, crunchy fun, and feel-good snacking for every moment.
+            Juicy pearls, playful flavour, and a refreshing pop in every pouch.
           </p>
 
-<div class="flex flex-col sm:flex-row gap-4 panel1-slide">
-  <span class="bg-[#ce0301] text-white px-8 py-4 rounded-xl font-black text-lg border-b-4 border-[#200f01] shadow-xl hover:rotate-2 hover:scale-105 transition-all active:scale-95 text-center">🍅 Tomato</span>
-  <span class="bg-[#200f01] text-[#ffd700] px-8 py-4 rounded-xl font-black text-lg border-b-4 border-[#999077] hover:-rotate-2 hover:scale-105 transition-all active:scale-95 text-center">🌶 Black Pepper</span>
-  <span class="bg-transparent border-4 border-[#200f01] text-[#200f01] px-8 py-4 rounded-xl font-black text-lg hover:rotate-1 hover:scale-105 transition-all active:scale-95 text-center">🧂 Salted</span>
-</div>
+          <div class="flex flex-col sm:flex-row gap-4 panel1-slide">
+            <span class="flex items-center justify-center gap-2 bg-[#ce0301] text-white px-8 py-4 rounded-xl font-black text-lg border-b-4 border-[#200f01] shadow-xl hover:rotate-2 hover:scale-105 transition-all active:scale-95 text-center">
+              🌾 With Barley
+            </span>
+            <span class="flex items-center justify-center gap-2 bg-[#200f01] text-[#ffd700] px-8 py-4 rounded-xl font-black text-lg border-b-4 border-[#999077] hover:-rotate-2 hover:scale-105 transition-all active:scale-95 text-center">
+              🫘 Red Bean
+            </span>
+            <span class="flex items-center justify-center gap-2 bg-transparent border-4 border-[#200f01] text-[#200f01] px-8 py-4 rounded-xl font-black text-lg hover:rotate-1 hover:scale-105 transition-all active:scale-95 text-center">
+              🌰 Water Chestnut
+            </span>
+          </div>
         </div>
 
-        <div class="w-full md:w-1/2 relative flex items-center justify-center panel1-bounce pb-16 md:pb-0">
-          <div class="relative z-10 scale-110 md:scale-125 transform rotate-6 hover:rotate-0 transition-transform duration-700 w-3/4 sm:w-2/3 md:w-full">
+        <div class="w-full md:w-1/2 relative flex items-center justify-center panel1-bounce pb-64 md:pb-0">
+          <div class="relative z-10 md:scale-125 transform rotate-6 hover:rotate-0 transition-transform duration-700 w-4/5 sm:w-2/3 md:w-full">
             <Image 
-              src={homeImage} 
-              alt="Coco Cado Potato Sticks in three flavours — Salted, Black Pepper, and Tomato" 
+              src={homePearlImage} 
+              alt="Coco Cado Popping Pearl in three flavours — Red Bean, Barley, and Water Chestnut" 
               width={1600}
               quality="max"
               loading="eager" 
@@ -52,58 +103,7 @@ import homePearlImage from "../assets/home-pearl.png";
               class="w-full h-auto drop-shadow-[0_35px_35px_rgba(32,15,1,0.4)]" 
             />
           </div>
-          <div class="absolute top-0 right-0 w-64 h-64 bg-[#f2cdff] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse pointer-events-none" aria-hidden="true"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PANEL 2 -->
-    <div
-      class="hero-panel relative h-auto min-h-[100dvh] md:h-screen w-full shrink-0 bg-[#f2cdff] flex items-stretch overflow-hidden"
-      aria-labelledby="hero-heading-2"
-    >
-      <div class="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ce0301]/20 blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
-
-      <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row-reverse items-stretch">
-        <div class="w-full md:w-1/2 text-left md:text-right space-y-8 md:pl-12 flex flex-col justify-center pt-36 md:pt-44 pb-10">
-          <div class="relative inline-block panel2-fade">
-            <h2 id="hero-heading-2" class="relative z-10 text-5xl md:text-8xl font-black font-headline text-[#200f01] leading-[0.9] tracking-tighter mb-4 text-balance">
-              Burst of Joy <br />with <span class="text-[#ce0301]">Coco Cado!</span>
-            </h2>
-            <div class="absolute -top-24 left-0 md:left-auto md:-top-14 md:-right-10 w-20 h-20 sm:w-24 sm:h-24 bg-[#ffd700] rounded-full flex items-center justify-center rotate-12 shadow-xl border-4 border-[#200f01] z-[-1]" aria-label="Popping Pearl Snacks">
-              <span class="text-[#ce0301] font-black text-center text-xs leading-none uppercase">Pop<br />Ready!</span>
-            </div>
-          </div>
-
-          <p class="text-xl md:text-2xl font-medium text-[#200f01]/80 max-w-lg md:ml-auto panel2-slide">
-            Juicy pearls, playful flavour, and a refreshing pop in every pouch.
-          </p>
-
-<div class="flex flex-col sm:flex-row gap-4 md:justify-end panel2-slide">
-  <span class="flex items-center justify-center gap-2 bg-[#ce0301] text-white px-8 py-4 rounded-xl font-black text-lg border-b-4 border-[#200f01] shadow-xl hover:rotate-2 hover:scale-105 transition-all active:scale-95 text-center">
-    🌾 With Barley
-  </span>
-  <span class="flex items-center justify-center gap-2 bg-[#200f01] text-[#ffd700] px-8 py-4 rounded-xl font-black text-lg border-b-4 border-[#999077] hover:-rotate-2 hover:scale-105 transition-all active:scale-95 text-center">
-    🫘 Red Bean
-  </span>
-  <span class="flex items-center justify-center gap-2 bg-transparent border-4 border-[#200f01] text-[#200f01] px-8 py-4 rounded-xl font-black text-lg hover:rotate-1 hover:scale-105 transition-all active:scale-95 text-center">
-    🌰 Water Chestnut
-  </span>
-</div>
-        </div>
-
-        <div class="w-full md:w-1/2 relative flex items-center justify-center panel2-bounce pb-16 md:pb-0">
-          <div class="relative z-10 scale-110 md:scale-125 transform -rotate-6 hover:rotate-0 transition-transform duration-700 w-3/4 sm:w-2/3 md:w-full">
-            <Image 
-              src={homePearlImage} 
-              alt="Coco Cado Popping Pearl in three flavours — Red Bean, Barley, and Water Chestnut" 
-              width={1600}
-              quality="max"
-              loading="eager" 
-              class="w-full h-auto drop-shadow-[0_35px_35px_rgba(32,15,1,0.4)]" 
-            />
-          </div>
-          <div class="absolute top-0 left-0 w-64 h-64 bg-[#ffd700] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse pointer-events-none" aria-hidden="true"></div>
+          <div class="absolute top-0 right-0 w-64 h-64 bg-[#ffd700] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse pointer-events-none" aria-hidden="true"></div>
         </div>
       </div>
     </div>
