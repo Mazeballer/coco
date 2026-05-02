@@ -3,22 +3,25 @@ import { Image } from "astro:assets";
 const { image, alt, badge, title, desc } = Astro.props;
 ---
 
-<li class="group relative bg-[#2C1810] rounded-xl p-8 border-[3px] border-[#200f01] shadow-[10px_10px_0px_0px_#200f01] -rotate-1 hover:rotate-0 transition-all duration-300 flex flex-col h-full mt-24 md:mt-32">
-  <div class="static md:absolute relative md:bottom-[calc(100%-7.5rem)] md:left-1/2 md:-translate-x-1/2 w-64 mx-auto md:w-80 flex justify-center transition-transform group-hover:scale-110 group-hover:-translate-y-4 duration-500 origin-bottom z-10 pointer-events-none -mt-32 md:mt-0 mb-6 md:mb-0">
+<li class="group relative bg-[#2C1810] rounded-xl p-8 border-[3px] border-[#200f01] shadow-[10px_10px_0px_0px_#200f01] -rotate-1 hover:rotate-0 transition-all duration-300 flex flex-col h-full mt-12 md:mt-32">
+  <!-- Image Container -->
+  <div class="relative md:absolute md:bottom-[calc(100%-7.5rem)] md:left-1/2 md:-translate-x-1/2 w-full max-w-[240px] sm:max-w-[280px] md:w-80 mx-auto flex justify-center transition-transform group-hover:scale-110 group-hover:-translate-y-4 duration-500 origin-bottom z-10 pointer-events-none mb-6 md:mb-0">
     <Image 
       src={image as any} 
       alt={alt} 
       width={400} 
       loading="lazy" 
-      class="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-auto scale-125 transform" 
+      class="w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] pointer-events-auto scale-100 sm:scale-110 md:scale-125 transform" 
     />
   </div>
-  <div class="mt-8 md:mt-32 flex flex-col flex-1 text-center md:text-left items-center md:items-start">
-    <div class="flex-1">
+
+  <!-- Content Container -->
+  <div class="flex flex-col flex-1 text-center md:text-left items-center md:items-start md:mt-32">
+    <div class="flex-1 w-full">
       {badge ? <div class="mb-3"><span class="inline-block bg-[#ce0301] text-white px-3 py-1 rounded-full text-xs font-black uppercase tracking-tighter">{badge}</span></div> : <div class="mb-3 h-6"></div>}
       <h3 class="text-3xl font-black font-headline text-[#ffd700] uppercase leading-none mb-4">{title}</h3>
-      <p class="text-[#d0c6ab] font-medium leading-tight">{desc}</p>
+      <p class="text-[#d0c6ab] font-medium leading-tight mb-6">{desc}</p>
     </div>
-    <a href="/products" class="inline-block w-full bg-[#ce0301] text-white py-3 rounded-xl font-black text-center hover:bg-[#930000] transition-colors mt-2 shrink-0">See More</a>
+    <a href="/products" class="inline-block w-full bg-[#ce0301] text-white py-3 rounded-xl font-black text-center hover:bg-[#930000] transition-all active:scale-95 shadow-lg border-b-4 border-[#200f01] mt-auto">See More</a>
   </div>
 </li>
