@@ -16,12 +16,12 @@ const { image, alt, badge, title, desc } = Astro.props;
   </div>
 
   <!-- Content Container -->
-  <div class="flex flex-col flex-1 text-center md:text-left items-center md:items-start md:mt-32">
-    <div class="flex-1 w-full">
+  <div class="flex flex-col text-center md:text-left items-center md:items-start md:mt-32">
+    <div class="w-full">
       {badge ? <div class="mb-3"><span class="inline-block bg-[#ce0301] text-white px-3 py-1 rounded-full text-xs font-black uppercase tracking-tighter">{badge}</span></div> : <div class="mb-3 h-6"></div>}
       <h3 class="text-3xl font-black font-headline text-[#ffd700] uppercase leading-none mb-4">{title}</h3>
-      <p class="text-[#d0c6ab] font-medium leading-tight mb-6">{desc}</p>
+      <p class="text-[#d0c6ab] font-medium leading-tight mb-10">{desc}</p>
     </div>
-    <a href="/products" class="inline-block w-full bg-[#ce0301] text-white py-3 rounded-xl font-black text-center hover:bg-[#930000] transition-all active:scale-95 shadow-lg border-b-4 border-[#200f01] mt-auto">See More</a>
+    <a href="/products" class="inline-block w-full bg-[#ce0301] text-white py-3 rounded-xl font-black text-center hover:bg-[#930000] transition-all active:scale-95 shadow-lg border-b-4 border-[#200f01]">See More</a>
   </div>
 </li>

@@ -21,7 +21,7 @@ const products = [
 ];
 ---
 
-<section class="bg-[#ffd700] py-32" aria-labelledby="products-heading">
+<section class="bg-[#ffd700] pt-32 pb-48" aria-labelledby="products-heading">
   <div class="container mx-auto px-6">
     <header class="text-center mb-20">
       <span class="inline-block bg-[#200f01] text-[#ffd700] px-6 py-2 rounded-full font-black text-sm tracking-widest uppercase mb-4">Snack Picks</span>
@@ -30,7 +30,7 @@ const products = [
       </h2>
     </header>
 
-    <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-8 pt-16 md:pt-24 list-none m-0 p-0 max-w-4xl mx-auto" role="list" aria-label="Featured snack products">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-y-16 gap-x-8 pt-16 md:pt-24 list-none m-0 p-0 max-w-4xl mx-auto items-start" role="list" aria-label="Featured snack products">
       {products.map((p) => (
         <ProductCard image={p.image} alt={p.alt} badge={p.badge} title={p.title} desc={p.desc} />
       ))}

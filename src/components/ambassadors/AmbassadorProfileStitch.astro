@@ -31,7 +31,7 @@ const {
 } = Astro.props;
 ---
 
-<div class={`grid md:grid-cols-2 gap-16 items-center ${reverse ? 'flex-row-reverse' : ''}`}>
+<div class={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${reverse ? 'flex-row-reverse' : ''}`}>
   <div class={`relative group profile-animate-image ${reverse ? 'md:order-2' : ''}`}>
     <div class={`absolute inset-0 ${accentBg} rounded-3xl ${reverse ? '-translate-x-3' : 'translate-x-3'} translate-y-3 -z-10 transition-transform duration-500`}></div>
     <div class="overflow-hidden rounded-3xl border-4 border-stone-800 bg-stone-800">
@@ -47,7 +47,7 @@ const {
     <span class={`${badgeColor} px-4 py-1 rounded-full font-headline font-black uppercase text-[10px] tracking-widest inline-block shadow-md`}>
       {role}
     </span>
-    <h4 class={`font-headline font-black text-6xl md:text-[5.5rem] uppercase leading-[0.8] tracking-tighter ${reverse ? 'text-[#ce0301]' : 'text-primary-container'}`}>
+    <h4 class={`font-headline font-black text-5xl md:text-[5.5rem] uppercase leading-[0.8] tracking-tighter ${reverse ? 'text-[#ce0301]' : 'text-primary-container'}`}>
       {name}<br/>
       <span class={reverse ? 'text-[#ce0301]' : 'text-white'}>{lastName}</span>
     </h4>
