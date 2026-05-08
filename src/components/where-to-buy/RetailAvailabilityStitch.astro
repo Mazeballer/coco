@@ -33,15 +33,15 @@ import retailImage from "../../assets/retailShops.svg";
   ></div>
 
   <!-- Integrated Image Frame (Connected to Yellow) -->
-  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
 
     <!-- Connected Image Box -->
     <div class="retail-reveal relative group max-w-[280px] sm:max-w-md mx-auto md:max-w-none">
       <!-- Layer 1: The Orange Anchor block (Connects to yellow) -->
-      <div class="absolute -inset-7 md:-inset-12 bg-[#f9a825]/90 rounded-[3rem] md:rounded-[5rem] -rotate-2 transform transition-transform duration-700 group-hover:rotate-0" aria-hidden="true"></div>
+      <div class="absolute -inset-4 md:-inset-6 lg:-inset-12 bg-[#f9a825]/90 rounded-[3rem] md:rounded-[5rem] -rotate-2 transform transition-transform duration-700 group-hover:rotate-0" aria-hidden="true"></div>
       
       <!-- Layer 2: The White Frame (Stitch style) -->
-      <div class="relative bg-white rounded-[2rem] md:rounded-[3rem] p-3 md:p-6 shadow-[16px_16px_0px_#200f01] md:shadow-[32px_32px_0px_#200f01] border-[5px] md:border-[10px] border-[#200f01] group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500">
+      <div class="relative bg-white rounded-[2rem] md:rounded-[3rem] p-3 md:p-6 shadow-[12px_12px_0px_#200f01] md:shadow-[20px_20px_0px_#200f01] lg:shadow-[32px_32px_0px_#200f01] border-[5px] md:border-[10px] border-[#200f01] group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500">
         <div class="rounded-[1.5rem] md:rounded-[2.2rem] overflow-hidden">
           <Image
             src={retailImage}
@@ -57,19 +57,19 @@ import retailImage from "../../assets/retailShops.svg";
 
       <!-- Badge -->
       <div
-        class="absolute -top-23 right-0 md:-top-20 md:-right-16 w-36 h-36 md:w-52 md:h-52 bg-[#ce0301] text-white flex items-center justify-center rounded-full font-headline font-black text-center text-[11px] md:text-base leading-tight rotate-12 shadow-[10px_10px_0px_#200f01] md:shadow-[16px_16px_0px_#200f01] border-[5px] md:border-[8px] border-white z-20 hover:scale-110 hover:-rotate-6 transition-all duration-300 cursor-pointer"
+        class="absolute -top-16 right-0 md:-top-24 md:right-4 lg:-top-28 lg:right-0 xl:-top-32 xl:-right-16 w-32 h-32 md:w-44 md:h-44 lg:w-48 lg:h-48 xl:w-64 xl:h-64 bg-[#ce0301] text-white flex items-center justify-center rounded-full font-headline font-black text-center text-[10px] md:text-xs lg:text-sm xl:text-base leading-tight rotate-12 shadow-[8px_8px_0px_#200f01] md:shadow-[12px_12px_0px_#200f01] lg:shadow-[16px_16px_0px_#200f01] border-[5px] md:border-[8px] border-white z-20 hover:scale-110 hover:-rotate-6 transition-all duration-300 cursor-pointer"
       >
         COMING TO<br/>MORE STORES<br/>SOON!
       </div>
     </div>
 
     <!-- Text -->
-    <div class="retail-reveal space-y-10">
+    <div class="retail-reveal space-y-10 mt-10">
       <div class="space-y-4">
-        <h2 class="text-4xl md:text-[5.5rem] font-headline font-black text-[#200f01] uppercase tracking-tighter leading-[0.85]">
+        <h2 class="text-4xl md:text-4xl lg:text-[3rem] xl:text-[5.5rem] font-headline font-black text-[#200f01] uppercase tracking-tighter leading-[0.85]">
           Retail Availability
         </h2>
-        <p class="text-lg md:text-2xl font-medium leading-tight max-w-xl text-[#200f01] opacity-90 italic">
+        <p class="text-base md:text-base lg:text-lg xl:text-2xl font-medium leading-tight max-w-xl text-[#200f01] opacity-90 italic">
           Coco Cado is expanding across selected retail and trade channels. Stay tuned as we continue to grow our store presence and make the brand more accessible to snack lovers everywhere.
         </p>
       </div>
