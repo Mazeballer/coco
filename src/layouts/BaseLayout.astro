@@ -8,6 +8,7 @@
  */
 
 import "../styles/global.css";
+import Analytics from "../components/Analytics.astro";
 
 interface Props {
   title?:       string;
@@ -68,9 +69,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado
         "name": "Coco Cado",
         "url": "https://cococado.com.my",
         "logo": "https://cococado.com.my/favicon.svg",  
-        "description": "Coco Cado is a Malaysian halal snack brand by Happy Alliance. 
-        Crispy potato sticks and popping pearl snacks — bold flavours, 
-        no preservatives, retail and wholesale available.",
+        "description": "Coco Cado is a Malaysian halal snack brand by Happy Alliance. Crispy potato sticks and popping pearl snacks — bold flavours, no preservatives, retail and wholesale available.",
         "sameAs": [
           "https://facebook.com/cococado",
           "https://instagram.com/cococado",
@@ -83,6 +82,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>{title}</title>
+    <Analytics />
   </head>
 
   <body class="overflow-x-hidden w-full max-w-[100vw]">
