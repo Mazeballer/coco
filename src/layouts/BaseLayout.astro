@@ -21,7 +21,7 @@ const {
   ogImage     = "/images/og-image.jpg",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado.com");
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado.com.my");
 ---
 
 <!doctype html>
@@ -36,8 +36,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado
     <!-- Canonical -->
     <link rel="canonical" href={canonicalURL} />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+ <!-- Favicon -->
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Coco Cado" />
+<link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph -->
     <meta property="og:type"        content="website" />
@@ -61,9 +66,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Coco Cado",
-        "url": "https://cococado.com",
-        "logo": "https://cococado.com/favicon.svg",
-        "description": "Bold flavour, crunchy fun, and feel-good snacking for every moment.",
+        "url": "https://cococado.com.my",
+        "logo": "https://cococado.com.my/favicon.svg",  
+        "description": "Coco Cado is a Malaysian halal snack brand by Happy Alliance. 
+        Crispy potato sticks and popping pearl snacks — bold flavours, 
+        no preservatives, retail and wholesale available.",
         "sameAs": [
           "https://facebook.com/cococado",
           "https://instagram.com/cococado",
