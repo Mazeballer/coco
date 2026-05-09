@@ -28,7 +28,7 @@ export const products: Product[] = [
     slug: "original-crunch",
     name: "Original Crunch",
     category: "Potato Sticks",
-    description: "The bag that started the revolution. Pure crispy gold.",
+    description: "The snack that started it all. Coco Cado Original Crunch potato sticks — halal-certified, no preservatives, perfectly salted for a satisfying everyday crunch.",
     longDescription:
       "Our flagship snack. Real potatoes, sliced into perfect sticks and lightly salted to perfection. It's the classic crunch that everyone knows and loves.",
     weight: "20g",
@@ -69,7 +69,7 @@ export const products: Product[] = [
     slug: "party-bundle",
     name: "Party Bundle",
     category: "Potato Sticks",
-    description: "Five times the fun. Perfect for sharing (or not).",
+    description: "Five packs, endless crunch. Coco Cado Party Bundle potato sticks are halal-certified and perfect for sharing at gatherings, parties, or family snack time.",
     longDescription:
       "Why settle for one when you can have five? Our party bundle is designed for groups, families, or anyone who just really loves a good crunch.",
     weight: "20g x 5pcs",
@@ -109,7 +109,7 @@ export const products: Product[] = [
     slug: "big-crunch-energy",
     name: "Big Crunch Energy",
     category: "Potato Sticks",
-    description: "The hungrier choice. Loaded with zesty spice.",
+    description: "For the seriously hungry snacker. Coco Cado Big Crunch Energy 43g potato sticks — bigger bag, bolder flavours, halal-certified with no preservatives or artificial colouring.",
     longDescription:
       "The ultimate crunch factor. Real potatoes, sliced into perfect sticks and blasted with our secret flavor dusting. High-energy snacking for high-energy humans.",
     weight: "43g",
@@ -152,7 +152,7 @@ export const products: Product[] = [
     slug: "pearl-bundle",
     name: "PEARL BUNDLE",
     category: "Popping Pearl",
-    description: "Elegant floral notes mixed with earthy red bean.",
+    description: "Coco Cado Pearl Bundle — 50g x 12pcs of halal popping pearls in Barley, Red Bean, and Water Chestnut. Juicy, fun, and perfect for retail display or gifting.",
     longDescription:
       "A sophisticated blend of delicate rose and hearty red bean. These pearls offer a complex flavor profile that's both floral and comforting.",
     weight: "50g x 12pcs",
@@ -195,7 +195,7 @@ export const products: Product[] = [
     slug: "the-event-pail",
     name: "The Event Pail",
     category: "Popping Pearl",
-    description: "Bulk bliss for the biggest celebrations.",
+    description: "The ultimate party-size snack. Coco Cado Event Pail 500g of halal popping pearls — ideal for weddings, corporate events, and large gatherings across Malaysia.",
     longDescription:
       "Hosting a party or event? Our event pail ensures you never run out of the popping fun. 500g of pure snack joy in a convenient, shareable format.",
     weight: "500g",

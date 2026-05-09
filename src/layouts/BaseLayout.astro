@@ -78,9 +78,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado
       }
     </script>
 
-    <!-- DNS Prefetch for Fonts -->
+    <!-- DNS Prefetch & Font Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical fonts for LCP -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
     <title>{title}</title>
     <Analytics />
   </head>

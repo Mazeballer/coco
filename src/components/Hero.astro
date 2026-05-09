@@ -45,8 +45,9 @@ import homePearlImage from "../assets/home-pearl.png";
             <Image 
               src={homeImage} 
               alt="Coco Cado Potato Sticks in three flavours — Salted, Black Pepper, and Tomato" 
-              width={1600}
-              quality="max"
+              widths={[400, 800, 1200, 1600]}
+              sizes="(max-width: 768px) 400px, 1600px"
+              quality="mid"
               loading="lazy" 
               class="w-full h-auto drop-shadow-[0_35px_35px_rgba(32,15,1,0.4)]" 
             />
@@ -96,8 +97,9 @@ import homePearlImage from "../assets/home-pearl.png";
             <Image 
               src={homePearlImage} 
               alt="Coco Cado Popping Pearl in three flavours — Red Bean, Barley, and Water Chestnut" 
-              width={1600}
-              quality="max"
+              widths={[400, 800, 1200, 1600]}
+              sizes="(max-width: 768px) 400px, 1600px"
+              quality="mid"
               loading="eager" 
               fetchpriority="high" 
               class="w-full h-auto drop-shadow-[0_35px_35px_rgba(32,15,1,0.4)]" 
