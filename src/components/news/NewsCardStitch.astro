@@ -38,7 +38,7 @@ const {
   class={`bg-white rounded-[2.5rem] border-[6px] transition-all duration-300 hover:scale-[1.02] hover:-rotate-1 group news-card-reveal ${borderColor} ${shadowColor} flex flex-col h-full`}
   style={`box-shadow: 16px 16px 0px 0px var(--shadow-hex, #200f01);`}
 >
-  <div class={`relative ${isFeatured ? 'h-96' : 'h-72'} bg-stone-100 flex items-center justify-center border-b-[6px] ${borderColor.replace('border-', 'border-b-')} overflow-hidden m-4 rounded-[1.75rem] shrink-0`}>
+  <div class={`relative ${isFeatured ? 'h-auto aspect-video md:aspect-[3/2]' : 'h-auto aspect-[4/3] md:aspect-square'} bg-stone-100 flex items-center justify-center border-b-[6px] ${borderColor.replace('border-', 'border-b-')} overflow-hidden m-4 rounded-[1.75rem] shrink-0`}>
     {image ? (
       <Image 
         src={image} 
