@@ -302,7 +302,7 @@ const mapsUrl = "https://maps.google.com/?q=Lot+2869+Kampung+Tumbuk+42800+Tanjon
 
       const result = await response.json();
 
-      if (result.success) {
+if (result.ok || result.success) {
         // Show success, hide form
         form.classList.add('hidden');
         successDiv.classList.remove('hidden');
