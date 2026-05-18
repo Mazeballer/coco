@@ -91,7 +91,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado
     <script is:inline>history.scrollRestoration = "manual"; window.scrollTo(0, 0);</script>
   </head>
 
-  <body class="overflow-x-hidden w-full max-w-[100vw]">
+  <body class="overflow-x-clip w-full max-w-full">
     <!-- Skip to main content — screen reader / keyboard accessibility -->
     <a href="#main-content" class="skip-link sr-only focus:not-sr-only">Skip to main content</a>
 
