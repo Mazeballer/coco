@@ -87,6 +87,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://cococado
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
     <title>{title}</title>
     <Analytics />
+    <!-- Reset scroll immediately so Windows browsers don't flash a restored scroll position -->
+    <script is:inline>history.scrollRestoration = "manual"; window.scrollTo(0, 0);</script>
   </head>
 
   <body class="overflow-x-hidden w-full max-w-[100vw]">
