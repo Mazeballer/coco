@@ -197,27 +197,10 @@ import pearlCup from "../assets/pearlCup.png";
 
   lenis.on("scroll", () => ScrollTrigger.update());
 
-  // ── 2. Panel 1 entrance animation (runs on page load) ───
-  const panel1Timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-  panel1Timeline
-    .fromTo(
-      ".panel1-fade",
-      { opacity: 0 },
-      { opacity: 1, duration: 1, stagger: 0.15 }
-    )
-    .fromTo(
-      ".panel1-slide",
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 },
-      "-=0.7"
-    )
-    .fromTo(
-      ".panel1-bounce",
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" },
-      "-=0.6"
-    );
+  // ── 2. Panel 1 (Pearl) entrance — handled by CSS animation in Hero.astro ──
+  //    (No GSAP needed here — using GSAP fromTo on immediately-visible content
+  //     sets opacity:0 synchronously, causing a blank-background flash on slow
+  //     connections before JS finishes loading.)
 
   // ── 3. Horizontal scroll panels (desktop only) ──────────
   const mm = gsap.matchMedia();

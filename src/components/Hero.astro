@@ -65,7 +65,7 @@ import homePearlImage from "../assets/home-pearl.png";
       <div class="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#ce0301]/20 blur-[100px] rounded-full pointer-events-none" aria-hidden="true"></div>
 
       <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-stretch">
-        <div class="w-full md:w-1/2 text-left space-y-8 flex flex-col justify-center pt-32 md:pt-44 pb-10">
+        <div class="w-full md:w-1/2 text-left space-y-8 flex flex-col justify-center pt-6 md:pt-44 pb-10 order-2 md:order-1">
           <div class="relative inline-block panel1-fade">
             <h1 id="hero-heading-2" class="relative z-10 text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black font-headline text-[#200f01] leading-[0.9] tracking-tight mb-4 text-balance">
               Burst of Joy <br />with <span class="text-[#ce0301]">Coco Cado!</span>
@@ -92,7 +92,7 @@ import homePearlImage from "../assets/home-pearl.png";
           </div>
         </div>
 
-        <div class="w-full md:w-1/2 relative flex items-center justify-center panel1-bounce pb-64 md:pb-0">
+        <div class="w-full md:w-1/2 relative flex items-center justify-center panel1-bounce pt-28 md:pt-0 pb-6 md:pb-0 order-first md:order-2">
           <div class="relative z-10 md:scale-105 lg:scale-110 xl:scale-125 transform rotate-6 hover:rotate-0 transition-transform duration-700 w-4/5 sm:w-2/3 md:w-full">
             <Image 
               src={homePearlImage} 
@@ -112,3 +112,46 @@ import homePearlImage from "../assets/home-pearl.png";
 
   </div>
 </section>
+
+<style>
+  /* ── Pearl panel entrance animations (CSS-only, no JS dependency) ──
+     These run the moment the browser parses the stylesheet — no blank
+     background flash even on slow connections.                          */
+
+  .panel1-fade {
+    animation: heroCrossFade 0.6s ease-out both;
+  }
+
+  .panel1-slide {
+    animation: heroSlideUp 0.7s ease-out both;
+    animation-delay: 0.1s;
+  }
+
+  .panel1-bounce {
+    animation: heroBounceIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  @keyframes heroCrossFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes heroSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes heroBounceIn {
+    from { opacity: 0; transform: scale(0.88); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* Respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .panel1-fade,
+    .panel1-slide,
+    .panel1-bounce {
+      animation: none;
+    }
+  }
+</style>
