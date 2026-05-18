@@ -205,7 +205,10 @@ import pearlCup from "../assets/pearlCup.png";
   // ── 3. Horizontal scroll panels (desktop only) ──────────
   const mm = gsap.matchMedia();
 
-  mm.add("(min-width: 768px)", () => {
+  // Require min-height: 600px so the pin animation only activates on screens
+  // tall enough to handle it. Short Windows laptop screens fall back to the
+  // static Pearl panel (CSS -translate-y-1/2 keeps it centred perfectly).
+  mm.add("(min-width: 768px) and (min-height: 600px)", () => {
     const panelsContainer = document.querySelector<HTMLElement>(".hero-panels");
     const heroSection = document.querySelector<HTMLElement>("#hero-scroll");
 

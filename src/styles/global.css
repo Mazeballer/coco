@@ -113,7 +113,8 @@ body {
   font-family: "Manrope", sans-serif;
   background-color: var(--color-surface);
   color: var(--color-on-surface);
-  overflow-x: hidden;
+  overflow-x: clip; /* 'clip' unlike 'hidden' does not create a scroll container,
+                       so GSAP's position:fixed pin works correctly on Windows */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
