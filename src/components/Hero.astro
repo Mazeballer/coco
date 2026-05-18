@@ -155,19 +155,19 @@ import homePearlImage from "../assets/home-pearl.png";
     }
   }
 
-  /* ── Height-responsive: short desktop screens (Windows laptops) ──
-     At ≤ 800px height, tighten padding so all hero content stays visible.
-     At ≤ 700px height, also shrink the heading font size.               */
-  @media (max-height: 800px) and (min-width: 768px) {
+  /* ── Height-responsive: only fires below 740px height ──
+     768px (standard Windows laptop) is intentionally excluded so it gets
+     the full Mac-matching layout. Only truly short screens get compressed. */
+  @media (max-height: 740px) and (min-width: 768px) {
     .hero-content-col {
-      padding-top: 5rem !important;    /* 80px instead of 176px */
+      padding-top: 5rem !important;
       padding-bottom: 1rem !important;
     }
   }
 
-  @media (max-height: 700px) and (min-width: 768px) {
+  @media (max-height: 650px) and (min-width: 768px) {
     .hero-content-col {
-      padding-top: 3rem !important;    /* 48px — very short screens */
+      padding-top: 3rem !important;
     }
     #hero-heading-1,
     #hero-heading-2 {
