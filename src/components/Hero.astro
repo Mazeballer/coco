@@ -21,7 +21,7 @@ import homePearlImage from "../assets/home-pearl.png";
       <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row-reverse items-stretch">
         <div class="hero-content-col w-full md:w-1/2 text-left md:text-right space-y-8 md:pl-12 flex flex-col justify-center pt-32 md:pt-44 pb-10">
           <div class="relative inline-block panel2-fade">
-            <h2 id="hero-heading-1" class="relative z-10 text-[clamp(2.5rem,1rem+4vw,4.5rem)] font-black font-headline text-[#200f01] leading-[0.9] tracking-tight mb-4 text-balance">
+            <h2 id="hero-heading-1" class="relative z-10 text-[clamp(2.5rem,1rem+4vw,4.5rem)] font-black font-headline text-[#200f01] leading-[1.18] tracking-tight mb-4 text-balance">
               Snack Happy <br />with <span class="text-[#ce0301]">Coco Cado!</span>
             </h2>
             <div class="absolute -top-20 right-0 md:-top-24 md:right-0 lg:-top-20 lg:right-0 w-20 h-20 sm:w-24 sm:h-24 bg-[#f2cdff] rounded-full flex items-center justify-center rotate-12 shadow-2xl border-4 border-[#200f01] z-0 hover:scale-110 transition-transform cursor-default" aria-label="Made from Real Potatoes">
@@ -67,7 +67,7 @@ import homePearlImage from "../assets/home-pearl.png";
       <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-stretch">
         <div class="hero-content-col w-full md:w-1/2 text-left space-y-8 flex flex-col justify-center pt-6 md:pt-44 pb-10 order-2 md:order-1">
           <div class="relative inline-block panel1-fade">
-            <h1 id="hero-heading-2" class="relative z-10 text-[clamp(2.5rem,1rem+4vw,4.5rem)] font-black font-headline text-[#200f01] leading-[0.9] tracking-tight mb-4 text-balance">
+            <h1 id="hero-heading-2" class="relative z-10 text-[clamp(2.5rem,1rem+4vw,4.5rem)] font-black font-headline text-[#200f01] leading-[1.18] tracking-tight mb-4 text-balance">
               Burst of Joy <br />with <span class="text-[#ce0301]">Coco Cado!</span>
             </h1>
             <div class="absolute -top-20 right-0 md:-top-24 md:left-0 lg:-top-20 lg:left-0 w-20 h-20 sm:w-24 sm:h-24 bg-[#ffd700] rounded-full flex items-center justify-center -rotate-12 shadow-2xl border-4 border-[#200f01] z-0 hover:scale-110 transition-transform cursor-default" aria-label="Popping Pearl Snacks">
@@ -191,7 +191,8 @@ import homePearlImage from "../assets/home-pearl.png";
     }
     #hero-heading-1,
     #hero-heading-2 {
-      line-height: 1.08 !important;
+      /* line-height inherits the global 1.18 so the "Joy" descender
+         clears "Coco Cado!" on every screen size */
       margin-bottom: 0 !important;
     }
     .hero-content-col > :not([hidden]) ~ :not([hidden]) {
