@@ -115,14 +115,14 @@ const mainOptimized = mainAsset
       )}
 
       <!-- Pack Info Block -->
-      <div class="bg-surface-container-high p-6 rounded-xl grid grid-cols-2 gap-8">
-        <div>
+      <div class="bg-surface-container-high p-6 rounded-xl flex items-start justify-between gap-4">
+        <div class="min-w-0">
           <p class="text-outline text-xs font-black uppercase mb-1">Weight</p>
-          <p class="text-2xl font-black text-primary-container">{product.weight}</p>
+          <p class="text-2xl font-black text-primary-container whitespace-nowrap">{product.weight}</p>
         </div>
-        <div>
+        <div class="min-w-0 text-right">
           <p class="text-outline text-xs font-black uppercase mb-1">Barcode</p>
-          <p id="barcode-display" class="text-2xl font-black text-primary-container">
+          <p id="barcode-display" class="text-2xl font-black text-primary-container whitespace-nowrap tracking-tighter sm:tracking-normal">
             {product.flavors && product.flavors[0]?.barcode ? product.flavors[0].barcode : "-"}
           </p>
         </div>

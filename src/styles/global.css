@@ -125,6 +125,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Below 768px the hero's GSAP ScrollTrigger pin never activates (see
+   index.astro matchMedia gate), so the 'clip' tradeoff above isn't needed.
+   Use 'hidden' instead — mobile Safari's touch/rubber-band scroll can drag
+   past a 'clip' boundary, letting the page pan sideways; 'hidden' fully
+   blocks it. */
+@media (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
 img,
 video {
   max-width: 100%;
