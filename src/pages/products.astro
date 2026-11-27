@@ -103,8 +103,11 @@ const poppingPearls = products.filter(p => p.category === "Popping Pearl");
   // Register GSAP plugins
   gsap.registerPlugin(ScrollTrigger);
 
-  // Initialize animations once the page is fully loaded
-  window.addEventListener('load', () => {
+  // Runs as soon as the DOM is parsed — not gated behind `load` (which waits
+  // for every image on the page), so scroll-triggered reveals below are
+  // registered immediately instead of leaving content flash-hidden if the
+  // user scrolls past it before all images finish downloading.
+  function init() {
     // 1. Initialize Lenis Smooth Scroll
     const lenis = new Lenis({
       duration: 1.2,
@@ -114,26 +117,15 @@ const poppingPearls = products.filter(p => p.category === "Popping Pearl");
 
     // Synchronize ScrollTrigger with Lenis
     lenis.on('scroll', ScrollTrigger.update);
-    
+
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
 
-    // 2. Hero Entrance Animation
-    const heroTl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.2 } });
+    // Hero entrance is handled by CSS (.hero-animate-reveal / .hero-animate-image
+    // in global.css) so it plays instantly on paint.
 
-    heroTl
-      .fromTo(".hero-animate-reveal", 
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.15, delay: 0.2 }
-      )
-      .fromTo(".hero-animate-image", 
-        { scale: 0.8, rotation: 10, opacity: 0 },
-        { scale: 1, rotation: 3, opacity: 1, duration: 1.5, ease: "back.out(1.7)" },
-        "-=1"
-      );
-
-    // 3. Product Cards Stagger Reveal
+    // Product Cards Stagger Reveal
     const categories = document.querySelectorAll('section');
     
     categories.forEach((category) => {
@@ -179,8 +171,11 @@ const poppingPearls = products.filter(p => p.category === "Popping Pearl");
         );
       }
     });
+  }
 
-    // Final refresh to lock in positions
-    ScrollTrigger.refresh();
-  });
+  init();
+
+  // Images loading in can shift layout after ScrollTrigger positions were
+  // first measured — recalculate once everything has actually settled.
+  window.addEventListener('load', () => ScrollTrigger.refresh());
 </script>

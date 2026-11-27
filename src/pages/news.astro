@@ -145,12 +145,8 @@ const currentItems = newsItems.slice(startIndex, endIndex);
     });
     lenis.on('scroll', ScrollTrigger.update);
 
-    const heroTl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
-    heroTl
-      .fromTo(".hero-animate-reveal", 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.1, delay: 0.2 }
-      );
+    // Hero entrance is handled by CSS (.hero-animate-reveal in global.css)
+    // so it plays instantly on paint instead of waiting on this script.
 
     const cards = document.querySelectorAll(".news-card-reveal");
     
@@ -164,16 +160,13 @@ const currentItems = newsItems.slice(startIndex, endIndex);
       });
     }
 
-    ScrollTrigger.refresh();
   }
 
-  document.addEventListener('astro:page-load', initNews);
-  
-  if (document.readyState === 'complete') {
-    initNews();
-  } else {
-    window.addEventListener('load', initNews);
-  }
+  initNews();
+
+  // Images loading in can shift layout after ScrollTrigger positions were
+  // first measured — recalculate once everything has actually settled.
+  window.addEventListener('load', () => ScrollTrigger.refresh());
 </script>
 
 <style is:global>

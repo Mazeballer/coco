@@ -143,6 +143,40 @@ video {
   display: block;
 }
 
+/* ------------------------------------------------------------
+   Hero entrance reveal — CSS-only (see Hero.astro's panel1-fade
+   for why: a JS-driven fromTo() sets opacity:0 only once GSAP
+   runs, which on products/campaigns/news pages waited for the
+   `load` event (every image on the page) before firing — content
+   sat fully visible, then snapped invisible, then faded back in.
+   Running from CSS plays instantly on first paint, no JS wait. ------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-animate-reveal {
+    animation: heroRevealUp 0.7s ease-out both;
+  }
+
+  /* Light stagger via sibling count — works regardless of tag type
+     (h1, p, div all share this class across different hero components) */
+  .hero-animate-reveal ~ .hero-animate-reveal { animation-delay: 0.1s; }
+  .hero-animate-reveal ~ .hero-animate-reveal ~ .hero-animate-reveal { animation-delay: 0.2s; }
+  .hero-animate-reveal ~ .hero-animate-reveal ~ .hero-animate-reveal ~ .hero-animate-reveal { animation-delay: 0.3s; }
+
+  .hero-animate-image {
+    animation: heroRevealImage 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: 0.15s;
+  }
+}
+
+@keyframes heroRevealUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroRevealImage {
+  from { opacity: 0; transform: scale(0.85) rotate(8deg); }
+  to   { opacity: 1; transform: scale(1) rotate(3deg); }
+}
+
 /* Skip to content — accessibility */
 .skip-link {
   position: absolute;

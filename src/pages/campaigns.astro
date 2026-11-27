@@ -101,7 +101,9 @@ import KhaiImage from "../assets/KhaiAmbassador.png";
 
   gsap.registerPlugin(ScrollTrigger);
 
-  window.addEventListener('load', () => {
+  // Runs as soon as the DOM is parsed, not gated behind `load` (every image
+  // on the page) — see global.css for why the hero entrance moved to CSS.
+  function init() {
     // 1. Smooth Scroll
     const lenis = new Lenis();
     gsap.ticker.add((time) => {
@@ -109,23 +111,9 @@ import KhaiImage from "../assets/KhaiAmbassador.png";
     });
     lenis.on('scroll', ScrollTrigger.update);
 
-    // 2. Hero Entrance
-    const heroTl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.2 } });
-    heroTl
-      .fromTo(".hero-animate-reveal", 
-        { y: 60, opacity: 0 },
-        { y: 0, opacity: 1, stagger: 0.15, delay: 0.2 }
-      )
-      .fromTo(".hero-animate-badge", 
-        { scale: 0, rotation: -20 },
-        { scale: 1, rotation: 12, duration: 1, ease: "back.out(2)" },
-        "-=0.8"
-      )
-      .fromTo(".hero-animate-image", 
-        { x: 100, opacity: 0, rotation: 10 },
-        { x: 0, opacity: 1, rotation: 2, duration: 1.5 },
-        "-=1.2"
-      );
+    // 2. Hero Entrance - handled by CSS (.hero-animate-reveal in global.css).
+    // (.hero-animate-badge / .hero-animate-image aren't used by this page's
+    // hero, so those tweens were dead code and have been removed.)
 
     // 3. Intro Reveal - Handled by component internal script for word-by-word reveal
 
@@ -179,7 +167,11 @@ import KhaiImage from "../assets/KhaiAmbassador.png";
         }
       }
     );
+  }
 
-    ScrollTrigger.refresh();
-  });
+  init();
+
+  // Images loading in can shift layout after ScrollTrigger positions were
+  // first measured — recalculate once everything has actually settled.
+  window.addEventListener('load', () => ScrollTrigger.refresh());
 </script>

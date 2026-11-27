@@ -12,6 +12,12 @@ const navLinks = [
 ];
 
 const currentPath = Astro.url.pathname;
+
+// Matches the exact page, or any sub-page under it (e.g. "/products/original-crunch"
+// should still highlight "Products"), without "/" falsely matching every route.
+function isActive(href: string) {
+  return currentPath === href || currentPath.startsWith(href + "/");
+}
 ---
 
 <header class="group fixed top-0 left-0 w-full overflow-x-hidden z-[100] bg-transparent backdrop-blur-none shadow-none will-change-transform transition-[background,box-shadow] duration-300 ease-out hover:bg-[#1a0a00]/95 hover:backdrop-blur-md hover:shadow-2xl hover:shadow-black/50">
@@ -45,11 +51,11 @@ const currentPath = Astro.url.pathname;
             href={href}
             class:list={[
               "transition-colors duration-300 ease-out hover:scale-105 inline-block",
-              currentPath === href
+              isActive(href)
                 ? "text-[#ce0301] border-b-2 border-[#ce0301] pb-1"
                 : "text-[#200f01] group-hover:text-white group-focus-within:text-white hover:text-white focus:text-white",
             ]}
-            aria-current={currentPath === href ? "page" : undefined}
+            aria-current={isActive(href) ? "page" : undefined}
           >
             {label}
           </a>
@@ -85,11 +91,11 @@ const currentPath = Astro.url.pathname;
             href={href}
             class:list={[
               "block font-headline font-bold uppercase text-sm tracking-wider py-3 px-4 rounded-lg transition-colors",
-              currentPath === href
+              isActive(href)
                 ? "text-[#ffd700] bg-white/10"
                 : "text-white hover:text-[#ffd700] hover:bg-white/5",
             ]}
-            aria-current={currentPath === href ? "page" : undefined}
+            aria-current={isActive(href) ? "page" : undefined}
           >
             {label}
           </a>
